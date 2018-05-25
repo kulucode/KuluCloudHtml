@@ -1,0 +1,122 @@
+{
+    "code": 0,
+     "msg": "",
+     "count": 1000,
+     "data": [
+         
+                 {
+                     "id": "1",
+                     "type": "洗扫车",
+                     "types": "2",
+                     "num": "11547",
+                     "plate_number": "湘A00200",
+                    "start_time":"2017-12-30 09:12",
+                    "out_time":"2017-12-30 10:47",
+                     "login_weight": "15.3",
+                     "out_weight":"12.5",
+                     "nums":"1"
+                   
+                 },
+         
+                 {
+                    "id": "2",
+                    "type": "洗扫车",
+                    "types": "2",
+                    "num": "47953",
+                    "plate_number": "湘A00230",
+                   "start_time":"2017-12-30 10:14",
+                   "out_time":"2017-12-30 11:09",
+                    "login_weight": "23.6",
+                    "out_weight":"11.4",
+                    "nums":"1"
+                 },
+         
+                 {
+                    "id": "3",
+                    "type": "洗扫车",
+                    "types": "2",
+                    "num": "44755",
+                    "plate_number": "湘A00245",
+                   "start_time":"2017-12-30 10:12",
+                   "out_time":"2017-12-30 10:47",
+                    "login_weight": "7.8",
+                    "out_weight":"5.2",
+                    "nums":"2"
+                 },
+                 {
+                     "id": "4",
+                     "type": "洗扫车",
+                     "types": "2",
+                     "num": "165548",
+                     "plate_number": "湘A00203",
+                    "start_time":"2017-12-30 10:17",
+                    "out_time":"2017-12-30 11:09",
+                     "login_weight": "20.5",
+                     "out_weight":"15.40",
+                     "nums":"2"
+                 },
+                 {
+                    "id": "5",
+                    "type": "洗扫车",
+                    "types": "2",
+                    "num": "25465",
+                    "plate_number": "湘A00289",
+                   "start_time":"2017-12-30 08:45",
+                   "out_time":"2017-12-30 10:47",
+                    "login_weight": "15.8",
+                    "out_weight":"10.70",
+                    "nums":"4"
+                 },
+                 {
+                     "id": "6",
+                     "type": "洗扫车",
+                     "types": "2",
+                     "num": "54212",
+                     "plate_number": "湘A00209",
+                    "start_time":"2017-12-30 12:11",
+                    "out_time":"2017-12-30 13:09",
+                     "login_weight": "19.5",
+                     "out_weight":"14.40",
+                     "nums":"1"
+                 },
+                 {
+                    "id": "7",
+                    "type": "洗扫车",
+                    "types": "2",
+                    "num": "154798",
+                    "plate_number": "湘A00234",
+                   "start_time":"2017-12-30 07:19",
+                   "out_time":"2017-12-30 09:47",
+                    "login_weight": "18.9",
+                    "out_weight":"13.80",
+                    "nums":"1"
+                },
+                {
+                    
+                },
+                {
+                    
+                },
+                {
+                    
+                },
+                {
+                    
+                },
+                {
+                    
+                },
+                {
+                    
+                },
+                {
+                    
+                },
+                {
+                    
+                },
+                {
+                    
+                }
+             ]
+ }

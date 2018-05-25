@@ -1,0 +1,65 @@
+*{margin:0;padding:0;}
+body{width:100%;height:100%;border:0;background-color:#ffffff;}
+/* Corner radius */
+.ui-corner-all, .ui-corner-tl {-moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 4px; -khtml-border-top-left-radius: 5px; border-top-left-radius: 5px;}
+.ui-corner-all, .ui-corner-tr {-moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; -khtml-border-top-right-radius: 5px; border-top-right-radius: 5px;}
+.ui-corner-all, .ui-corner-bl {-moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px; -khtml-border-bottom-left-radius: 5px; border-bottom-left-radius: 5px;}
+.ui-corner-all, .ui-corner-br {-moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px; -khtml-border-bottom-right-radius: 5px; border-bottom-right-radius: 5px;}
+
+.drag-bg-common {background: url(../images/bswin/hide.png) repeat;position:fixed;z-index:2000;border:5px solid #aaaaaa;}
+/* desktop index */
+.wdtmbj1 {background: url(../images/bswin/wait.gif) no-repeat center center;}
+.dt-index {height:26px;position:fixed;z-index:900;top:10px;border: 1px solid #76727c;color: #ffffff; }
+.dt-index-item {cursor:pointer;float:left;color:#ffffff;line-height:26px;height:26px;text-align:center;font-size:12px;}
+.dt-index-item-select {color:#ffffff;font-weight:bold;}
+.dt-index-item img{vertical-align:middle;text-align:center;}
+.dt-index-item-split {cursor:pointer;float:left;color:#ffffff;width:8px;line-height:26px;height:26px;text-align:center;}
+.dt-index-item-hover {cursor:pointer;line-height:26px;float:left;background:url(../images/bswin/bj.png) no-repeat;color:#000000;}
+.dt-index-bg {position:absolute; left:0px;top:0px;background:url(../images/bswin/bj.png) no-repeat;color:#000000;vertical-align:middle;}
+.dt-index-item-bg {position:absolute; left:0px;top:0px;}
+
+.dt-obj-scroll {float:left;position:fixed;z-index:2;left:0px;top:0px;height:100%;background-color:red;}
+.dt-obj-bg {float:left;position:fixed;z-index:3;left:0px;top:0px;width:100%;height:100%;display:none;background: url(../images/bswin/hide.png) repeat;}
+.dt-obj-index {float:left;position:fixed;z-index:4;left:20px;top:60px;}
+
+/* task index */
+.task-index {float:left;position:fixed;z-index:900;bottom: 0px;left: 0px;width: 100%;height: 42px;background: url(../images/bswin/taskbg.png) repeat-x center bottom;}
+.task-index-all {overflow:hidden;float:left;position: relative;white-space: nowrap;height: 42px;}
+.task-item-bg {float:left;height: 42px;top: 0px;padding: 0px 0px 0px 0px;width:auto;position: relative;}
+.task-item {position:relative;font-size:14px;cursor:pointer;float:left;width:115px;height:40px;text-align:center;line-height:40px;word-break: break-all;word-wrap: break-word;}
+.task-item-zindex {background:url(../images/bswin/bj2.png) center center no-repeat;font-size:12px;z-index:100;position:absolute;color:#ffffff;}
+.task-item-nor {background:url(../images/bswin/taskitemnor.png) no-repeat center center;}
+.task-item-show {background:url(../images/bswin/taskitemshow.png) no-repeat center center;}
+.task-item-move {background:url(../images/bswin/taskitemover.png) no-repeat center center;}
+
+/* app */
+.app-bj {display:none;position:absolute;width:88px;height:88px;z-index:10;background: url(../images/bswin/common-bj.png) repeat;border: 1px solid #aaaaaa;}
+.app-item {cursor:pointer;position:absolute;z-index:11;width:88px;height:88px;vertical-align:middle;text-align: center;background: url(../images/bswin/hide.png) repeat;}
+.app-item-f {background: url(../images/bswin/hide.png) repeat;}
+.app-item img {width:60px;height:60px;padding: 2px;}
+.app-item-span{position:absolute;left:4px;top:65px;border: 0px;width:80px;height:22px;line-height:22px;vertical-align:middle;text-align:center;font-size:12px;color:white;background: url(../images/bswin/common-bj.png) repeat;}
+.app-item-op {background:url(../images/bswin/bj1.png) 100% 100% repeat;}
+
+/* windows */
+.win-bj {display:none;position:fixed;z-index:100;border: 1px solid #969b9f;background-color:#d1ccd0;text-align: center;padding:0px;margin:0px;}
+.win-modal {left:0px;width:0px;height:100%;width:100%;position:fixed;background: url(../images/bswin/tm.png) repeat;}
+.win-top {background: url(../images/bswin/dlg_bj.png) repeat-x;font-size:12px;height:26px;vertical-align:middle;text-align: center;line-height:26px;margin:0px;padding:0px;}
+.win-context {margin-top:0px;margin-left:2px;width:100%;padding:0px;}
+.win-wait {background-color:#b4d9f1;width: 100%;top:26px;left:0px;position: absolute; z-index: 999;vertical-align:middle;text-align: center;}
+.win-top-bar {position: absolute;right:5px;top:0px;}
+
+/*myapplist*/
+.myapp-area {float:left;height:30px;width:850px;}
+.myapp-area img {position:relative; top:60%;height:18px;margin-top:-9px;}
+.myapp-item {width:88px;height:88px;float:left;text-align: center;border: 1px solid transparent;cursor:pointer;}
+.myapp-item-show {background: url(../images/bswin/common-bj.png) repeat;border: 1px solid #aaaaaa;}
+/*zoomer*/
+ul.zoomer-thumb {float: left;list-style: none;margin: 0; padding: 20px;width: 720px;}
+ul.zoomer-thumb li {margin: 0; padding: 5px;float: left;position: relative;width: 110px;height: 110px;}
+ul.zoomer-thumb li img {width: 100px; height: 100px;border: 1px solid #ddd;padding: 5px;background: #f0f0f0;position: absolute;left: 0; top: 0;-ms-interpolation-mode: bicubic; }
+ul.zoomer-thumb li img.hover {margin-top:15px;background:url(../images/zoomer/zoomer_bg.png) no-repeat center center;border: none;}
+.zoomer-title{position:absolute;width:212px;height:35px;margin:0;font-weight:900;background:url(../images/zoomer/blue.png) no-repeat center center;padding:17px 0 0 0;text-align:center; color: #fff;z-index:12; }
+
+/*bstips*/
+.tops-swrap { margin:0;padding:0;padding:2px 7px;background:#FAF7AA;font-size:12px;border:#ccc 2px solid;position: absolute; /*leave this and next 3 values alone*/z-index: 1000;left: -1000px;top: -1000px;}
+.bt_button_div {padding: 6px 10px;background-color: #f5f5f5; position: fixed;width: 100%; bottom: 0px; }

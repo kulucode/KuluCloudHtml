@@ -1,0 +1,26 @@
+.btnCar {
+    padding: 0px 12px;
+    margin-left: 7px;
+}
+.layui-form-item .find_carlist{
+    top: -115%;
+}
+.layui-body #layui-layer_bottom{
+    top: 70%;
+}
+.start_time .researchPeople {
+    height: 37px;
+    line-height: 37px;
+    padding: 0 33px;
+}
+#btnResearch{
+    height: 37px;
+    line-height: 37px;
+    padding: 0;
+}
+@media screen and (max-height: 810px){
+
+    .layui-layout-body .layui-form .layui-table-box {
+        overflow-y: hidden;
+    }
+}

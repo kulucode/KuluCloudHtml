@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>酷陆科技</title>
+  <link rel="stylesheet" href="../../layui/css/layui.css">
+  <link rel="stylesheet" href="../../layui/css/kulu.css">
+  <link rel="stylesheet" href="../../css/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+  <link rel="stylesheet" href="../../css/kulu.css">
+  <style>
+  .layui-header .layui-layout-left .layui-nav-bar{
+    /* left: 20px!important;
+    top: 58px!important;
+    width: 160px!important;
+    opacity: 1!important; */
+  }
+  .layui-table-header .layui-table thead tr{
+    background: #50b4c8;
+    color: white
+  }
+  .layui-table tr:nth-child(3){
+    background: #ffc000
+  }
+  .layui-layout-body .layui-table-view {
+    width: 100%!important;
+    /* overflow-y: auto; */
+    overflow-x: hidden;
+}
+.demoTable .layui-btn{
+  background-color:#50b4c8
+}
+.layui-table-main{
+  overflow-y: auto
+}
+  </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo"><img src="../../img/car/kulu.png" alt="" srcset="" style="width:100%"></div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item"><a href="../../html/index/index.html" class="home">平台主页</a></li>
+      <li class="layui-nav-item"><a href="../../html/car/car_location.html" class="car">车辆管理</a></li>
+      <li class="layui-nav-item"><a href="../../html/people/people_location.html" class="people">人员管理</a></li>
+      <li class="layui-nav-item"><a href="../../html/toilet/toilet.html" class="toilet">公厕管理</a></li>
+      <li class="layui-nav-item layui-this"><a href="../../html/station/station_location.html" class="station">中转站管理</a></li>
+      <li class="layui-nav-item"><a href="../../html/rubbish/rubbish_location.html" class="rubbish">垃圾云图</a></li>
+      <li class="layui-nav-item"><a href="../../html/landfill/landfill_login.html" class="landfill">填埋场管理</a></li>
+      <li class="layui-nav-item"><a href="../../html/table/table_list.html" class="table">报表输出</a></li>
+      
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="/kulu/console.html" class="install">
+              系统设置
+            </a>
+          </li>
+     
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item nav_left nav_lefts"><a href="../../html/station/station_location.html" class="station_left">实时监控</a></li>
+        <li class="layui-nav-item nav_left"><a href="../../html/station/station_video.html" class="video_left">监控调取</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div><div id="allmap" onload="drive()" style="z-index: -1;"></div>
+    
+    <div class="" id="layui-layer_bottom"><img src="../../img/bottom.png" ></div>
+    <div class="" id="layui-layer_top"><img src="../../img/top.png" ></div></div>
+    <div class="layui-layer layui-layer-page" id="layui-layer_car">
+        未查看报警 ： <span class="detailNum"></span>
+      </div></div>
+  
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+  
+      
+     <div class="demoTable" style="margin-top:20px">
+      搜索ID：
+      <div class="layui-inline">
+        <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+      </div>
+      <button class="layui-btn" data-type="reload">搜索</button>
+    </div>
+      
+     <table class="layui-table" lay-data="{height:'full-800',cellMinWidth: 80 , url:'../../json/station.json', page:false, id:'idTest'}" lay-filter="demo">
+       <thead>
+         <tr>
+           <th lay-data="{field:'id', sort: true}">序号</th>
+           <th lay-data="{field:'team', sort: true}">项目组</th>
+           <th lay-data="{field:'num',sort: true}">中转站编号</th>
+           <th lay-data="{field:'status', sort: true}">臭气指数</th>
+           <th lay-data="{field:'name',}">责任人</th>
+           <th lay-data="{field:'phone', }">联系方式</th>
+           <th lay-data="{field:'station'}">中转站位置</th>
+           
+           <th lay-data="{field:'enter',sort: true}">当日收入垃圾量(T)</th>
+           <th lay-data="{field:'out', sort: true}">当日送出垃圾量(T)</th>
+           <th lay-data="{ align:'center', toolbar: '#barDemo'}">实时定位</th>
+           <th lay-data="{align:'center',toolbar: '#barDemos'}">直播</th>
+         </tr>
+       </thead>
+     </table>
+  </div>
+</div>
+
+</div>
+<script src="../../js/jquery/jquery.min.js"></script>
+<script src="../../js/jquery/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=O64nl3yKG6MNbniKhhOmIVNjmNecAxHC"></script>
+<!--加载鼠标绘制工具-->
+<script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+<script src="../../layui/layui.js"></script>
+<script src="../../js/mapInit.js"></script>
+<script src="../../js/remote.js"></script>
+<script src="../../js/Bmap.js"></script>
+<script src="../../js/station/station.js"></script>
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="detail">定位</a>
+</script>
+<script type="text/html" id="barDemos">
+  <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="fa fa-video-camera"></i></a>
+</script>     
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+
+</script>
+<script>
+//JavaScript代码区域
+layui.use('element', function(){
+  var element = layui.element;
+  
+});
+loadstationList(map)
+</script>
+</body>
+</html>

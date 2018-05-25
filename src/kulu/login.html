@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<title>酷陆云平台V2-后台管理</title>
+<head>
+    <meta http-equiv="expires" content="-1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <link href="common/css/pintuer.css"
+          rel="stylesheet" type="text/css"/>
+    <link href="common/css/userlogin.css"
+          rel="stylesheet" type="text/css"/>
+    <script language="javascript" src="common/script/jquery.js" type="text/javascript"></script>
+    <script language="javascript" src="common/script/jquery.bs.js" type="text/javascript"></script>
+    <script language="javascript" src="common/script/pintuer.js" type="text/javascript"></script>
+    <script language="javascript" src="common/script/userlogin.js" type="text/javascript"></script>
+    <script language="javascript" src="common/script/cookie.js" type="text/javascript"></script>
+    <script language="javascript" src="common/script/common.js" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript">
+        var hash_url = window.location.hash;
+        var fromHTML = document.referrer;
+        window.onresize = function () {
+            $("#td_m").css("height", $(window).height() - 200);
+            //设置前景图
+            $("#l_bgfr").css("height", ($(window).height() - 200) - 60);
+        }
+        $(document).ready(function () {
+            $("#a_chrome").attr("href", webHome + "/files/chrome.exe");
+            $("#td_m").css("height", $(window).height() - 200);
+            //设置前景图
+            $("#l_bgfr").css("height", ($(window).height() - 200) - 60);
+            //$("#l_bgfr").css("top",112+30);
+            $("#img_m").attr("src", "common/images/logincsu/hdbg.jpg");
+            clear("InCheckCode");
+            opener = null;
+            window.history.forward();
+            $("#pub_fromjs").val("");
+            if (hash_url != "") {
+                hash_url = hash_url.split("#")[1];
+                if (hash_url != null) {
+                    $("#pub_fromjs").val(hash_url);
+                }
+            }
+        });
+
+        $(document).keypress(function () {
+            Enter();
+        });
+    </script>
+</head>
+<body scroll="no">
+<table style="height:100%;width:100%;" border="0" cellpadding="0"
+       cellspacing="0">
+    <tr>
+        <td style="height:112px;" valign="top"><img
+                src="common/images/logincsu/top.png"
+                style="height:100%;width:100%;"/>
+            <table class="logo" style="height:112px;" border="0">
+                <tr>
+                    <td valign="middle"><!--<img
+                            src="common/images/logincsu/hdlogo.png"/>--></td>
+                    <td>&nbsp;&nbsp;&nbsp;</td>
+                    <td valign="middle" class="l_labname">
+                    </td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td valign="middle" class="l_ptname">&nbsp;&nbsp;酷陆云平台V2后台管理
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td id="td_m">
+            <img id="img_m" src="" style="height:100%;width:100%;"/>
+            <img id="l_bgfr" src="common/images/logincsu/hdfr.png"
+                 style="position: fixed;z-index:20;bottom:88px;left:50px;display: none;"/>
+
+            <div class="login form-auto" style="z-index:200;">
+                <form method="post" id="frmBusiness" name="frmBusiness" action=""
+                      class="form_login form-auto">
+                    <input type="hidden" id="pub_fromjs" name="pub_fromjs" value=""/>
+
+                    <div class="form-group">
+                        <div class="field field-icon">
+                            <span class="icon icon-user text-gray" style="margin-top:5px;"></span>
+                            <input type="text" class="input login-input" id="username"
+                                   name="username" size="44" data-validate="required:必填" placeholder="请输入帐号"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="field field-icon">
+                            <span class="icon icon-key text-gray" style="margin-top:5px;"></span>
+                            <input type="password" class="input login-input" id="userkey"
+                                   name="userkey" size="44" data-validate="required:必填" placeholder="请输入密码"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="field field-icon line">
+                            <input type="text" class="input login-input" id="usercode"
+                                   name="usercode" size="28" data-validate="required:必填" placeholder="请输入验证码"/> <span
+                                class="icon icon-puzzle-piece text-gray"
+                                style="margin-top:5px;"></span>
+                            <span><img
+                                    border="0" id="InCheckCode" name="InCheckCode" src=""
+                                    title="点击换一张" style="cursor: hand; " class="passcode"
+                                    onclick="changeImgCode('InCheckCode')"/></span>
+
+                        </div>
+                    </div>
+                    <div class="form-group" id="err_str" style="color:red;">&nbsp;</div>
+                    <div class="form-group">
+                        <label id="remAutoLoginTxt"> <input
+                                tabindex="3" title="记住用户名" class="loginFormCbx" id="cookie2w"
+                                name="cookie2w" type="checkbox"/> 记住用户ID
+                        </label>
+                        <div style="display:inline-block;color:blue;margin-left:10px;">
+                            建议使用chrome浏览器(<a id="a_chrome" href="#" target="_blank">下载</a>)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="field" style="margin-top: 10px;">
+                            <input id="btn_login" type="button" class="button_false"
+                                   onclick="login()"/>&nbsp;<input type="button" class="bt_c" onclick="getPassWord()"/>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td style="height:88px;" align="center">
+            <img src="common/images/logincsu/bottom.png" style="height:88px;width:100%;"/>
+            <div class="foot float-right text-white" style="right:10px;font-size: 30px;">酷陆科技</div>
+        </td>
+    </tr>
+</table>
+<!-- 找回密码 -->
+<div id="password-base">
+    <div class="dialog">
+        <div class="dialog-head">
+            <span class="close rotate-hover"></span> <strong
+                id="password-base-title"></strong>
+        </div>
+        <div class="dialog-body" style="height:300px;overflow-y:auto;">
+            请联系管理员修改密码！
+        </div>
+        <div class="dialog-foot">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

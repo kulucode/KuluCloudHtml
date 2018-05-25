@@ -1,0 +1,1 @@
+loadrubbishList(map)

@@ -1,0 +1,41 @@
+.search_peoples{
+    display: inline-block;
+    float: right;
+    margin-right: 6%;
+}
+.add_peoples{
+    position: absolute;
+    right: 22%;
+}
+.addPeople{
+    margin-left: 2%;
+    font-size: 31px;
+}
+.collapse_people{
+    width: 15%;
+    margin-left: 9px;
+    background: #ebf1f3;
+    float: left;
+    margin-top: 10px;
+}
+.detail_table{
+    width: 80%;
+    float: left;
+    margin-left: 2%;
+}
+.detail_table .layui-table-view .layui-table td,.detail_table .layui-table-view .layui-table th {
+    padding: 9.8px 0;
+}
+.demoTable{
+    line-height: 30px;
+}
+#test3{
+    margin-left: 20px;
+    margin-right: 20px
+}
+.layui-table-body{
+    background: #e9f2f5;
+}
+.layui-table tbody tr:hover, .layui-table thead tr, .layui-table-click, .layui-table-header, .layui-table-hover, .layui-table-mend, .layui-table-patch, .layui-table-tool, .layui-table[lay-even] tr:nth-child(even) {
+    background-color: #e9f2f5;
+}

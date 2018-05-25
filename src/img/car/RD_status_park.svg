@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 475 475" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>扫路车离线</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M234.994985,97.7010526 C254.691121,97.7010526 261.662541,116.901053 261.662541,116.901053 C275.258685,116.901053 280,117.92 280,110.72 L280,92.5473684 L71.5133053,92.5473684 C69.4143831,92.2021053 66.2097786,90.9894737 66.0223749,86.4421053 L65.9567835,86.0547368 L65.9567835,21.4989474 L44.1523548,21.4989474 C40.4230198,21.4989474 35.5505218,23.7389474 33.3485275,26.4673684 L3.98235664,63.1831579 C1.8084729,65.8947368 2.65130125e-05,70.9305263 2.65130125e-05,74.3326316 L2.65130125e-05,110.736842 C-0.0103601289,114.125397 3.03234739,116.882498 6.80278338,116.901053 L30.7248747,116.901053 C34.4289216,106.621156 45.060002,99.6414428 57.083215,99.5957895 C69.358162,99.5957895 79.7590712,106.863158 83.4040746,116.901053 L206.903159,116.901053 C206.818828,116.901053 208.477351,97.7010526 234.994985,97.7010526 Z M12.9777376,76.3621053 L12.9777376,75.36 C12.9777376,71.9747368 14.7393331,66.9221053 16.8851062,64.1431579 L38.94253,35.7894737 C41.0695628,32.9936842 45.3985899,30.7368421 48.5657136,30.7368421 C51.7047268,30.7368421 54.2815286,33.4821053 54.2815286,36.8842105 L54.2815286,76.3621053 C54.286745,79.7613287 51.232958,82.5246115 47.4506612,82.5431579 L19.8367156,82.5431579 C18.0151159,82.540926 16.2691109,81.8884556 14.9828026,80.7292831 C13.6964944,79.5701105 12.9752508,77.9991894 12.9777376,76.3621053 Z M35.3256373,124.336842 C35.2892905,135.144327 44.9921611,143.939698 57.0176237,144 C68.9271333,144 78.6908697,135.174737 78.6908697,124.336842 C78.6908697,113.515789 68.9552439,104.682105 57.0176237,104.682105 C44.9958285,104.742402 35.2944655,113.53264 35.3256373,124.336842 Z M42.5313122,124.336842 C42.5259252,117.117562 49.003636,111.24711 57.0363641,111.191579 C65.0103945,111.191579 71.5039351,117.128421 71.5039351,124.336842 C71.5039351,131.570526 65.0010243,137.498947 57.0363641,137.498947 C48.9963176,137.443378 42.5156124,131.562687 42.5313122,124.336842 Z M82.1578395,86.9136842 L266.553779,86.9136842 C271.726124,86.9136842 275.923968,84.2442105 275.923968,80.9768421 L275.923968,5.92842105 C275.923968,2.66947368 271.726124,0 266.553779,0 L82.1578395,0 C77.0042358,0 72.8063913,2.66947368 72.8063913,5.92842105 L72.8063913,80.9852632 C72.8063913,84.2357895 77.0042358,86.9136842 82.1578395,86.9136842 Z" id="path-1"></path>
+        <filter x="-2.7%" y="-3.8%" width="105.4%" height="110.4%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M112.006101,98 L87,140 L99.4983271,140 L112.006101,98 Z M109.304271,140 L112.006101,98 L117.419209,140 L109.304271,140 Z M125.137375,140 L112.006101,98 L135,140 L125.137375,140 Z" id="path-3"></path>
+        <filter x="-15.6%" y="-16.0%" width="131.2%" height="138.6%" filterUnits="objectBoundingBox" id="filter-4">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M151.735337,98 L127,140.794753 L139.363,140.794753 L151.735337,98 Z M149.06478,140.794753 L151.735337,98 L157.067114,140.794753 L149.06478,140.794753 Z M164.714619,140.794753 L151.735337,98 L174.45375,140.794753 L164.714619,140.794753 Z M232.571053,142 C220.186641,141.990647 210.148213,132.869768 210.132769,121.612654 C210.132769,110.391975 220.208054,101.216821 232.571053,101.216821 C244.934053,101.216821 255,110.391975 255,121.612654 C254.984566,132.866458 244.95182,141.985971 232.571053,142 Z M232.571053,108.490741 C224.608613,108.490741 218.153779,114.358021 218.153779,121.595679 C218.153779,128.833337 224.608613,134.700617 232.571053,134.700617 C240.533494,134.700617 246.988328,128.833337 246.988328,121.595679 C246.988328,114.358021 240.533494,108.490741 232.571053,108.490741 Z" id="path-5"></path>
+        <filter x="-5.9%" y="-15.5%" width="111.7%" height="137.0%" filterUnits="objectBoundingBox" id="filter-6">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M80,54.6923077 L113,54.6923077 L113,61 L80,61 L80,54.6923077 Z M80,43.1282051 L113,43.1282051 L113,49.4358974 L80,49.4358974 L80,43.1282051 Z M80,31.5641026 L113,31.5641026 L113,37.8717949 L80,37.8717949 L80,31.5641026 Z M80,20 L113,20 L113,26.3076923 L80,26.3076923 L80,20 Z" id="path-7"></path>
+        <filter x="-22.7%" y="-13.4%" width="145.5%" height="136.6%" filterUnits="objectBoundingBox" id="filter-8">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="扫路车离线">
+            <g id="Group-2" transform="translate(-1.000000, -1.000000)">
+                <g id="扫路车" opacity="0.5">
+                    <g id="外框">
+                        <g id="Group" transform="translate(0.627376, 0.679389)">
+                            <path d="M237.469354,474.643542 C106.831483,474.643542 0.549627376,368.344916 0.549627376,237.68916 C0.549627376,107.023634 106.831483,0.719145038 237.469354,0.719145038 C368.105278,0.719145038 474.387133,107.023634 474.387133,237.68916 C474.387133,368.34687 368.105278,474.643542 237.469354,474.643542 Z M237.35703,428.047072 C342.584725,428.047072 428.193334,342.824211 428.193334,238.070703 C428.193334,133.319149 342.584725,48.0962876 237.35703,48.0962876 C132.129334,48.0962876 46.5207251,133.319149 46.5207251,238.070703 C46.5207251,342.824211 132.129334,428.047072 237.35703,428.047072 Z" id="Combined-Shape" fill-opacity="0.5" fill="#45494C" fill-rule="nonzero"></path>
+                            <circle id="Oval" stroke="#979797" fill="#FFFFFF" cx="237" cy="238" r="190"></circle>
+                        </g>
+                    </g>
+                </g>
+                <g id="扫路车" transform="translate(98.000000, 166.000000)" fill-rule="nonzero">
+                    <g id="Shape">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use stroke="#979797" stroke-width="1" fill="#4A4A4A" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <g id="Shape">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                        <use stroke="#979797" stroke-width="1" fill="#4A4A4A" fill-rule="evenodd" xlink:href="#path-3"></use>
+                    </g>
+                    <g id="Shape">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                        <use stroke="#979797" stroke-width="1" fill="#4A4A4A" fill-rule="evenodd" xlink:href="#path-5"></use>
+                    </g>
+                    <g id="Shape">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-7"></use>
+                        <use stroke="#979797" stroke-width="1" fill="#4A4A4A" fill-rule="evenodd" xlink:href="#path-7"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

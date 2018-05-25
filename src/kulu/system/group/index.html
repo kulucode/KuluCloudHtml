@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html>
+<title></title>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="expires" content="-1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" type="text/css" href="../../common/css/pintuer.css"/>
+    <link rel="stylesheet" type="text/css" href="../../common/css/uc.css"/>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.5.0/css/ol.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../../common/css/bstree.css"/>
+    <script language="javascript" src="../../common/script/jquery.js" type="text/javascript"></script>
+    <script language="javascript" src="../../common/script/jquery.bs.js" type="text/javascript"></script>
+    <script language="javascript" src="../../common/script/pintuer.js" type="text/javascript"></script>
+    <script language="javascript" src="../../common/script/common.js" type="text/javascript"></script>
+    <script language="javascript" src="../../common/script/jquery.bs.lookup.js" type="text/javascript"></script>
+    <script language="javascript" src="../../common/script/lookup.js" type="text/javascript"></script>
+    <script language="javascript" src="../../common/script/menu.js" type="text/javascript"></script>
+    <script src="../../common/script/bstreeview.js" type="text/javascript"></script>
+    <script src="index.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="layout doc-header navbar-fixed-top"
+     id="l_syslogo_f" style="color:#ffffff;z-index:20;">
+    <div class="line" style="height:45px;line-height:45px;">
+        <div class="x10 text-big" id="l_syslogo">
+
+        </div>
+        <div class="x2">
+            <ul id="div_user" class="nav nav-menu nav-inline margin-large-left">
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="line" style="">
+    <div class="x2 sidebar navbar-fixed-top" style="top:47px;z-index:10;">
+        <ul id="div_menu" class="nav-list spy" data-offset-fixed="320"
+            data-offset-spy="160">
+        </ul>
+    </div>
+    <div class="x10" style="left:195px;top:50px;">
+        <div class="bread-p">
+            <div class="float-right margin-small-top">
+                <iframe allowtransparency="true" frameborder="0" width="524"
+                        height="28" scrolling="no"
+                        src="http://tianqi.2345.com/plugin/widget/index.htm?s=3&z=1&t=0&v=0&d=2&bd=0&k=000000&f=&q=1&e=1&a=1&c=54511&w=524&h=28&align=center"></iframe>
+            </div>
+            <ul class="bread" style="padding: 0px 15px;font-size:14px;">
+                <li><span class="icon-cogs"></span> 运维基础信息管理</li>
+                <li class="text-black">机构管理</li>
+            </ul>
+        </div>
+
+        <div class="x10 margin" style="top:40px;width:100%;">
+            <div class="layout">
+                <div class="x4">
+                    <div class="panel">
+                        <div class="panel-head">运营机构</div>
+                        <div class="panel-body" id="div_orgtree"></div>
+                    </div>
+                </div>
+                <div class="x8">
+                    <div class="panel margin-big-left">
+                        <div class="panel-head" id="div_head">机构详情</div>
+                        <div class="panel-body">
+                            <form id="orgbase-form" name="orgbase-form" method="post"
+                                  class="form-x">
+                                <input type="hidden" id="t_orgid" name="t_orgid"/>
+                                <input type="hidden" id="t_porgid" name="t_porgid"/>
+                                <input type="hidden" id="t_orglat" name="t_orglat"/>
+                                <input type="hidden" id="t_orglon" name="t_orglon"/>
+                                <input type="hidden" id="t_orgcomp" name="t_orgcomp"/>
+                                <div class="form-group" id="div_porg">
+                                    <div class="label">
+                                        <strong>上级机构</strong>
+                                    </div>
+                                    <div class="field" style="text-align: left;padding: 7px;">
+                                        <span id="l_porg">无</span>
+                                        &nbsp;<button type="button" onclick="doSelOrgByOrg(0);"
+                                                      class="text-little button bg-sub icon-search button-little">
+                                        选择上级机构
+                                    </button>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="label">
+                                        <strong>机构名称</strong>
+                                    </div>
+                                    <div class="field">
+                                        <input class="input" type="text" id="t_orgname"
+                                               name="t_orgname" placeholder="输入项目名称" style=""
+                                               data-validate="required:必填"/>
+                                        <div id="l_orgallname" class="input-note">机构完整名：</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="label" for="t_usign">
+                                        <strong>机构描述</strong>
+                                    </div>
+                                    <div class="field">
+											<textarea id="t_orgdesc" name="t_orgdesc" rows="2"
+                                                      class="input" style="" placeholder="输入机构描述"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="label" for="s_utype">
+                                        <strong>类别</strong>
+                                    </div>
+                                    <div class="field">
+                                        <select id="s_orgtype" name="s_orgtype" class="input">
+                                            <option value="0">组织机构</option>
+                                            <option value="2">项目公司</option>
+                                            <option value="1">项目组</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="label" for="t_areapid">
+                                        <strong>行政区域</strong>
+                                    </div>
+                                    <div class="field">
+                                        <input class="input" type="hidden" id="t_areaid_v"
+                                               name="t_areaid_v"/>
+                                        <input class="input" autocomplete="off" type="text" id="t_areaid"
+                                               name="t_areaid"
+                                               placeholder="输入行政区域"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="label">
+                                        <strong>中心位置</strong>
+                                    </div>
+                                    <div class="field">
+                                        <button onclick="setGroupCenter()" type="button"
+                                                class="button button-small bg-sub icon-globe"> 地图选择
+                                        </button>
+                                        <div id="l_orggeo" class="input-note">坐标（国际坐标系）：</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="panel-foot text-center">
+                            <button class="button bg-main icon-check" onclick="commitOrg();"> 提交保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--用户关联机构 -->
+<div id="center-dlg">
+    <div class="dialog">
+        <div class="dialog-head">
+            <span class="close rotate-hover"></span> <strong></strong>
+        </div>
+        <div class="dialog-body" defheight="0" style="overflow-y:hidden;padding:1px;" id="p_form">
+            <div id="container" style="height:100%;width: 100%;">
+
+            </div>
+            <div class="x12" style="position:absolute;top: 40px;left: 55px;z-index: 2100;width: 100%;" id="div_mapcond">
+                <div class="navbar" style="padding: 2px 0px;">
+                    <div class="navbar-form navbar-right" style="padding: 5px 0px;">
+                        <div class="navbar-form navbar-right" id="mouse-position"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dialog-foot">
+            <button class="button bg-main text-white icon-check" onclick="getCenterPoint();"> 选定</button>
+        </div>
+    </div>
+</div>
+<script src="https://openlayers.org/en/v4.6.4/build/ol.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+@charset "utf-8";
+
+/* css reset background: #87CEFA*/
+.login {
+    width: 458px;
+    height: 412px;
+    padding: 13px 14px 15px 0;
+    top: 50%;
+    right: 9%;
+    margin-top: -206px;
+    text-align: left;
+    position: absolute;
+    z-index: 2;
+    background: url(../images/logincsu/loginbg.png) no-repeat;
+}
+
+.login-input {
+    height: 42px;
+}
+
+.form_login {
+    position: absolute;
+    top: 110px;
+    left: 50px;
+}
+
+.logo {
+    position: absolute;
+    left: 8%;
+    z-index: 20;
+    top: 0px;
+}
+
+.l_ptname {
+    font-size: 34px;
+    color: #fff;
+    height: 70px;
+}
+
+.l_labname {
+    font-size: 22px;
+    color: #fff;
+}
+
+.button_false {
+    background: url(../images/logincsu/bt_login.png) no-repeat;
+    height: 47px;
+    width: 160px;
+    border: 0px;
+    z-index: 1000;
+}
+
+.button_true {
+    background: url(../images/logincsu/bt_wait.png) no-repeat;
+    height: 47px;
+    width: 160px;
+    border: 0px;
+    z-index: 1000;
+}
+
+.bt_c {
+    background: url(../images/logincsu/bt_pass.png) no-repeat;
+    height: 47px;
+    width: 160px;
+    border: 0px;
+    margin-left: 40px;
+}
+
+.foot {
+    position: absolute;
+    left: 50%;
+    width: 350px;
+    margin-left: -165px;
+    bottom: 15px;
+    cursor: pointer;
+}

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>酷陆科技</title>
+  <link rel="stylesheet" href="../../layui/css/layui.css">
+  <link rel="stylesheet" href="../../layui/css/kulu.css">
+  <link rel="stylesheet" href="../../css/car/detail.css">
+  <link rel="stylesheet" href="../../css/kulu.css">
+  <link rel="stylesheet" href="../../css/car/car.css">
+  <style>
+    .layui-layout-body .layui-layout-admin .layui-body {
+      height: 94vh;
+    }
+    .layui-body {
+      overflow-y: scroll;
+    }
+
+  </style>
+</head>
+
+<body class="layui-layout-body">
+  <div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+      <div class="layui-logo">
+        <img src="../../img/car/kulu.png" alt="" srcset="" style="width:100%">
+      </div>
+      <!-- 头部区域（可配合layui已有的水平导航） -->
+      <ul class="layui-nav layui-layout-left">
+        <li class="layui-nav-item layui-index">
+          <a href="../../html/index/index.html" class="home">平台主页</a>
+        </li>
+
+      </ul>
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="/kulu/console.html" class="install">
+            系统设置
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+      <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+          <li class="layui-nav-item nav_left">
+            <a href="../../html/car/car_location.html" class="location_left">实时监控</a>
+          </li>
+          <li class="layui-nav-item nav_left">
+            <a href="../../html/car/car_path.html" class="path_left">轨迹回放</a>
+          </li>
+          <li class="layui-nav-item nav_left">
+            <a href="../../html/car/car_rail.html" class="rail_left">围栏设置</a>
+          </li>
+          <li class="layui-nav-item nav_left">
+            <a href="../../html/car/car_video.html" class="video_left">监控调取</a>
+          </li>
+          <li class="layui-nav-item nav_left">
+            <a href="../../html/car/car_history.html" class="video_left">监控回放</a>
+          </li>
+          <li class="layui-nav-item nav_left nav_lefts">
+            <a href="../../html/car/car_detail.html" class="detail_left">报警信息</a>
+          </li>
+          <li class="layui-nav-item nav_left">
+            <a href="../../html/car/car_oil.html" class="oil_left">油量统计</a>
+          </li>
+          <li class="layui-nav-item nav_left">
+            <a href="../../html/car/car_state.html" class="car_status">车辆状况</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="layui-body" style="background:#50b4c8">
+      <!-- 内容主体区域 -->
+      <div class="" style="height:100%">
+        <div class="layui-row" style="height:100%">
+          <div class="layui-col-xs6 layui-col-md12" style="height:35%;background:#253236;margin: 6px 7px;">
+            <div class="layui-col-xs6 layui-col-md12" style="height:60%">
+              <div id="main" style="width: 100%;height:100%;"></div>
+            </div>
+            <div class="layui-col-xs6 layui-col-md12" id="tabel_detail" style="height:50%;margin-top: -1px;">
+
+            </div>
+          </div>
+          <div class="layui-col-xs6 layui-col-md12" style="height:60%">
+            <div class="demoTable">
+              <div class="layui-form-item">
+                <div class="layui-inline find_car find_cars">
+                  <button class="layui-btn layui-btn-primary layui-btn-lg" id="newDay">上日报警</button>
+                </div>
+                <div class="layui-inline find_car">
+                  <button class="layui-btn layui-btn-primary layui-btn-lg" id="nowDay">当日报警</button>
+                </div>
+                <div class="layui-inline start_time">
+
+                  <form class="layui-form" id="pathForm" action="">
+                    <label class="layui-form-label">起始时间：</label>
+                    <div class="layui-input-inline">
+                      <input type="text" class="layui-input" id="test5" name="pg_sdate" placeholder="yyyy-MM-dd">
+                    </div>
+                  </form>
+                </div>
+                <div class="layui-inline find_car" style="margin-left: 7px;">
+                  <button class="layui-btn layui-btn-primary layui-btn-lg" id="search_carOil">报警查询</button>
+                </div>
+              </div>
+            </div>
+            <div class="detail_table" style="margin-bottom: 5px;">
+
+              <table id="table_list" lay-filter="test"></table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="detail">▲</a>
+  </script>
+  <script type="text/html" id="indexTpl">
+    {{d.LAY_TABLE_INDEX+1}}
+  </script>
+  <script src="../../js/jquery/jquery.js"></script>
+  <script src="../../js/jquery/jquery-migrate.min.js"></script>
+  <script src="../../js/jquery/jquery.bs.js"></script>
+  <script src="../../layui/layui.js"></script>
+  <script src="../../js/remote.js"></script>
+  <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+  <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+  <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+  <script src="../../js/car/detail.js"></script>
+
+  <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+  <script>
+    //JavaScript代码区域
+    autocreate();
+    carlist()
+    layui.use('laydate', function () {
+      var laydate = layui.laydate;
+      var datatimes = "2016-04-09 00:00:00";
+      var startDate = laydate.render({
+        elem: '#test5',
+        done: function (value, date) {
+          if (value !== '') {
+            endDate.config.min.year = date.year;
+            endDate.config.min.month = date.month - 1;
+            endDate.config.min.date = date.date;
+          } else {
+            endDate.config.min.year = '';
+            endDate.config.min.month = '';
+            endDate.config.min.date = '';
+          }
+        }
+      });
+      var endDate = laydate.render({
+        elem: '#test6',
+        done: function (value, date) {
+          if (value !== '') {
+            startDate.config.max.year = date.year;
+            startDate.config.max.month = date.month - 1;
+            startDate.config.max.date = date.date;
+          } else {
+            startDate.config.max.year = '';
+            startDate.config.max.month = '';
+            startDate.config.max.date = '';
+          }
+        }
+      });
+    });
+    layui.use('form', function () {
+      var form = layui.form;
+      form.render();
+      //监听提交
+      form.on('submit(formDemo)', function (data) {
+        layer.msg(JSON.stringify(data.field));
+        return false;
+      });
+    });
+  </script>
+</body>
+
+</html>

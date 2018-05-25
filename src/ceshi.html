@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LayIM测试</title>
+<link rel="stylesheet" href="layui/css/layui.css" media="all">
+</head>
+<body>
+  
+<script src="layui/layui.js"></script>
+<script src="js//jquery/jquery.js"></script>
+<script>
+  {
+	NetVideo.Login("182.61.39.135", 7708, "admin", "888888");//服务器ip//服务器端口//登录用户名//登录用户密码
+	//NetVideo.Login("192.168.1.100", 7708, "admin", "888888");
+	alert("login ");
+}
+function logout_OnClick()
+{
+	NetVideo.Logout();
+}
+function openvideo_OnClick()
+{
+	NetVideo.OpenStream("9999999", 1, 0, 0);//设备ID，通道号
+	alert("openvideo");
+}
+
+
+
+    var strign='[{"filename":"/var/disk0/rec_file/rec0030.cv1","beginTime":"180503 004202","filesize":209715127,"timelen":12193,"channel":1,"type":2},{"filename":"/var/disk0/rec_file/rec0028.cv1","beginTime":"180503 040515","filesize":209714941,"timelen":11680,"channel":1,"type":2},{"filename":"/var/disk0/rec_file/rec0001.cv1","beginTime":"180503 071956","filesize":209714860,"timelen":11182,"channel":1,"type":2},{"filename":"/var/disk0/rec_file/rec0000.cv1","beginTime":"180503 102619","filesize":209707298,"timelen":11312,"channel":1,"type":2},{"filename":"/var/disk0/rec_file/rec0002.cv1","beginTime":"180503 133451","filesize":12943269,"timelen":255,"channel":1,"type":2},{"filename":"/var/disk0/rec_file/rec0008.cv1","beginTime":"180503 133926","filesize":209714786,"timelen":2017,"channel":1,"type":2}]'
+    var list = strign.split(',');
+    console.log(list)
+    // list =list.split(',')
+    var array=[];
+    for (var i=0;i<list.length;i++){
+      
+    var lists=list[i].split(":");
+    array.push(lists[1])
+    }
+    console.log(array)
+    for(var j=0;j<array.length/6;j++){
+      console.log(j)
+      console.log(array[6*j])
+    }
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>酷陆科技</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <link rel="stylesheet" href="../../layui/css/kulu.css">
+    <!-- <link rel="stylesheet" href="../../css/car/detail.css"> -->
+    <!-- <link rel="stylesheet" href="../../css/car/video.css"> -->
+    <link rel="stylesheet" href="../../css/table/table.css">
+    <link rel="stylesheet" href="../../css/kulu.css">
+    <style>
+        .layui-header .layui-layout-left .layui-nav-bar {
+            /* left: 20px!important;
+    top: 58px!important;
+    width: 160px!important;
+    opacity: 1!important; */
+        }
+
+        .layui-layout-body .layui-layout-admin .layui-body {
+            height: 94vh;
+        }
+
+        .layui-body #allmap {
+            height: 91vh;
+        }
+
+        /* .layui-table-page{
+    display: none
+  } */
+
+        .layui-body {
+            overflow-y: scroll;
+        }
+        .layui-layout-left li:nth-child(4):after {
+        content: '';
+        top: auto;
+        bottom: 0;
+        position: absolute;
+        left: 0;
+        width: 0;
+        height: 5px;
+        background-color: #fff;
+        transition: all .2s;
+        -webkit-transition: all .2s;
+        width: 100%;
+    }
+    </style>
+</head>
+
+<body class="layui-layout-body">
+    
+        <script src="../../js/jquery/jquery.js"></script>
+        <script src="../../js/jquery/jquery.bs.js"></script>
+        <script src="../../js/remote.js"></script>
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">
+                <img src="../../img/car/kulu.png" alt="" srcset="" style="width:100%">
+            </div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item layui-index">
+                    <a href="../../html/index/index.html" class="home">平台主页</a>
+                </li>
+                <!-- <li class="layui-nav-item">
+                    <a href="../../html/car/car_location.html" class="car">车辆管理</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="../../html/people/people_location.html" class="people">人员管理</a>
+                </li>
+                <li class="layui-nav-item layui-this">
+                    <a href="../../html/table/table_list.html" class="table">报表输出</a>
+                </li> -->
+
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                    <li class="layui-nav-item" style="background: red;">
+                            <a href="/" class="exit_sys">
+                                注销登录
+                            </a>
+                    </li>
+                <li class="layui-nav-item">
+                    <a href="/kulu/console.html" class="install">
+                        系统设置
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item nav_left nav_lefts">
+                        <a href="../../html/table/table_list.html" class="car_status">车辆报表</a>
+                    </li>
+                    <li class="layui-nav-item nav_left">
+                        <a href="../../html/table/people_list.html" class="people_left">人员报表</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body" style="background:#50b4c8">
+            <!-- 内容主体区域 -->
+            <div class="layui-form" style="height:100%">
+                <div class="layui-row" style="height:100%">
+                    <div class="layui-col-xs6 layui-col-md12 layui_top">
+                        <div class="demoTable" style="margin-top: 20px;">
+                            <div class="layui-form-item">
+
+                                <form action="" id="downloadCar">
+                                    <div class="layui-inline start_time">
+                                        <label class="layui-form-label">起始时间：</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" class="layui-input" id="test5" name="pg_sdate" placeholder="yyyy-MM-dd">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline start_time">
+                                        <label class="layui-form-label">终止时间：</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" class="layui-input" id="test6" name="pg_edate" placeholder="yyyy-MM-dd">
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="layui-inline find_car" style="margin-left: 7px;">
+                                    <button class="layui-btn layui-btn-primary layui-btn-lg" id="search_carOil">查询</button>
+                                </div>
+                                <div class="layui-inline find_car" style="margin-left: 7px;">
+                                    <button class="layui-btn layui-btn-primary layui-btn-lg" id="car_lists">导出</button>
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item button_table">
+                                <div class="layui-inline find_car" style="margin-left: 0px;    margin-right: 20px;">
+                                    <button class="layui-btn layui-btn-primary layui-btn-lg" id="lastYear">上年度报表</button>
+                                </div>
+                                <div class="layui-inline find_car">
+                                    <button class="layui-btn layui-btn-primary layui-btn-lg" id="nowYear">当年报表</button>
+                                </div>
+                                <div class="layui-inline find_car" style="margin-left: 70px;">
+                                    <button class="layui-btn layui-btn-primary layui-btn-lg" id="lastMonth">上月报表</button>
+                                </div>
+                                <div class="layui-inline find_car" style="margin-left: 70px;">
+                                    <button class="layui-btn layui-btn-primary layui-btn-lg" id="nowMonth">当月报表</button>
+                                </div>
+                                <div class="layui-inline find_car" style="margin-left: 70px;">
+                                    <button class="layui-btn layui-btn-primary layui-btn-lg" id="lastweek">上周报表</button>
+                                </div>
+                                <div class="layui-inline find_car" style="margin-left: 70px;">
+                                    <button class="layui-btn layui-btn-primary layui-btn-lg" id="nowweek">当周报表</button>
+                                </div>
+                                <div class="layui-inline find_car" style="margin-left: 70px;">
+                                    <button class="layui-btn layui-btn-primary layui-btn-lg" id="lastDay">上日报表</button>
+                                </div>
+                                <div class="layui-inline find_car" style="margin-left: 70px;">
+                                    <button class="layui-btn layui-btn-primary layui-btn-lg" id="nowDay">当日报表</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6 layui-col-md12" style="height:76%">
+
+
+
+                        <div class="detail_table" style="margin-bottom: 5px;">
+                            <table id="table_list" lay-filter="test"></table>
+                            <!-- <table class="layui-table" lay-data="{height:600,url:'../../json/people_list.json', page:false, id:'test2', skin: 'row', even: true}"  lay-filter="demo">
+                        
+                                <thead>
+                                    <tr>
+                                        <th lay-data="{field:'id', width:100,sort: true}">序号</th>
+                                        <th lay-data="{field:'team', width:100}">项目组</th>
+                                        <th lay-data="{field:'type', width:120}">设备类型</th>
+                                        <th lay-data="{field:'num', width:120}">资产编号</th>
+                                        <th lay-data="{field:'plate_number', width:120}">车牌号</th>
+                                        <th lay-data="{field:'logo', width:120}">车辆品牌</th>
+                                        <th lay-data="{field:'name', width:120}">负责人</th>
+
+                                        <th lay-data="{field:'phone'}">联系方式</th>
+                                        <th lay-data="{field:'oil', width:140, sort: true}">油耗统计(L)</th>
+
+                                        <th lay-data="{field:'distance', width:140, sort: true}">工作里程(km)</th>
+                                        <th lay-data="{field:'time', width:140, sort: true}">工作时长(H)</th>
+                                        <th lay-data="{field:'use', width:160, sort: true}">设备使用率(%)</th>
+                                    </tr>
+                                </thead>
+                            </table> -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <script src="../../layui/layui.js"></script>
+    <script src="../../js/table/table.js"></script>
+    <script type="text/html" id="indexTpl">
+        {{d.LAY_TABLE_INDEX+1}}
+    </script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+    <script>
+        doRefresh(null, "KULUINTERFACE", "getOrgTree", "", function (data) {
+            if (data.code == 0) {
+                //执行正确动作
+                datas = data.session;
+
+                loadCartableList(datas);
+            } else {
+                console.log("err");
+            }
+        });
+        //JavaScript代码区域
+        // layui.use('element', function () {
+        //     var element = layui.element;
+        //     element.init();
+        //     element.render();
+        // });
+        layui.use('laydate', function () {
+            var laydate = layui.laydate;
+            var datatimes = "2016-04-09 00:00:00";
+            var startDate = laydate.render({
+                elem: '#test5',
+                done: function (value, date) {
+                    if (value !== '') {
+                        endDate.config.min.year = date.year;
+                        endDate.config.min.month = date.month - 1;
+                        endDate.config.min.date = date.date;
+                    } else {
+                        endDate.config.min.year = '';
+                        endDate.config.min.month = '';
+                        endDate.config.min.date = '';
+                    }
+                }
+            });
+            var endDate = laydate.render({
+                elem: '#test6',
+                done: function (value, date) {
+                    if (value !== '') {
+                        startDate.config.max.year = date.year;
+                        startDate.config.max.month = date.month - 1;
+                        startDate.config.max.date = date.date;
+                    } else {
+                        startDate.config.max.year = '';
+                        startDate.config.max.month = '';
+                        startDate.config.max.date = '';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

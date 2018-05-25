@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>酷陆科技</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <link rel="stylesheet" href="../../layui/css/kulu.css">
+    <link rel="stylesheet" href="../../css/car/video.css">
+    <link rel="stylesheet" href="../../css/car/path.css">
+    <link rel="stylesheet" href="../../css/car/rail.css">
+    <link rel="stylesheet" href="../../css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+    <link rel="stylesheet" href="../../css/kulu.css">
+    <style>
+        .layui-header .layui-layout-left .layui-nav-bar {
+            /* left: 20px!important;
+    top: 58px!important;
+    width: 160px!important;
+    opacity: 1!important; */
+        }
+
+        .layui-layout-body .layui-layout-admin .layui-body {
+            height: 94vh;
+        }
+
+        .layui-body #allmap {
+            height: 91vh;
+        }
+
+        #videoControls {
+            width: 1100px;
+            margin-top: 0px;
+        }
+
+        .show {
+            opacity: 1;
+        }
+
+        .hide {
+            opacity: 0;
+        }
+
+        #progressWrap {
+            background-color: white;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        #playProgress {
+            background-color: #50b4c8;
+            width: 0px;
+            height: 25px;
+            border-right: 2px solid blue;
+        }
+
+        #showProgress {
+            font-weight: 1100;
+            font-size: 20px;
+            line-height: 25px;
+        }
+
+        @media screen and (max-width: 1455px) {
+            .demoTable .layui-form-item .path_videos a {
+                padding: 0
+            }
+            .demoTable .path_videos {
+                width: 276px;
+            }
+            .start_time .layui-form-label {
+                padding: 9px 3px;
+            }
+            .demoTable .start_time {
+                width: 307px;
+            }
+            .demoTable .layui-form-item .layui-inline .layui-input-inline {
+                width: 102px;
+            }
+            .demoTable .layui-form-item .find_car {
+                margin-left: 0
+            }
+            .grid-demo-bg1 {
+                margin-top: 4%;
+            }
+        }
+    </style>
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo"><img src="../../img/car/kulu.png" alt="" srcset="" style="width:100%"></div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item"><a href="../../html/index/index.html" class="home">平台主页</a></li>
+                <li class="layui-nav-item"><a href="../../html/car/car_location.html" class="car">车辆管理</a></li>
+                <li class="layui-nav-item"><a href="../../html/people/people_location.html" class="people">人员管理</a></li>
+                <li class="layui-nav-item"><a href="../../html/toilet/toilet.html" class="toilet">公厕管理</a></li>
+                <li class="layui-nav-item layui-this"><a href="../../html/station/station_location.html" class="station">中转站管理</a></li>
+                <li class="layui-nav-item"><a href="../../html/rubbish/rubbish_location.html" class="rubbish">垃圾云图</a></li>
+                <li class="layui-nav-item"><a href="../../html/landfill/landfill_login.html" class="landfill">填埋场管理</a></li>
+                <li class="layui-nav-item"><a href="../../html/table/table_list.html" class="table">报表输出</a></li>
+
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="/kulu/console.html" class="install">
+                              系统设置
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item nav_left"><a href="../../html/station/station_location.html" class="station_left">实时监控</a></li>
+                    <li class="layui-nav-item nav_left nav_lefts"><a href="../../html/station/station_video.html" class="video_left">监控调取</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <div class="layui-layer layui-layer-page" id="layui-layer11">
+                <button class="layui-btn layui-btn-primary layui-btn-sm btn1"><i class="layui-icon btn1s"></i></button>
+                <button class="layui-btn layui-btn-primary layui-btn-sm btn2"><i class="layui-icon btn2s"></i></button>
+            </div>
+            <div class="layui-layer layui-layer-page" id="layui-layers">
+                <form class="layui-form">
+                    <div class="layui-form-item">
+                        <div class="layui-inline find_car">
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="" class="selectStationName">
+                                 <!-- <option value="">湘A00000</option> -->
+                                 <!-- <option value="1">张天灵</option>
+                                 <option value="2">李维斯</option>
+                                 <option value="3">刘岛</option> -->
+                               </select>
+                            </div>
+                            <a href="javascript:void(0)" class="search_Carlists"><i  class="fa    fa-search"></i>搜索 </a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="layui-layer layui-layer-page" id="layui-layers1">
+                <div class="layui-collapse" lay-accordion="">
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">项目组一</h2>
+                        <div class="layui-colla-content layui-show station_contents1">
+                        </div>
+                    </div>
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">项目组二</h2>
+                        <div class="layui-colla-content station_contents2">
+                        </div>
+                    </div>
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">项目组三</h2>
+                        <div class="layui-colla-content station_contents3">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="layui-row" style="height:70%;width:100%;background:#50b4c8">
+                <div class="layui-col-md9" style="height:100%;background:#50b4c8">
+                    <div class="grid-demo grid-demo-bg1">
+                            <div class="video_one video">
+                                    <video id="video" preload controls>
+                                        <source src="/src/video/cab.mp4" type='video/mp4'>
+                                    </video>
+                                </div>
+                                <div class="video_two video">
+                                    <video id="video1"  preload controls>
+                                        <source  src="/src/video/ahead.mp4" type='video/mp4'>
+                                    </video>
+                                </div>
+                                <div class="video_three video">
+                                    <video id="video2"   preload controls>
+                                        <source src="/src/video/right.mp4" type='video/mp4'>
+                                    </video>
+                                </div>
+                                <div class="video_four video">
+                                    <video id="video3" preload controls>
+                                        <source src="/src/video/trail.mp4" type='video/mp4'>
+                                    </video>
+                                </div>
+                    </div>
+                </div>
+                <div class="layui-col-md3" style="height:100%;background:#50b4c8">
+                    <div class="grid-demo people_list">
+                        <ul>
+                            <li>
+                                项目组
+                            </li>
+                            <li>
+                            </li>
+                            <li>
+                                中转站编号
+                            </li>
+                            <li>
+                            </li>
+                            <li>
+                                臭气指数
+                            </li>
+                            <li>
+                            </li>
+                            <li>
+                                责任人
+                            </li>
+                            <li>
+                            </li>
+                            <li>
+                                联系方式
+                            </li>
+                            <li>
+                            </li>
+                            <li>中转站位置</li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-footer" style="background:#ebf1f3">
+                <!-- 底部固定区域 -->
+
+
+                <div class="demoTable">
+
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+
+                            <div class="layui-inline find_car">
+
+                                <div class="layui-input-inline">
+                                    <select name="modules" lay-verify="required" lay-search="" class="selectStationName">
+                               <!-- <option value="">湘A00000</option> -->
+                               <!-- <option value="1">张天灵</option>
+                               <option value="2">李维斯</option>
+                               <option value="3">刘岛</option> -->
+                             </select>
+                                </div>
+                                <a href="javascript:void(0)" class="search_Carlist"><i  class="fa    fa-search"></i>搜索 </a>
+                            </div>
+                            <div class="layui-inline path_videos">
+                                <a href="javascript:void(0)" class="btnStartRoute4 btnFastRoutes"><i  class="fa fa-backward"></i></a>
+                                <a href="javascript:void(0)" class="btnPauseRoute btnFastRoutes"><i  class="fa  fa-pause"></i></a>
+                                <a href="javascript:void(0)" id="playBtn" class="btnStartRoute btnFastRoutes"><i  class="fa   fa-play"></i> </a>
+                                <a href="javascript:void(0)" class="btnFastRoute1 btnFastRoutes"> <i  class="fa  fa-forward"></i> </a>
+                                <a href="javascript:void(0)" class="btnFastRoute2 btnFastRoutes "> <i  class="fa   fa-forward">4</i> </a>
+                                <a href="javascript:void(0)" class="btnFastRoute3 btnFastRoutes"><i  class="fa    fa-forward">8</i> </a>
+                                <a href="javascript:void(0)" class="btnFastRoute0 btnFastRoutes"><i  class="fa    fa-forward">16</i> </a>
+                                <!-- 示例-970 -->
+                            </div>
+                            <div class="layui-inline start_time">
+                                <label class="layui-form-label">起始时间：</label>
+                                <div class="layui-input-inline" style="width: 37px;">
+                                    <input type="text" name="price_min" placeholder="2017" autocomplete="off" class="layui-input" size="4" pattern="[0-9]" max="2">
+                                </div>
+                                <label class="layui-form-label times">年</label>
+                                <div class="layui-input-inline" style="width: 26px;">
+                                    <input type="text" name="price_min" placeholder="12" autocomplete="off" class="layui-input" size="2">
+                                </div>
+                                <label class="layui-form-label times">月</label>
+                                <div class="layui-input-inline" style="width: 26px;">
+                                    <input type="text" name="price_min" placeholder="30" autocomplete="off" class="layui-input" size="2">
+                                </div>
+                                <label class="layui-form-label times">日</label>
+                                <div class="layui-input-inline" style="width: 26px;">
+                                    <input type="text" name="price_min" placeholder="08" autocomplete="off" class="layui-input" size="2">
+                                </div>
+                                <div class="layui-form-mid" style="color:#fff">：</div>
+                                <div class="layui-input-inline" style="width: 26px;">
+                                    <input type="text" name="price_min" placeholder="30" autocomplete="off" class="layui-input" size="2">
+                                </div>
+                            </div>
+                            <div class="layui-inline start_time">
+                                <label class="layui-form-label">终止时间：</label>
+                                <div class="layui-input-inline" style="width: 37px;">
+                                    <input type="text" name="price_min" placeholder="2017" autocomplete="off" class="layui-input" size="4" pattern="[0-9]" max="2">
+                                </div>
+                                <label class="layui-form-label times">年</label>
+                                <div class="layui-input-inline" style="width: 26px;">
+                                    <input type="text" name="price_min" placeholder="12" autocomplete="off" class="layui-input" size="2">
+                                </div>
+                                <label class="layui-form-label times">月</label>
+                                <div class="layui-input-inline" style="width: 26px;">
+                                    <input type="text" name="price_min" placeholder="30" autocomplete="off" class="layui-input" size="2">
+                                </div>
+                                <label class="layui-form-label times">日</label>
+                                <div class="layui-input-inline" style="width: 26px;">
+                                    <input type="text" name="price_min" placeholder="18" autocomplete="off" class="layui-input" size="2">
+                                </div>
+                                <div class="layui-form-mid" style="color:#fff">：</div>
+                                <div class="layui-input-inline" style="width: 26px;">
+                                    <input type="text" name="price_min" placeholder="30" autocomplete="off" class="layui-input" size="2">
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <label class="label">通道一</label>
+                <div class="scrolls" id="videoControls">
+                    <div id="progressWrap">
+                        <div id="playProgress">
+                            <span id="showProgress">0</span>
+                        </div>
+                    </div>
+                </div>
+                <label class="label">通道二</label>
+                <div class="scrolls" id="videoControls1">
+                    <div id="progressWrap1">
+                        <div id="playProgress1">
+                            <span id="showProgress1">0</span>
+                        </div>
+                    </div>
+                </div>
+                <label class="label">通道三</label>
+                <div class="scrolls" id="videoControls2">
+                    <div id="progressWrap2">
+                        <div id="playProgress2">
+                            <span id="showProgress2">0</span>
+                        </div>
+                    </div>
+                </div>
+                <label class="label">通道四</label>
+                <div class="scrolls" id="videoControls3">
+                    <div id="progressWrap3">
+                        <div id="playProgress3">
+                            <span id="showProgress3">0</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <script src="../../js/jquery/jquery.min.js"></script>
+        <script src="../../js/jquery/jquery-migrate.min.js"></script>
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=O64nl3yKG6MNbniKhhOmIVNjmNecAxHC"></script>
+        <!--加载鼠标绘制工具-->
+        <script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+        <script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+        <script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+        <script src="../../js/remote.js"></script>
+        <script src="../../layui/layui.js"></script>
+        <script src="../../js/common.js"></script>
+        <script src="../../js/api.js"></script>
+        <script src="../../js/station/video.js"></script>
+
+        <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+        <script>
+        </script>
+        <script>
+            //JavaScript代码区域
+            layui.use('element', function () {
+                var element = layui.element;
+
+            });
+            layui.use(['form', 'layedit', 'laydate'], function () {
+                var form = layui.form,
+                    layer = layui.layer,
+                    layedit = layui.layedit,
+                    laydate = layui.laydate;
+
+                //日期
+                laydate.render({
+                    elem: '#date'
+                });
+                laydate.render({
+                    elem: '#date1'
+                });
+
+                //创建一个编辑器
+                var editIndex = layedit.build('LAY_demo_editor');
+
+                //自定义验证规则
+                form.verify({
+                    title: function (value) {
+                        if (value.length < 5) {
+                            return '标题至少得5个字符啊';
+                        }
+                    },
+                    pass: [/(.+){6,12}$/, '密码必须6到12位'],
+                    content: function (value) {
+                        layedit.sync(editIndex);
+                    }
+                });
+
+                //监听指定开关
+                form.on('switch(switchTest)', function (data) {
+                    layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
+                        offset: '6px'
+                    });
+                    layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+                });
+
+                //监听提交
+                form.on('submit(demo1)', function (data) {
+                    layer.alert(JSON.stringify(data.field), {
+                        title: '最终的提交信息'
+                    })
+                    return false;
+                });
+
+
+            });
+            var Width = parseFloat($("#layui-layers1").width())
+            console.log(Width)
+            var widths = Width - 50 + "px"
+            $("#layui-layers .layui-input-inline").width(widths)
+            console.log($("#layui-layers .layui-input-inline").width())
+        </script>
+</body>
+
+</html>

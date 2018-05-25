@@ -1,0 +1,430 @@
+﻿<!DOCTYPE html>
+<html>
+<title></title>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="expires" content="-1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="../common/css/pintuer.css"/>
+    <link rel="stylesheet" type="text/css" href="../common/css/uc.css"/>
+    <link rel="stylesheet" type="text/css" href="../common/css/jquery.datetimepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="../common/css/bstree.css"/>
+    <script language="javascript" src="../common/script/jquery.js" type="text/javascript"></script>
+    <script language="javascript" src="../common/script/jquery.bs.js" type="text/javascript"></script>
+    <script language="javascript" src="../common/script/pintuer.js" type="text/javascript"></script>
+    <script language="javascript" src="../common/script/common.js" type="text/javascript"></script>
+    <script language="javascript" src="../common/script/jquery.bs.lookup.js" type="text/javascript"></script>
+    <script language="javascript" src="../common/script/lookup.js" type="text/javascript"></script>
+    <script language="javascript" src="../common/script/menu.js" type="text/javascript"></script>
+    <script src="../common/script/jquery.datetimepicker.js" type="text/javascript"></script>
+    <script src="../common/script/bstreeview.js" type="text/javascript"></script>
+    <script src="index.js" type="text/javascript"></script>
+</head>
+<body style="overflow-y: scroll;">
+<div id="l_syslogo_f" class="layout doc-header navbar-fixed-top"
+     id="l_syslogo_f" style="color:#ffffff;z-index:20;">
+    <div class="line" style="height:45px;line-height:45px;">
+        <div class="x10 text-big" id="l_syslogo">
+
+        </div>
+        <div class="x2">
+            <ul id="div_user" class="nav nav-menu nav-inline margin-large-left">
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="line x12" style="">
+    <div class="x2 sidebar navbar-fixed-top menudiv" style="top:47px;z-index:10;">
+        <ul id="div_menu" class="nav-list spy" data-offset-fixed="320"
+            data-offset-spy="160">
+        </ul>
+    </div>
+    <div class="x10 maindiv" style="top:50px;">
+        <div class="bread-p">
+            <div class="float-right margin-small-top">
+                <iframe allowtransparency="true" frameborder="0" width="524"
+                        height="28" scrolling="no"
+                        src="http://tianqi.2345.com/plugin/widget/index.htm?s=3&z=1&t=0&v=0&d=2&bd=0&k=000000&f=&q=1&e=1&a=1&c=54511&w=524&h=28&align=center"></iframe>
+            </div>
+            <ul class="bread" style="padding: 0px 15px;font-size:14px;">
+                <li><span class="icon-flag"></span> 人员管理</li>
+                <li class="text-black">员工信息</li>
+            </ul>
+        </div>
+        <div class="x10" style="top:35px;width:100%;">
+            <div class="x3">
+                <div class="panel margin-small">
+                    <div class="panel-head">项目</div>
+                    <div class="panel-body padding-little" id="div_orgtree" style="overflow: auto;"></div>
+                </div>
+            </div>
+            <div class="x9">
+                <form method="post" id="frmBusiness" action="">
+                    <div class="panel margin-small">
+                        <div class="panel-head padding-little" style="height:40px;">
+                            <input id="selectIds" name="selectIds" type="hidden">
+                            <div class="x5">
+                                <div class="x9 input-group">
+                                    <input type="text" style="width:350px;"
+                                           class="input input-auto" name="pg_text" id="pg_text"
+                                           placeholder="关键词" value=""/>
+                                    <span class="addbtn" style="vertical-align: top;">
+                                        <select style="width:100px;" class="input" id="pg_state" name="pg_state">
+                                            <option selected="selected" value="1">有效</option>
+                                            <option value="0">无效</option>
+                                        </select>
+                                    </span>
+                                    <span class="addbtn" style="vertical-align: top;">
+                                        <input class="button bg-sub" onclick="searchUser(1)" type="button"
+                                               value="搜索"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div style="float: right;">
+                                <button type="button" class="button bg-sub icon-file-excel-o"
+                                        onclick="doImport('USER','',{temppath:'user_templet.xls',tempimg:'user_templet.png'});"
+                                        style="vertical-align: top;" title="xls导入"> xls导入
+                                </button>
+                                <button type="button" class="button bg-sub icon-plus" onclick="editUser();"
+                                        style="vertical-align: top;" title="新增用户"> 新增用户
+                                </button>
+                            </div>
+                        </div>
+                        <table id="user_tab_h"
+                               class="table table-striped table-hover table-responsive">
+                            <tr>
+                                <th>基本信息</th>
+                                <th style="width:60px;">性别</th>
+                                <th>&nbsp;联系方式</th>
+                                <th style="width:65px;">角色</th>
+                                <th style="width:80px;">监管权限</th>
+                                <th style="width:100px;">修改密码</th>
+                                <th style="width:18px;padding: 0px;">&nbsp;</th>
+                            </tr>
+                        </table>
+                        <div style="overflow-y:scroll;">
+                            <table id="user_tab" head="user_tab_h" dh="225"
+                                   class="table table-striped table-hover table-responsive">
+                                <tr>
+                                    <td title="" colspan="8">加载数据……</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="user_page" class="panel-foot"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 基本信息 -->
+<div id="user-base">
+    <div class="dialog">
+        <div class="dialog-head">
+            <span class="close rotate-hover"></span> <strong
+                id="user-base-title"></strong>
+        </div>
+        <div class="dialog-body" style="overflow-y:auto;">
+            <form id="userbase-form" name="userbase-form" method="post"
+                  class="form-x">
+                <input type="hidden" id="t_instid" name="t_instid"/>
+                <div class="form-group">
+                    <div class="label">
+                        <strong>*用户ID</strong>
+                    </div>
+                    <div class="field">
+                        <input class="input" type="text" id="t_userid" name="t_userid"
+                               placeholder="输入ID" style=""
+                               data-validate="required:必填"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label" for="t_uname">
+                        <strong>*用户姓名</strong>
+                    </div>
+                    <div class="field">
+                        <input class="input" type="text" id="t_uname" name="t_uname"
+                               placeholder="输入用户姓名" style=""
+                               data-validate="required:必填"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label" for="t_idcard">
+                        <strong>*身份证</strong>
+                    </div>
+                    <div class="field">
+                        <input onchange="$('#t_birthday').val(getBirthdayFromIdCard($(this).val()))"
+                               class="input" type="text" id="t_idcard" name="t_idcard"
+                               placeholder="输入身份证" data-validate="required:必填"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <strong>*出生日期</strong>
+                    </div>
+                    <div class="field">
+                        <input class="input" type="text" id="t_birthday" name="t_birthday"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <strong>*所属机构</strong>
+                    </div>
+                    <div class="field">
+                        <input class="input" type="hidden" id="t_uorg_v"
+                               name="t_uorg_v" data-validate="required:必填"/>
+                        <input class="input" autocomplete="off" type="text" id="t_uorg"
+                               name="t_uorg" data-validate="required:必填"
+                               placeholder="输入所属机构"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label" for="t_uemail">
+                        <strong>用户邮箱</strong>
+                    </div>
+                    <div class="field">
+                        <input class="input" type="text" id="t_uemail" name="t_uemail"
+                               placeholder="输入邮箱" style=""/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label" for="t_uphone">
+                        <strong>联系电话</strong>
+                    </div>
+                    <div class="field">
+                        <input class="input" type="text" id="t_uphone" name="t_uphone"
+                               placeholder="输入联系电话" style=""/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label" for="t_uemail">
+                        <strong>是否参保</strong>
+                    </div>
+                    <div class="field">
+                        <select class="input" id="t_usbflg" name="t_usbflg" data-validate="required:必填">
+                            <option value="0">未参保</option>
+                            <option value="1" selected="selected">已参保</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label" for="t_uphone">
+                        <strong>用户性别</strong>
+                    </div>
+                    <div class="field">
+                        <div class="button-group radio">
+                            <label class="button"><input id="t_usex_1" name="t_usex"
+                                                         value="1" checked="checked" type="radio"><span
+                                    class="icon icon-male"></span> 先生</label> <label class="button"><input
+                                id="t_usex_0" name="t_usex" value="0" type="radio"><span
+                                class="icon icon-female"></span> 女士</label> <label class="button"><input
+                                id="t_usex_2" name="t_usex" value="2" type="radio"><span
+                                class="icon icon-lock"></span> 保密</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="dialog-foot">
+            <button class="button bg-main icon-save" onclick="commitUserBase();"> 保存</button>
+        </div>
+    </div>
+</div>
+
+<div id="user-power">
+    <div class="dialog">
+        <div class="dialog-head">
+            <span class="close rotate-hover"></span> <strong
+                id="user-power-title">权限</strong>
+        </div>
+        <div class="dialog-body" style="height:500px;overflow-y:auto;">
+            <div class="panel margin">
+                <form id="userrole-form" name="userrole-form" method="post">
+                    <input id="t_roleids" name="t_roleids" type="hidden"/>
+                    <input id="t_roleuserid" name="t_roleuserid" type="hidden"/>
+                </form>
+                <div class="panel-head" style="height:60px;">
+                    <div style="float: right;margin-top: 4px;">
+                        <a class="button bg-sub" href="javascript:commitRoles();"
+                           style="vertical-align: top;" title="选定角色">选定角色</a>
+                    </div>
+                </div>
+                <table id="user_role"
+                       class="table table-striped table-hover table-responsive">
+                    <tr>
+                        <th style="width:30px;" title="点击全选">
+                            <input id="ch_all" type="checkbox"></th>
+                        <th style="width:200px;">角色名称</th>
+                        <th style="">角色描述</th>
+                    </tr>
+                    <tr>
+                        <td colspan="3">正在加载数据中...</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 修改密码 -->
+<div id="userkey-base">
+    <div class="dialog">
+        <div class="dialog-head">
+            <span class="close rotate-hover"></span> <strong></strong>
+        </div>
+        <div class="dialog-body">
+            <form id="userkey-form" name="userkey-form" method="post"
+                  class="form-x">
+                <div class="form-group">
+                    <div class="label" for="t_userkey" style="width: 25%;">
+                        <strong>新密码</strong>
+                    </div>
+                    <div class="field" style="width: 75%;">
+                        <input class="input" type="password" id="t_userkey" name="t_userkey"
+                               placeholder="输入新密码" data-validate="required:必填"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label" for="t_userkey2" style="width: 25%;">
+                        <strong>确认新密码</strong>
+                    </div>
+                    <div class="field" style="width: 75%;">
+                        <input class="input" type="password" id="t_userkey2" name="t_userkey2"
+                               placeholder="输入确认新密码" data-validate="required:必填,repeat#t_userkey:密码不一致"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="dialog-foot">
+            <button class="button bg-main icon-check"
+                    onclick="updateUserKey();"> 确认
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- 基本信息 -->
+<div id="org-base">
+    <div class="dialog">
+        <div class="dialog-head">
+            <span class="close rotate-hover"></span> <strong></strong>
+        </div>
+        <div class="dialog-body" style="overflow-y:auto;">
+            <form id="orgbase-form" name="orgbase-form" method="post"
+                  class="form-x">
+                <input type="hidden" id="t_orgid" name="t_orgid"/>
+                <input type="hidden" id="t_orgarea" name="t_orgarea" value="430000"/>
+                <input type="hidden" id="t_orgcomp" name="t_orgcomp"/>
+                <input type="hidden" id="t_porgid" name="t_porgid"/> <input
+                    type="hidden" id="t_porgname" name="t_porgname"/>
+                <div class="form-group">
+                    <div class="label">
+                        <strong>上级机构</strong>
+                    </div>
+                    <div class="label" style="text-align: left;">
+                        <span id="l_t_porgid">无</span>&nbsp;<a
+                            href="javascript:doSelOrgByOrg(0);"
+                            class="text-little button bg-main icon-search button-little">
+                        选择上级机构</a>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <strong>机构名称</strong>
+                    </div>
+                    <div class="field">
+                        <input class="input" type="text" id="t_orgname"
+                               name="t_orgname" placeholder="输入机构名称" style=""
+                               data-validate="required:必填"/>
+                        <div id="l_orgallname" class="input-note">机构完整名：</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label" for="t_usign">
+                        <strong>描述</strong>
+                    </div>
+                    <div class="field">
+                        <textarea id="t_orgdesc" name="t_orgdesc" rows="2"
+                                  class="input" style="" placeholder="输入描述"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="dialog-foot">
+            <button class="button bg-green" onclick="commitOrg();">确认</button>
+        </div>
+    </div>
+</div>
+
+<!--用户关联机构 -->
+<div id="dp-base">
+    <div class="dialog">
+        <div class="dialog-head">
+            <span class="close rotate-hover"></span> <strong></strong>
+        </div>
+        <div class="dialog-body" defheight="0" style="overflow-y:hidden;padding:1px;">
+            <form id="dp-form" name="plan-form" method="post"
+                  class="form-x">
+                <input class="input" type="hidden" id="t_duser" name="t_userinstid"/>
+                <input class="input" type="hidden" id="t_dorg" name="t_orgid"/>
+                <div class="form-group">
+                    <div class="x12">
+                        <div class="x4" style="padding: 2px;">
+                            <div class="panel">
+                                <div class="panel-head"
+                                     style="text-align: center;">
+                                    待选机构
+                                </div>
+                                <div id="div_dorgtree" class="panel-body padding-little"
+                                     style="overflow: auto;">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="x1" id="div_arr" style="display: table;text-align: center">
+                            <span style="font-size: 26px;display: table-cell;text-align: center;vertical-align: middle;"
+                                  class="icon-angle-right"></span>
+                        </div>
+                        <div class="x7" style="padding: 2px;">
+                            <div class="panel">
+                                <div class="panel-head"
+                                     style="text-align: center;">
+                                    已监管机构
+                                </div>
+                                <div id="div_dptab" class="panel-body"
+                                     style="overflow: hidden;padding: 1px 0px 0px 1px;">
+                                    <table id="dp_tab_h"
+                                           class="table-head table table-striped table-hover table-responsive">
+                                        <tr>
+                                            <th>机构</th>
+                                            <th style="width: 80px;">权限</th>
+                                            <th style="width: 80px;">操作</th>
+                                            <th style="width:18px;padding: 0px;">&nbsp;</th>
+                                        </tr>
+                                    </table>
+                                    <div style="overflow-y:scroll;background-color: #fff;">
+                                        <table id="dp_tab" head="dp_tab_h" dh="214"
+                                               class="table-body table table-striped table-hover table-responsive">
+                                            <tr>
+                                                <td title="" colspan="5">加载数据……</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

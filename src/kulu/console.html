@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<title>酷陆云平台V2-后台管理</title>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" type="text/css" href="common/css/pintuer.css"/>
+    <link rel="stylesheet" type="text/css" href="common/css/uc.css"/>
+    <link rel="stylesheet" type="text/css" href="common/css/jquery.datetimepicker.css"/>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.5.0/css/ol.css" type="text/css">
+    <style type="text/css">
+        #mp_thispdiv {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+    </style>
+</head>
+<body style="">
+<div class="layout doc-header navbar-fixed-top"
+     id="l_syslogo_f" style="color:#ffffff;z-index:20;">
+    <div class="line" style="height:45px;line-height:45px;">
+        <div class="x10 text-big" id="l_syslogo">
+
+        </div>
+        <div class="x2">
+            <ul id="div_user" class="nav nav-menu nav-inline margin-large-left">
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="line x12" style="">
+    <div class="x2 sidebar navbar-fixed-top menudiv" style="top:47px;z-index:10;">
+        <ul id="div_menu" class="nav-list spy" data-offset-fixed="320"
+            data-offset-spy="160">
+        </ul>
+    </div>
+    <div class="x10 maindiv" style="">
+        <div class="bread-p">
+            <div class="float-right margin-small-top">
+                <iframe allowtransparency="true" frameborder="0" width="524"
+                        height="28" scrolling="no"
+                        src="http://tianqi.2345.com/plugin/widget/index.htm?s=3&z=1&t=0&v=0&d=2&bd=0&k=000000&f=&q=1&e=1&a=1&c=54511&w=524&h=28&align=center"></iframe>
+            </div>
+            <ul class="bread" style="padding: 0px 15px;font-size:14px;">
+                <li class="text-black"><span class="icon-user"></span> 个人中心</li>
+                <li class="text-black" id="l_login"></li>
+            </ul>
+        </div>
+        <div class="x10" id="p_container" style="top:38px;">
+            <div class="layout">
+                <div class="x12 padding-little" style="overflow: hidden;">
+                    <div id="container" style="width:100%;">
+
+                    </div>
+                    <div class="x12" style="position:absolute;top: 20px;left: 40px;z-index: 1000;"
+                         id="div_mapcond">
+                        <div class="navbar" style="padding: 2px 0px;">
+                            <form method="post" id="frmBusiness" action="">
+                                <input name="pg_geoarea" id="pg_geoarea" type="hidden"/>
+                                <div class="navbar-body nav-navicon" id="div_btline">
+                                    <div class="navbar-form navbar-left">
+                                        <input id="pg_sdate" name="pg_sdate" type="text" placeholder="开始时间"
+                                               class="input wscdate"/>
+                                    </div>
+                                    <div class="navbar-form navbar-left">
+                                        <input id="pg_edate" name="pg_edate" type="text" placeholder="结束时间"
+                                               class="input wscdate"/>
+                                    </div>
+                                    <div class="navbar-form navbar-left">
+                                        <select class="input" style="width:100px;" id="s_itemlist">
+                                            <option value="">----全部----</option>
+                                            <option value="0">员工</option>
+                                            <option value="1">车辆</option>
+                                        </select>
+                                    </div>
+                                    <div class="navbar-form navbar-left">
+                                        <button class="button bg-sub icon-search" type="button"
+                                                onclick="searchItemList()"> 查询
+                                        </button>
+                                    </div>
+                                    <div class="navbar-form navbar-right" style="padding: 5px 0px;">
+                                        <div class="navbar-form navbar-right" id="mouse-position"></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="navbar" style="padding: 2px 0px;" id="div_mapcols">
+
+                        </div>
+                        <div class="navbar" style="display:none;padding: 2px 0px;" id="div_mapcols1">
+
+                        </div>
+                    </div>
+                    <div class="panel bg-white"
+                         style="position:absolute;top: 100px;left: 10px;z-index: 2100;width: 200px;">
+                        <div class="panel-head">
+                            <strong>系统信息</strong>
+                        </div>
+                        <ul class="list-group">
+                            <li id="l_ucount"></li>
+                            <li id="l_tcount"></li>
+                            <li id="l_ocount"></li>
+                            <li id="l_fcount"></li>
+                            <li id="l_test" style="display: none;"></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="div_mark" style="display: none;"></div>
+<script language="javascript" src="common/script/jquery.js" type="text/javascript"></script>
+<script language="javascript" src="common/script/jquery.bs.js" type="text/javascript"></script>
+<script language="javascript" src="common/script/pintuer.js" type="text/javascript"></script>
+<script language="javascript" src="common/script/common.js" type="text/javascript"></script>
+<script language="javascript" src="common/script/menu.js" type="text/javascript"></script>
+<script language="javascript" src="system/home/index.js?r=10" type="text/javascript"></script>
+<script language="javascript" src="common/script/jquery.datetimepicker.js" type="text/javascript"></script>
+<script language="javascript" src="common/script/bootstrap.min.js" type="text/javascript"></script>
+<script src="common/plugin/ichart/ichart.1.2.min.js" type="text/javascript"></script>
+<script src="https://openlayers.org/en/v4.6.4/build/ol.js"></script>
+</body>
+</html>

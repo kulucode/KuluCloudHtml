@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>酷陆科技</title>
+  <link rel="stylesheet" href="../layui/css/layui.css">
+  <link rel="stylesheet" href="../layui/css/kulu.css">
+  <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+  <link rel="stylesheet" href="../css/kulu.css">
+  <style>
+    .layui-layout-body .layui-layout-admin .layui-body {
+      height: 100%;
+      width: 100%;
+      left: 0;
+    }
+
+    #allmap {
+      height: 94vh;
+      width: 100%;
+    }
+
+    #layui-layer7 {
+      margin-left: 55px;
+      width: 310px;
+      height: 70px;
+      line-height: 70px
+    }
+
+    .layui-body .layui-layer2 {
+      top: 240px
+    }
+
+    .layui-body .layui-layer3 {
+      top: 330px;
+      height: 120px !important;
+    }
+
+    .layui-layout-body .layui-layer-hui .layui-layer-content {
+      padding: 20px 25px;
+      font-size: 20px;
+      text-align: left;
+      line-height: 30px;
+    }
+
+    .layui-layer-content a:hover {
+      color: #d7e3e3
+    }
+
+    .layui-layer-content a {
+      color: white
+    }
+  </style>
+</head>
+
+<body class="layui-layout-body">
+  <div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+      <div class="layui-logo">
+        <img src="../img/car/kulu.png" alt="" srcset="" style="width:100%">
+      </div>
+      <!-- 头部区域（可配合layui已有的水平导航） -->
+      <ul class="layui-nav layui-layout-left layui_nav_top">
+        <li class="layui-nav-item  layui-this">
+          <a href="../html/index.html" class="home">平台主页</a>
+        </li>
+        <li class="layui-nav-item">
+          <a href="../html/car/car_location.html" class="car">车辆管理</a>
+        </li>
+        <li class="layui-nav-item">
+          <a href="../html/people/people_location.html" class="people">人员管理</a>
+        </li>
+        <li class="layui-nav-item">
+          <a href="../html/toilet/toilet.html" class="toilet">公厕管理</a>
+        </li>
+        <li class="layui-nav-item">
+          <a href="../html/station/station_location.html" class="station">中转站管理</a>
+        </li>
+        <li class="layui-nav-item">
+          <a href="../html/rubbish/rubbish_location.html" class="rubbish">垃圾云图</a>
+        </li>
+        <li class="layui-nav-item">
+          <a href="../html/landfill/landfill_login.html" class="landfill">填埋场管理</a>
+        </li>
+        <li class="layui-nav-item">
+          <a href="../html/table/table_list.html" class="table">报表输出</a>
+        </li>
+      </ul>
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="../html/setup/people.html" class="install">
+            系统设置
+          </a>
+        </li>
+      </ul>
+    </div>
+
+
+
+    <div class="layui-body">
+      <!-- 内容主体区域 -->
+      <div>
+        <div id="allmap" onload="drive()" style="z-index: -1;"></div>
+      </div>
+      <div style class="layui-layer layui-layer-dialog layui-layer-border layui-layer-msg layui-layer-hui layui-layer1" id="layui-layer7"
+        type="dialog" style="z-index: 19891021;top: 451px;left: 835.5px;">
+        <div class="layui-layer-content">
+          <a href="../html/car/car_detail.html">超时工单 ： 6</a>
+        </div>
+      </div>
+      <div style class="layui-layer layui-layer-dialog layui-layer-border layui-layer-msg layui-layer-hui layui-layer2" id="layui-layer7"
+        type="dialog" style="    z-index: 19891021;
+      top: 451px;
+      left: 835.5px;">
+        <div class="layui-layer-content">未处理报警 ：<span id="undisposed"></span></div>
+
+      </div>
+      <div style class="layui-layer layui-layer-dialog layui-layer-border layui-layer-msg layui-layer-hui layui-layer3" id="layui-layer7"
+        type="dialog" style="z-index:19891021;top:451px;
+        left: 835.5px;">
+        <div class="layui-layer-content">
+          <a href="../html/car/car_location.html">车辆数量 ：<span id="carNum"></span></a>
+          <br>
+          <a href="../html/people/people_location.html"> 人员数量 ： <span id="peopleNum"></span></a>
+          <br>
+          <a href="../html/rubbish/rubbish_location.html"> 垃圾桶数量 ： 8646</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script src="../js/jquery/jquery.min.js"></script>
+  <script src="../js/jquery/jquery.js"></script>
+  <script src="../js/jquery/jquery.bs.js"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=O64nl3yKG6MNbniKhhOmIVNjmNecAxHC"></script>
+  <!--加载鼠标绘制工具-->
+  <script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+  <script src="../js/jquery/cookie.js"></script>
+  <script src="../js/websocket/websocket.js"></script>
+  <script src="../js/remote.js"></script>
+  <script src="../layui/layui.js"></script>
+  <script src="../js/station/station.js"></script>
+  <script src="../js/rubbish/rubbish.js"></script>
+  <script src="../js/people/people.js"></script>
+  <script src="../js/toilet/toilet.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/Bmap.js"></script>
+  <script src="../js/mapInit.js"></script>
+  <script src="../js/indexData.js"></script>
+  <script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="detail">定位</a>
+  </script>
+  <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+  <script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+      var element = layui.element;
+    });
+    loadcarList(map);
+    loadpeopleList(map);
+    loadtoiletList(map);
+    loadstationList(map);
+    loadrubbishList(map);
+  </script>
+</body>
+
+</html>

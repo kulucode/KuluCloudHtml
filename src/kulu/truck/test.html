@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>sds ocx example</title>
+<script language=javascript>
+function login_OnClick()
+{
+	NetVideo.Login("193.112.132.150", 7708, "admin", "888888");
+	//NetVideo.Login("192.168.1.100", 7708, "admin", "888888");
+	alert("login ");
+}
+function logout_OnClick()
+{
+	NetVideo.Logout();
+}
+function openvideo_OnClick()
+{
+	NetVideo.OpenStream("212121", 1, 0, 0);
+	alert("openvideo");
+}
+function closevideo_OnClick()
+{
+	NetVideo.CloseStream();
+}
+
+
+function query_OnClick()
+{
+	var ret = NetVideo.QueryHistoryVideo("212121", 0, "180419 000000", "235959");
+	alert(ret);
+}
+
+function openhis_OnClick()
+{
+
+	NetVideo.OpenHistoryStream("212121", 1, "/var/disk0/rec_file/rec0004.cv1", 0, 0);
+}
+
+function closehis_OnClick()
+{
+	NetVideo.CloseHistoryStream();
+}
+</script>
+</head>
+<body >
+<p>
+<object classid="clsid:27E1A157-6A29-48AE-86C2-14591D90B4D4" id="NetVideo" style="width:800px;height:800px;">
+</object> 
+</p>
+<input type="button" value="login" name="login" onclick="login_OnClick()">
+<input type="button" value="logout" name="logout" onclick="logout_OnClick()">
+<input type="button" value="openvideo" name="openvideo" onclick="openvideo_OnClick()">
+<input type="button" value="closevideo" name="closevideo" onclick="closevideo_OnClick()">
+<input type="button" value="query" name="query" onclick="query_OnClick()">
+<input type="button" value="openhis" name="openhis" onclick="openhis_OnClick()">
+<input type="button" value="closehis" name="closehis" onclick="closehis_OnClick()">
+</body>
+</html>

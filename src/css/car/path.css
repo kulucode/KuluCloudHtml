@@ -1,0 +1,173 @@
+.start_time {
+    background: #50b4c8;
+}
+
+.start_time .times {
+    width: 16px;
+    padding: 9px 0px;
+}
+
+.start_time .layui-input {
+    padding-left: 0px;
+    border: none;
+    background: #50b4c8;
+    text-align: center;
+    color: #002060;
+}
+
+.start_time .layui-input-inline {
+    background: #50b4c8;
+    margin-right: 0px;
+}
+
+.start_time label {
+    color: #ffffff
+}
+
+.start_time .layui-form-mid {
+    margin-right: 0px;
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #898989;
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #898989;
+    opacity: 1;
+}
+
+input:-ms-input-placeholder {
+    color: #898989;
+    opacity: 1;
+}
+
+input::-webkit-input-placeholder {
+    color: #898989;
+    opacity: 1;
+}
+/* 
+.layui-layout-body .layui-layout-admin .layui-footer {
+    bottom: -88px
+} */
+
+.path_videos {
+    background: #50b4c8;
+    margin-top: 15px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+.layui-layout-body .layui-table-box{
+    width: 100%!important;
+    height: 195px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.path_videos i {
+    color: white;
+    padding: 1px 7px;
+}
+.demoTable{
+    height: 40px;
+}
+.find_car{
+    height: 40px;
+}
+.progress {
+    position: relative;
+    width: 300px;
+}
+
+.progress_bg{
+    cursor: pointer;
+    height: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #f2f2f2;
+}
+.layui-layout-body div.layui-layout-admin .layui-footer {
+    height: 29vh;
+}
+
+.progress_bar {
+    background: #5FB878;
+    width: 0;
+    height: 10px;
+    border-radius: 5px;
+}
+
+.progress_btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    position: absolute;
+    background: #fff;
+    left: 0px;
+    margin-left: -10px;
+    top: -5px;
+    cursor: pointer;
+    border: 1px #ddd solid;
+    box-sizing: border-box;
+}
+
+.progress_btn:hover {
+    border-color: #F7B824;
+}
+.find_car{
+    background: #50b4c8;
+}
+.find_car .layui-form-select .layui-input{
+    background: #50b4c8;
+    border: none;
+    color: #fff;
+}
+@media screen and (max-height: 810px) {
+
+    .layui-form-item .layui-inline .layui-input-inline{
+        width: 130px;
+    }
+}
+.fa-search{
+    color: #fff;
+}
+.search_Carlist{
+    color: white;
+}
+.layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-nav-child dd.layui-this a, .layui-nav-tree .layui-this, .layui-nav-tree .layui-this>a, .layui-nav-tree .layui-this>a:hover{
+    background-color: #009688;
+    color: #fff;
+}
+.layui-nav-tree .nav_lefts{
+    background: -webkit-linear-gradient(#66b1bd, #3f7f89);
+    background: -o-linear-gradient(#66b1bd, #3f7f89);
+    background: -moz-linear-gradient(#66b1bd, #3f7f89);
+    background: linear-gradient(#66b1bd, #3f7f89);
+}
+.layui-inline .progress{
+    width: 1175px
+}
+.text{
+    position: absolute;
+    right: -4%;
+    top: -15px;
+}
+
+.find_carlist{
+    position: absolute;
+    top: -175%;
+    left: 2.5%;
+    
+}
+.search_Carlist{
+    padding-right:10px 
+}
+.layui-form-item .start_time .layui-input-inline{
+    width: 190px;
+}
+.layuiSelect .search_Carlists {
+    line-height: 40px;
+}

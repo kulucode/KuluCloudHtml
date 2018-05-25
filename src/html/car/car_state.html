@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>酷陆科技</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <link rel="stylesheet" href="../../layui/css/kulu.css">
+    <link rel="stylesheet" href="../../css/car/rail.css">
+    <link rel="stylesheet" href="../../css/car/state.css">
+    <link rel="stylesheet" href="../../css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4../../DrawingManager_min.css" />
+    <link rel="stylesheet" href="../../css/kulu.css">
+    <link rel="stylesheet" href="../../css/car/car.css">
+    <style>
+
+        .layui-layout-body .layui-layout-admin .layui-body {
+            height: 94vh;
+        }
+
+        .layui-body #allmap {
+            height: 91vh;
+        }
+
+        #videoControls {
+            width: 1100px;
+            margin-top: 0px;
+        }
+
+        .show {
+            opacity: 1;
+        }
+
+        .hide {
+            opacity: 0;
+        }
+
+        #progressWrap {
+            background-color: white;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        #playProgress {
+            background-color: #50b4c8;
+            width: 0px;
+            height: 25px;
+            border-right: 2px solid blue;
+        }
+
+        #showProgress {
+            font-weight: 1100;
+            font-size: 20px;
+            line-height: 25px;
+        }
+    </style>
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">
+                <img src="../../img/car/kulu.png" alt="" srcset="" style="width:100%">
+            </div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item layui-index">
+                    <a href="../../html/index/index.html" class="home">平台主页</a>
+                </li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item" style="background: red;">
+                        <a href="/" class="exit_sys">
+                            注销登录
+                        </a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/kulu/console.html" class="install">
+                        系统设置
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item nav_left">
+                        <a href="../../html/car/car_location.html" class="location_left">实时监控</a>
+                    </li>
+                    <li class="layui-nav-item nav_left">
+                        <a href="../../html/car/car_path.html" class="path_left">轨迹回放</a>
+                    </li>
+                    <li class="layui-nav-item nav_left">
+                        <a href="../../html/car/car_video.html" class="video_left">监控调取</a>
+                    </li>
+                    <!-- <li class="layui-nav-item nav_left">
+                        <a href="../../html/car/car_history.html" class="video_left">监控回放</a>
+                    </li> -->
+                    <li class="layui-nav-item nav_left">
+                        <a href="../../html/car/car_detail.html" class="detail_left">报警信息</a>
+                    </li>
+                    <li class="layui-nav-item nav_left">
+                        <a href="../../html/car/car_oil.html" class="oil_left">油量统计</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body" style="background:#eaf0f2">
+            <!-- 内容主体区域 -->
+            <div class="layui-layer layui-layer-page" id="layui-layer11">
+                <button class="layui-btn layui-btn-primary layui-btn-sm btn1">
+                    <i class="layui-icon btn1s"></i>
+                </button>
+                <button class="layui-btn layui-btn-primary layui-btn-sm btn2">
+                    <i class="layui-icon btn2s"></i>
+                </button>
+            </div>
+            <div class="layui-layer layui-layer-page" id="layui-layers">
+                <form class="layui-form" id="Carstate">
+                    <div class="layui-form-item">
+                        <div class="layui-inline find_car">
+                            <div class="layui-input-inline">
+                                <select class="selectCarplate" name="pg_truck" lay-verify="required" lay-search="">
+
+                                </select>
+                            </div>
+                            <a href="javascript:void(0)" class="search_Carlists search_Carlist">
+                                <i class="fa    fa-search"></i>搜索 </a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="layui-layer layui-layer-page" id="layui-layers1">
+                <div class="layui-collapse" lay-accordion="">
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">项目组一</h2>
+                        <div class="layui-colla-content layui-show team_contents1">
+                        </div>
+                    </div>
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">项目组二</h2>
+                        <div class="layui-colla-content team_contents2">
+                        </div>
+                    </div>
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">项目组三</h2>
+                        <div class="layui-colla-content team_contents3">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="layui-row" style="height: 15%;text-align: center; line-height: 7; font-size: 31px;">
+                <div id="Cartitle">
+                </div>
+                的车辆状况
+            </div>
+            <div class="layui-row" style="height:48%;    margin-top: 7%;">
+                <div class="layui-col-md4" style="height:90%">
+                    <div id="main3" style="width: 100%;height:100%;margin-top:20px"></div>
+                </div>
+                <div class="layui-col-md4" style="height:90%">
+                    <div id="main4" style="width: 100%;height:100%;margin-top:20px"></div>
+                </div>
+                <div class="layui-col-md4" style="height:90%">
+                    <div id="main5" style="width: 100%;height:100%;margin-top:20px"></div>
+                </div>
+            </div>
+
+        </div>
+        <script src="../../js/jquery/jquery.js"></script>
+        <script src="../../js/jquery/jquery.bs.js"></script>
+        <script src="../../js/jquery/bluebird.js"></script>
+        <!--加载鼠标绘制工具-->
+        <script src="../../js/remote.js"></script>
+        <!--加载鼠标绘制工具-->
+        <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+        <script src="../../layui/layui.js"></script>
+        <script src="../../js/car/state.js"></script>
+        <script src="../../js/common.js"></script>
+        <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+        <script>
+             carlist()
+            layui.use(['form', 'layer', 'laydate'], function () {
+                var form = layui.form,
+                    layer = layui.layer,
+                    laydate = layui.laydate;
+                //日期
+                laydate.render({
+                    elem: '#date'
+                });
+                laydate.render({
+                    elem: '#date1'
+                });
+            });
+        </script>
+</body>
+
+</html>
+          

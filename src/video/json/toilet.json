@@ -1,0 +1,64 @@
+{
+    "code": 0,
+     "msg": "",
+     "count": 1000,
+     "data": [
+         
+                 {
+                     "id": "01",
+                     "team": "1",
+                     "num": "00004",
+                     "plate_number": "湘A00000",
+                     "name": "张天灵",
+                     "phone": "13875414415",
+                     "status": "正常",
+                     "statuss":"1",
+                     "man": "5",
+                     "woman": "3",
+                     "cur_long": "112.914607",
+                     "cur_lat": "28.184404"
+                 },
+                 {
+                    "id": "02",
+                    "team": "1",
+                    "num": "00009",
+                    "plate_number": "湘A00000",
+                    "name": "李维斯",
+                    "phone": "13587854989",
+                    "status": "正常",
+                    "statuss":"1",
+                    "man": "6",
+                    "woman": "2",
+                    "cur_long":"112.874075",
+                    "cur_lat":"28.177526"
+                },
+                {
+                    "id": "03",
+                    "team": "2",
+                    "num": "00007",
+                    "plate_number": "湘A00000",
+                    "name": "刘岛",
+                    "phone": "13245689852",
+                    "status": "警报",
+                    "statuss":"2",
+                    "man": "8",
+                    "woman": "0",
+                    "cur_long":"112.872854",
+                    "cur_lat":"28.193128"
+                },
+                {
+                    "id": "04",
+                    "team": "2",
+                    "num": "00008",
+                    "plate_number": "湘A00000",
+                    "name": "王春芳",
+                    "phone": "13232758248",
+                    "status": "正常",
+                    "statuss":"1",
+                    "man": "4",
+                    "woman": "2",
+                    "cur_long":"112.901923",
+                    "cur_lat":"28.181188"
+                }
+             ]
+ }

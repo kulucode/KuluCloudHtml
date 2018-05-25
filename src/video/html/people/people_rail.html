@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>酷陆科技</title>
+  <link rel="stylesheet" href="../../layui/css/layui.css">
+  <link rel="stylesheet" href="../../layui/css/kulu.css">
+  <link rel="stylesheet" href="../../css/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../css/people/rail.css">
+  
+  <link rel="stylesheet" href="../../css/car/rail.css">
+  <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+  <link rel="stylesheet" href="../../css/kulu.css">
+  <style>
+  .layui-header .layui-layout-left .layui-nav-bar{
+    /* left: 20px!important;
+    top: 58px!important;
+    width: 160px!important;
+    opacity: 1!important; */
+  }
+  div #allmap{
+    height: 93vh;
+  }
+  .layui-layout-admin .layui-body{
+    height: 93vh;
+  }
+  .layui-table-header .layui-table thead tr{
+    background: #50b4c8;
+    color: white
+  }
+  /* .BMap_bubble_content span:nth-child(16){
+    color: red
+  }
+  .BMap_bubble_content span:nth-child(17){
+    color: red
+  } */
+  .layui-table tr:nth-child(3){
+    background: yellow
+  }
+  .layui-layout-body .layui-table-box, .layui-layout-body .layui-table-view {
+    width: 100%!important;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.layui-table-box .layui-table-body{
+    overflow-y: hidden;
+}
+.demoTable .layui-btn{
+  background-color:#50b4c8
+}
+.BMapLib_Drawing_panel{
+  margin-top: 12px;
+}
+.layui-layout-left li:nth-child(3):after {
+        content: '';
+        top: auto;
+        bottom: 0;
+        position: absolute;
+        left: 0;
+        width: 0;
+        height: 5px;
+        background-color: #fff;
+        transition: all .2s;
+        -webkit-transition: all .2s;
+        width: 100%;
+    }
+  </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo"><img src="../../img/car/kulu.png" alt="" srcset="" style="width:100%"></div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item layui-index"><a href="../../html/index/index.html" class="home">平台主页</a></li>
+      <!-- <li class="layui-nav-item"><a href="../../html/car/car_location.html" class="car">车辆管理</a></li>
+      <li class="layui-nav-item layui-this"><a href="../../html/people/people_location.html" class="people">人员管理</a></li>
+     <li class="layui-nav-item"><a href="../../html/table/table_list.html" class="table">报表输出</a></li> -->
+      
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="/kulu/console.html" class="install">
+              系统设置
+            </a>
+          </li>
+     
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item nav_left"><a href="../../html/people/people_location.html" class="people_left">实时监控</a></li>
+        <li class="layui-nav-item nav_left"><a href="../../html/people/people_path.html" class="path_left">轨迹回放</a></li>
+        <li class="layui-nav-item nav_left nav_lefts"><a href="../../html/people/people_rail.html" class="rail_left">区域设置</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div><div id="allmap" onload="drive()" style="z-index: -1;"></div>
+    <div class="layui-layer layui-layer-page" id="layui-layer11">
+        <button class="layui-btn layui-btn-primary layui-btn-sm btn1"><i class="layui-icon btn1s"></i></button>
+        <button class="layui-btn layui-btn-primary layui-btn-sm btn2"><i class="layui-icon btn2s"></i></button>
+      </div>
+      <div class="layui-layer layui-layer-page" id="layui-layers">
+        <form class="layui-form" id="peopleSelect">
+          <div class="layui-form-item">
+            <div class="layui-inline find_car">
+              <div class="layui-input-inline">
+                <select name="pg_uinst" lay-verify="required" lay-search="" class="searchPeople">
+                       <!-- <option value="">湘A00000</option> -->
+                       <!-- <option value="1">张柳</option>
+                       <option value="2">张大雅</option> -->
+                     </select>
+              </div>
+              <a href="javascript:void(0)" class="search_Carlists"><i  class="fa    fa-search"></i>搜索 </a>
+            </div>
+          </div>
+        </form>
+
+      </div>
+      <div class="layui-layer layui-layer-page" id="layui-layers1">
+        <div class="layui-collapse" lay-accordion="">
+          <div class="layui-colla-item">
+            <h2 class="layui-colla-title">项目组一</h2>
+            <div class="layui-colla-content layui-show people_contents1">
+            </div>
+          </div>
+          <div class="layui-colla-item">
+            <h2 class="layui-colla-title">项目组二</h2>
+            <div class="layui-colla-content people_contents2">
+            </div>
+          </div>
+          <div class="layui-colla-item">
+            <h2 class="layui-colla-title">项目组三</h2>
+            <div class="layui-colla-content people_contents3">
+          </div>
+
+        </div>
+      </div>
+      <div class="layui-layer layui-layer-page" id="layui-layer125">
+        <div class="fence-car-edit" id="drawToolLayer" style="">
+
+          <span class="fence-car-editdb">完成绘制  <i class="fa  fa-hand-o-right"></i></span>
+
+          <a id="btn_exit" href="javascript:void(0)" title="显示隐藏">
+                          </a>
+
+          <a id="btn_clear" href="javascript:void(0)" title="清除">
+                          </a>
+
+          <a id="btn_save" href="javascript:void(0)" title="保存">
+                  
+                          </a>
+
+        </div>
+      </div></div>
+    
+
+          <div class="layui-layer layui-layer-page" id="layui-layer125" >
+              <div class="fence-car-edit" id="drawToolLayer" style="">
+                  
+                          <span class="fence-car-editdb">完成绘制  <i class="fa  fa-hand-o-right"></i></span>
+                  
+                          <a id="btn_exit" href="javascript:void(0)" title="显示隐藏">
+                            <!-- <i class="icon-custom icon-bg-light-green  fa   fa-refresh fa-2x"></i> -->
+                          </a>
+                  
+                          <a id="btn_clear" href="javascript:void(0)" title="清除">
+                            <!-- <i class="icon-custom  icon-bg-blue  fa fa-trash fa-2x"></i> -->
+                          </a>
+                  
+                          <a id="btn_save" href="javascript:void(0)" title="保存">
+                            <!-- <i class="icon-custom icon-bg-light-green fa fa-save fa-2x"></i> -->
+                  
+                          </a>
+                  
+                        </div>
+              </div>
+  </div>
+</div>
+<script src="../../js/jquery/jquery.js"></script>
+<script src="../../js/jquery/jquery.bs.js"></script>
+<script src="../../js/remote.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=O64nl3yKG6MNbniKhhOmIVNjmNecAxHC"></script>
+<!--加载鼠标绘制工具-->
+<script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+<script src="../../js/mapInit.js"></script>
+<script src="../../layui/layui.js"></script>
+<script src="../../js/Bmap.js"></script>
+<script src="../../js/people/people.js"></script>
+<script src="../../js/people/rail.js"></script>
+<script src="../../js/common.js"></script>
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="detail">定位</a>
+</script>
+<script type="text/html" id="barDemos">
+  <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="fa fa-video-camera"></i></a>
+</script>     
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+
+</script>
+<script>
+//JavaScript代码区域
+peoplelist();
+layui.use('element', function(){
+  var element = layui.element;
+  
+});
+loadpeopleList(map);
+var Width = parseFloat($("#layui-layers1").width())
+var widths =  Width-35+"px"
+$("#layui-layers .layui-input-inline").width(widths);
+layui.use('form', function(){
+  var form = layui.form;
+  
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+    layer.msg(JSON.stringify(data.field));
+    return false;
+  });
+});
+</script>
+</body>
+</html>

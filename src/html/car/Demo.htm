@@ -1,0 +1,425 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+<script type="text/javascript">
+    var DeviceID, TransIP, Device_Type;
+		function $(id)
+		{
+			return document.getElementById(id);
+		}
+		function getobj(i)
+		{
+			return $("Object"+i);
+		}
+		console.log($("Object0"),"Object0")
+		//初始化设备参数
+		function init()
+		{
+			console.log("init");
+		    DeviceID = tb_deviceID.value;
+			TransIP = tb_transIP.value;
+		    if (dev_type.selectedIndex == 0)
+		        Device_Type = 123;
+		    else
+		        Device_Type = 124;
+			for(var i=0; i<=4; i++){
+			
+			console.log(Device_Type, "", DeviceID, 5556, TransIP, 17891, "", "")
+			    getobj(i).SetDeviceInfo(Device_Type, "", DeviceID, 5556, TransIP, 17891, "", "");
+		
+			}
+		}
+		
+		//打开单个通道视频
+		function openvideo()
+		{
+			var channel = sel_channel.value;
+			var obj = getobj(channel);			
+			alert(obj.OpenVideo(channel, 1));
+		}
+		//关闭单个通道视频
+		function closevideo()
+		{
+			var channel = sel_channel.value;
+			var obj = getobj(channel);
+			obj.CloseVideo();
+		}
+		
+		function SetSubRes()//设置子码流分辨率
+		{
+		    getobj(0).SetSubResolution(sel_res.value);
+		}
+		
+		function record()//自选路径保存录像
+		{
+			var path = document.getElementById ("RecordPath").value;//保存路径
+			var obj = getobj(0);
+			var returnvalue = obj.Record(path);
+			if(returnvalue == 0)
+			   alert ("开始录像");
+		}
+		//停止录像
+		function stoprecord()
+		{
+			var obj = getobj(0);
+			obj.StopRecord();
+		}
+		
+		//打开全部通道视频
+		function OpenAllVideo()
+		{
+			for(var i=0;i<4;i++){
+				var obj = getobj(i);	
+				console.log(obj.constructor)		
+				obj.OpenVideo(i, 1);
+				console.log(obj.PlayGetCurTimeST(),"12")
+			}
+
+		}
+		//关闭全部通道视频
+		function CloseAllVideo()
+		{
+			for(var i=0;i<4;i++){
+				var obj = getobj(i);			
+				obj.CloseVideo();
+			}
+		}
+        //抓图
+		function getPic() {
+			var obj = getobj(0);
+
+		    var res = obj.CapturePic("C:\\mm.jpg", 0);
+		    alert(res + "      C:\\mm.jpg");
+		}
+		//检索远程录像
+		function remotesearch()
+		{
+			var obj = getobj(4);
+			var now = new Date();
+			console.log(typeof(DeviceID),typeof(now.getFullYear()))
+			var rs = obj.SearchTime(DeviceID, now.getFullYear(), now.getMonth() + 1, now.getDate(), 0, 0, 0, 0, 0, 0, 0, 0);
+			console.log(DeviceID, now.getFullYear(), now.getMonth() + 1, now.getDate(), 0, 0, 0, 0, 0, 0, 0, 0);
+			console.log(obj);
+			if(rs!=0)
+			   alert("fail");
+			else
+			{
+			    var rstrs = obj.SearchGetFileInfo();
+				console.log(rstrs,"rstrs");
+				var list = rstrs.split(';');
+				var strs = "";
+				for (var i = 0; i < list.length; i++)
+				    strs += "<option value='" + list[i].split(',')[0] + "'>" + list[i] + "</option>";
+			    $("sel_playlist").innerHTML = strs;
+			}
+			obj.SearchClose();  //停止检索   
+			obj.CloseDevice();//关闭设备
+		}
+		//停止检索录像
+		function stopsearch()
+		{
+			var obj = getobj(4);
+			obj.SearchClose();
+		}
+        //回放远程录像
+		function PlayBack() {
+			var path = sel_playlist.value;
+			console.log(path)
+		    if (path == "") {
+		        alert("Please Choose file");
+		        return;	
+		    }
+			var obj = getobj(4);
+			obj.CloseVideo();
+			// init();
+			obj.PlayOpen(path, Device_Type, 1);
+			console.log(obj.PlayGetTotalTime(),"time")
+			console.log(obj.PlayGetCurTime(),"times")
+		}
+		
+		     //下载远程录像
+		function DownloadVideo() {
+		    var path = sel_playlist.value;
+		    if (path == "") {
+		        alert("Please Choose file");
+		        return;
+		    }
+		    var obj = getobj(4);
+		    obj.DownloadFileConvert(path, "c:/temp/", 0, 0,1, 0) ;
+		}
+		//停止下载远程录像
+		function StopDownloadVideo() {
+		    var obj = getobj(4);
+		    obj.DownloadFileStop();
+		}
+		
+		function SetDownloadPercent(nPercent)
+		{
+		    id_down_progress.value = nPercent;
+		}
+		//回放本地
+		function PlayBackLocal()
+		{
+		    var path = document.getElementById ("RecordPath").value;
+		    getobj(4).PlayOpen(path, 0, 0);
+		}
+		//停止远程回放
+		function StopPlayBack()
+		{
+		    var obj = getobj(4);
+		    obj.PlayStop();
+		}
+		//暂停回放
+		function PausePlayBack()
+		{
+			 var obj = getobj(4);
+		    obj.PlayPause(1);
+		}
+		//恢复回放
+		function ResumePlayBack()
+		{
+			 var obj = getobj(4);
+		    obj.PlayPause(0);
+		}
+		
+        //设置窗口大小
+		function setSize() {
+		    var width = $("width").value;
+		    var height = $("height").value;
+		    $("Object0").style.height= height + "px";
+		    $("Object0").style.width = width + "px";
+		    $("Object1").style.height = height + "px";
+		    $("Object1").style.width = width + "px";
+		    $("Object2").style.height = height + "px";
+		    $("Object2").style.width = width + "px";
+		    $("Object3").style.height = height + "px";
+		    $("Object3").style.width = width + "px";
+		}
+		
+			function OnGetOpenVideoMessage1(szDevID, nChannel, nMessage){
+				console.log(123)
+			console.log(szDevID+","+nChannel+","+nMessage,"123");
+			if (nMessage == 1)
+				alert("open video fail");
+		}
+</script>
+</head>
+
+<body>
+<table>
+    <tr>
+        <td colspan="3">
+            <table>
+                <tr>
+                    <td>转发IP:<input type="text" id="tb_transIP" value="182.61.39.135"></td>
+                </tr>
+                <tr>
+                    <td>设备ID:<input type="text" id="tb_deviceID" value="008B00010F"></td>
+                </tr>
+                <tr>
+                    <td>设备类型:
+                        <select id="dev_type">
+                            <option value="0">mdvr</option>
+                            <option value="1" selected>n9m</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="button" onclick="init();" value="初始化" id="bt_init" style="width:180px;" /></td>
+                </tr>
+                </table>
+        </td>
+    </tr>
+	<tr>
+        <td style=" vertical-align:middle">实时视频</td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <select id="sel_channel" style="width:180px;">
+                            <option value="0" selected>Channel 1</option>
+                            <option value="1">Channel 2</option>
+                            <option value="2">Channel 3</option>
+                            <option value="3">Channel 4</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" onclick="SetSubRes();" value="设置子码流分辨率" id="Button1" style="width:180px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select id="sel_res" style="width:180px;">
+                            <option value="0" selected>d1: 704*576</option>
+                            <option value="1"> cif: 352*288</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" onclick="OpenAllVideo();" value="打开所有通道视频" id="tb_openall" style="width:180px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" onclick="CloseAllVideo();" value="关闭所有通道视频" id="tb_closeall" style="width:180px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" onclick="openvideo();" value="打开单通道视频" id="bt_open" style="width:180px;" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" onclick="closevideo();" value="关闭单通道视频" id="tb_close" style="width:180px;" />
+                    </td>
+
+                </tr>
+				<tr>
+					<td>
+						<input type="button" onclick ="getPic();"    value="抓图" id="Button10"  style="width:180px;" />
+					</td>
+				</tr>
+				<tr>
+				    <td>
+						<input type="button" onclick="record();"     value="自选路径保存录像" id="Button2"/> 
+				    </td>
+				</tr>
+                <tr>
+                    <td>
+                        <input type="button" onclick="stoprecord();" value="停止录像" />
+                    </td>
+                </tr>
+				<tr>
+				    <td>
+				        保存路径：<input type="text"   id="RecordPath"         value ="C:\Test.264"/>
+				    </td>
+				</tr>
+                <tr>
+                    <td>
+                        高：<input type="text" id="height" value="250" style="width:60px" />
+                        宽：<input type="text" id="width" value="300" style="width:60px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" onclick="setSize();" value="设置大小" />
+                    </td>
+                </tr>
+			</table>
+		</td>
+
+        <td id="td_obj">
+            <object id="Object0" style="WIDTH: 300px; HEIGHT: 250px" classid="clsid:DB5D6116-F923-4aa0-83D9-D6538F55E174" name="showvideo">
+                <param name="_Version" value="65536">
+                <param name="_ExtentX" value="10583">
+                <param name="_ExtentY" value="9260">
+                <param name="_StockProps" value="0">
+            </object>
+            <object id="Object4" style="WIDTH: 300px; HEIGHT: 250px" classid="clsid:DB5D6116-F923-4aa0-83D9-D6538F55E174" name="showvideo">
+                <param name="_Version" value="65536">
+                <param name="_ExtentX" value="10583">
+                <param name="_ExtentY" value="9260">
+                <param name="_StockProps" value="0">
+            </object>
+            <object id="Object2" style="WIDTH: 300px; HEIGHT: 250px" classid="clsid:DB5D6116-F923-4aa0-83D9-D6538F55E174" name="showvideo">
+                <param name="_Version" value="65536">
+                <param name="_ExtentX" value="10583">
+                <param name="_ExtentY" value="9260">
+                <param name="_StockProps" value="0">
+            </object>
+            <object id="Object3" style="WIDTH: 300px; HEIGHT: 250px" classid="clsid:DB5D6116-F923-4aa0-83D9-D6538F55E174" name="showvideo">
+                <param name="_Version" value="65536">
+                <param name="_ExtentX" value="10583">
+                <param name="_ExtentY" value="9260">
+                <param name="_StockProps" value="0">
+            </object>
+        </td>
+	</tr>
+    <tr>
+        <td style=" vertical-align:middle">远程回放</td>
+        <td>
+            <table>
+                <tr>
+                    <td><input type="button" onclick="remotesearch();" value="检索远程录像" id="btn_remote" style="width:180px;" /></td>
+                </tr>
+                <tr>
+                    <td><input type="button" onclick="stopsearch();" value="停止检索录像" id="bt_stopsearch" style="width:180px;" /></td>
+                </tr>
+                <tr>
+                    <td><input type="button" onclick="PlayBack();" value="回放" style="width:180px;" /></td>
+                    <td><input type="button" onclick="DownloadVideo();" value="下载" style="width:180px;" /></td>
+                    <td><input type="button" onclick="StopDownloadVideo();" value="停止下载" style="width:180px;" /></td>
+                </tr>
+                <tr>
+                    <td>进度:<input type="text" id="id_down_progress" value=""></td>
+                  </tr>
+                 <tr>
+                    <td><input type="button" onclick="PlayBackLocal();" value="回放本地" style="width:180px;" /></td>
+                </tr>
+                <tr>
+                    <td><input type="button" onclick="StopPlayBack();" value="停止回放" style="width:180px;" /></td>
+                </tr>
+                <tr>
+                    <td><input type="button" onclick="PausePlayBack();" value="暂停回放" style="width:180px;" /></td>
+                </tr>
+                 <tr>
+                    <td><input type="button" onclick="ResumePlayBack();" value="恢复回放" style="width:180px;" /></td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table>
+                <tr>
+                    <td style="width:600px">
+                        <table>
+                            <tr>
+                                <td>
+                                    <select id="sel_playlist" style="width:400px;"></select>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <object id="Object1" style="WIDTH: 600px; HEIGHT: 450px" classid="clsid:DB5D6116-F923-4aa0-83D9-D6538F55E174" name="showvideo">
+                            <param name="_Version" value="65536">
+                            <param name="_ExtentX" value="10583">
+                            <param name="_ExtentY" value="9260">
+                            <param name="_StockProps" value="0">
+                        </object>
+                    </td>
+                </tr>
+            </table>
+            
+        </td>
+    </tr>
+</table>
+   <script language="javascript" type="text/javascript" for="Object0" event="OnDoubleClick(x,y)">
+	    FullScreen();
+    </script>
+    <script language="javascript" type="text/javascript" for="Object1" event="OnDoubleClick(x,y)">
+	    FullScreen();
+    </script>
+    <script language="javascript" type="text/javascript" for="Object2" event="OnDoubleClick(x,y)">
+	    FullScreen();
+    </script>
+    <script language="javascript" type="text/javascript" for="Object3" event="OnDoubleClick(x,y)">
+	    FullScreen();
+    </script>
+    <script language="javascript" type="text/javascript" for="Object4" event="OnDoubleClick(x,y)">
+        FullScreen();
+    </script>
+    <script language="javascript" type="text/javascript" for="Object4" event="OnDownloadInfo( nMsgID, szDeviceID, szSourceFile, szSaveFile, nPercent)">
+        SetDownloadPercent(nPercent);
+    </script>
+    <script language="javascript" type="text/javascript" for="Object0" event="OnGetOpenVideoMessage(szDevID, nChannel, nMessage)">
+         OnGetOpenVideoMessage1(szDevID, nChannel, nMessage);
+    </script>
+</body>
+</html>

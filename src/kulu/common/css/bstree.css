@@ -1,0 +1,44 @@
+.tree_a {
+    COLOR: #000000;
+    TEXT-DECORATION: none;
+    FONT-SIZE: 14px;
+}
+
+.tree_a:hover {
+    COLOR: #000000;
+    TEXT-DECORATION: none;
+    FONT-SIZE: 14px;
+}
+
+.tree_node_onblur {
+    TEXT-DECORATION: none;
+    FONT-SIZE: 14px;
+    color: black;
+}
+
+.tree_node_onfocus {
+    TEXT-DECORATION: none;
+    background-color: #8989bc;
+    FONT-SIZE: 14px;
+    color: white;
+}
+
+.tree_node {
+    CURSOR: default;
+    FONT-SIZE: 14px;
+    line-height: 20px;
+}
+
+.tree_check {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+}
+
+.tree_error {
+    TEXT-DECORATION: none;
+    CURSOR: default;
+    FONT-SIZE: 14px;
+    background-color: red;
+    color: window;
+}

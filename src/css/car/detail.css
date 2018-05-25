@@ -1,0 +1,254 @@
+#tabel_detail table {
+  width: 92.4%;
+  margin-left: 82.3px;
+  border: 1px solid #7f7f7f;
+  height: 68%;
+  margin-top: -17px;
+}
+#tabel_detail table tr {
+  border: 1px solid #7f7f7f;
+  color: #bfbfbf;
+  text-align: center;
+}
+#tabel_detail table td {
+  color: #bfbfbf;
+  text-align: center;
+  width: 225px;
+  height: 27px;
+}
+#tabel_detail table th {
+  border: 1px solid #7f7f7f;
+  color: #bfbfbf;
+  text-align: center;
+  width: 225px;
+}
+.find_car {
+  background: #ffffff;
+  color: #11baef;
+}
+.layui-form-item .start_time {
+  background: #ffffff;
+  color: #11baef;
+  height: 40px;
+  font-size: 16px;
+}
+.start_time .layui-form-label {
+  height: 42px;
+  line-height: 44px;
+  padding: 2px 0 0 35px;
+}
+.layui-form-item .start_time .layui-input,
+.layui-form-item label {
+  color: #11baef;
+  background: #ffffff;
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #898989;
+  opacity: 1;
+}
+.start_time #test5 {
+  height: 44px;
+  font-size: 16px;
+  padding-top: 6px;
+}
+
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #898989;
+  opacity: 1;
+}
+
+input:-ms-input-placeholder {
+  color: #898989;
+  opacity: 1;
+}
+
+input::-webkit-input-placeholder {
+  color: #898989;
+  opacity: 1;
+}
+.layui-form-item .start_time .layui-input-inline {
+  margin-right: 0px;
+}
+.find_car .layui-btn-lg {
+  padding: 0 44px;
+}
+.layui-form .layui-form-item .layui-inline {
+  margin-right: 50px;
+}
+.find_car .layui-btn-lg {
+  color: #11baef;
+}
+.detail_table {
+  width: 99%;
+  margin-left: 7px;
+}
+.detail_table .layui-table {
+  background-color: #e9f2f5;
+}
+.detail_table .layui-table-main table td {
+  color: #000000;
+}
+.detail_table .layui-table-header table tr th {
+  color: #000000;
+}
+.detail_table .layui-btn {
+  color: #11baef;
+  background-color: #ffffff;
+  font-size: 17px;
+}
+.detail_table .layui-table-cell {
+  margin: auto;
+}
+.detail_table .laytable-cell-1-9 {
+  margin: 0;
+}
+.demoTable {
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.layui-nav-tree .nav_lefts {
+  background: -webkit-linear-gradient(#66b1bd, #3f7f89);
+  background: -o-linear-gradient(#66b1bd, #3f7f89);
+  background: -moz-linear-gradient(#66b1bd, #3f7f89);
+  background: linear-gradient(#66b1bd, #3f7f89);
+}
+.demoTable {
+  height: 40px;
+}
+.find_car {
+  height: 40px;
+}
+.layui-form .layui-form-item .layui-inline {
+  margin-right: 45px;
+}
+.start_time {
+  background: #50b4c8;
+}
+
+.start_time .times {
+  width: 16px;
+  padding: 9px 0px;
+}
+
+.start_time .layui-input {
+  padding-left: 0px;
+  border: none;
+  background: #50b4c8;
+  text-align: center;
+  color: #002060;
+}
+
+.start_time .layui-input-inline {
+  background: #50b4c8;
+  margin-right: 0px;
+}
+
+.start_time .layui-form-mid {
+  margin-right: 0px;
+}
+
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #898989;
+  opacity: 1;
+}
+
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #898989;
+  opacity: 1;
+}
+
+input:-ms-input-placeholder {
+  color: #898989;
+  opacity: 1;
+}
+
+input::-webkit-input-placeholder {
+  color: #898989;
+  opacity: 1;
+}
+.find_car {
+  background: #50b4c8;
+}
+.find_cars {
+  margin-left: 70px;
+}
+.find_car .layui-form-select .layui-input {
+  background: #50b4c8;
+  border: none;
+  color: #fff;
+}
+.layui-form-item .layui-inline .layui-input-inline {
+  width: 143px;
+}
+.fa-search {
+  color: #fff;
+  padding-right: 14px;
+}
+.search_Carlist {
+  color: white;
+  padding-right: 20px;
+}
+@media screen and (max-width: 1670px) {
+  .demoTable .layui-form-item .find_cars {
+    margin-left: 0;
+    margin-top: 0;
+  }
+  .demoTable .layui-form-item .find_car .layui-btn-lg {
+    padding: 0px 18px;
+  }
+}
+@media screen and (max-height: 810px) {
+  #tabel_detail table td {
+    height: 21px;
+}
+.demoTable .layui-form-item .start_time {
+  height: 38px;
+}
+.layui-form-item  .start_time .layui-form-label {
+  height: 38px;
+  line-height: 38px;
+  padding: 0px 0 0 35px;
+}
+.layui-form-item  .start_time #test5{
+  height: 38px;
+}
+.find_car .layui-btn {
+  height: 38px;
+  line-height: 38px;
+}
+}
+.layui-table-main {
+  background: #e9f2f5;
+}
+#tabel_detail tr:nth-child(1) td:nth-child(1) {
+  border-top: 1px solid #253236;
+  border-left: 1px solid #253236;
+}
+.Operation {
+    height: 9px;
+    border-bottom: 1px #50b4c8 solid;
+    width: 37px;
+    float: right;
+    margin-right: 45px;
+    margin-left: -40px;
+}
+.EquipmentDanger {
+  height: 9px;
+  border-bottom: 1px #a8b97f solid;
+  width: 37px;
+  float: right;
+  margin-right: 45px;
+    margin-left: -40px;
+}
+.Accident {
+  height: 9px;
+  border-bottom: 1px #9b9256 solid;
+  width: 37px;
+  float: right;
+  margin-right: 45px;
+    margin-left: -40px;
+}

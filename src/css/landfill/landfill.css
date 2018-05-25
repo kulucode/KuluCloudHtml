@@ -1,0 +1,45 @@
+.login_head{
+    background: #ebf1f3;
+}
+.label{
+    float: left;
+    line-height: 34px;
+    margin-left: 39px;
+}
+.layui-input-inline{
+    float: left;
+}
+.login_head .start_time{
+    margin-top: 27px;
+    margin-left: 10%;
+    
+    width: 268px;
+}
+.layui-inline{
+    margin-top: 27px;
+}
+.layui-btn-fluid {
+    margin-left: 20px;
+    background: #50b4c8;
+}
+.login_body{
+    height: 90%;
+    background: #50b4c8
+}
+.title{
+    margin-left: 10%;
+}
+.title span{
+    background: white;
+    display: inline-block;
+    width: 51px;
+    height: 45px;
+    line-height: 50px;
+    text-align: center;
+}
+.layui-layout-body .layui-border-box .layui-table-box{
+    height: 573px;
+}
+.tables{
+    margin: 40px;
+}

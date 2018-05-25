@@ -1,0 +1,592 @@
+.layui-layout-body .layui-layout-admin .layui-body div.layui-footer {
+    height: 23.6%;
+}
+.layui-col-md3 .people_list ul li:nth-child(2n) {
+    background: #50b4c8;
+}
+@media screen and (min-width: 992px) {
+  .layui-row .layui-col-md9 {
+    width: 74%;
+    margin-right: 4%;
+
+  }
+  .layui-col-md3 {
+      width: 16%;
+  }
+}
+.layui-col-md3 .people_list ul li:nth-child(1) {
+   border: none;
+   margin-top: 2vh;
+}
+.grid-demo-bg1{
+    height: 100%;
+}
+
+.demoTable{
+    margin-left:5%
+}
+.layui-layout-body .layui-layout-admin .layui-body {
+    height: 94vh;
+}
+
+.layui-body #allmap {
+    height: 91vh;
+}
+
+#videoControls {
+    width: 1100px;
+    margin-top: 0px;
+}
+
+.show {
+    opacity: 1;
+}
+
+.hide {
+    opacity: 0;
+}
+
+#progressWrap {
+    background-color: white;
+    height: 25px;
+    cursor: pointer;
+}
+
+#playProgress {
+    background-color: #50b4c8;
+    width: 0px;
+    height: 25px;
+    border-right: 2px solid blue;
+}
+
+#showProgress {
+    font-weight: 1100;
+    font-size: 20px;
+    line-height: 25px;
+}
+
+@media screen and (max-width: 1540px) {
+    .demoTable .layui-form-item .find_car {
+        margin-left: 0px;
+    }
+}
+.demoTable .path_videos{
+    background: #333333;
+}
+.demoTable .path_videos i{
+    color: white
+}
+.video{
+    width: 40%;
+    height: 30%;
+    background: white;
+    float: left;
+    margin-left: 10px;
+}
+.video_one{
+    margin-left: 100px;
+    margin-top: 23px;
+}
+.video_two{
+    margin-top: 23px;
+}
+.video_three{
+    margin-left: 100px;
+}
+.people_list ul{
+    color: white;
+    text-align: center
+}
+.people_list ul li{
+    color: white;
+    text-align: center;
+    height: 3.55vh;
+    width: 148px;
+    font-size: 15.5px;
+    border-radius: 7px;
+    display: inline-block;
+    padding-top: 1.25vh;
+}
+.people_list ul li:nth-child(2n){
+    background: #73c3d3
+}
+.demoTable{
+    margin-top: 10px;
+}
+.layui-form-item .layui-inline {
+    margin-bottom: 5px;
+    margin-right: 10px;
+    height: 40px;
+}
+.start_time {
+    width: 335px;
+}
+.btnFastRoute4{
+    margin-left: 18px;
+}
+.demoTable .layui-inline .btnFastRoutes{
+    padding:0 4px;
+}
+.path_videos{
+    margin-left: 28px;
+    width: 328px;
+}
+.demoTable .layui-inline .btnStartRoute4{
+    margin-left: 18px;
+}
+.demoTable .layui-inline {
+    margin: 0 
+}
+.demoTable .find_car{
+    margin-left: 82px;
+}
+#videoControls1{
+    width: 1100px;
+    margin-top: 0px;
+}
+#progressWrap1{
+    background-color: white;
+    height: 25px;
+    cursor: pointer;
+}
+#playProgress1{
+    background-color: #50b4c8;
+    width: 0px;
+    height: 25px;
+    border-right: 2px solid blue;
+}
+#showProgress1{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+}
+#videoControls2{
+    width: 1100px;
+    margin-top: 0px;
+}
+#progressWrap2{
+    background-color: white;
+    height: 25px;
+    cursor: pointer;
+}
+#playProgress2{
+    background-color: #50b4c8;
+    width: 0px;
+    height: 25px;
+    border-right: 2px solid blue;
+}
+#showProgress2{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+}
+#videoControls3{
+    width: 1100px;
+    margin-top: 0px;
+}
+#progressWrap3{
+    background-color: white;
+    height: 25px;
+    cursor: pointer;
+}
+#playProgress3{
+    background-color: #50b4c8;
+    width: 0px;
+    height: 25px;
+    border-right: 2px solid blue;
+}
+#showProgress3{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+}
+.scrolls{
+    margin: 13px 5%; 
+}
+.layui-footer .label{
+    float: left;
+    margin-left: 8%;
+    margin-top: -6px;
+}
+video{
+    object-fit: fill;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.layui-nav-tree .nav_lefts{
+    background: -webkit-linear-gradient(#66b1bd, #3f7f89);
+    background: -o-linear-gradient(#66b1bd, #3f7f89);
+    background: -moz-linear-gradient(#66b1bd, #3f7f89);
+    background: linear-gradient(#66b1bd, #3f7f89);
+}
+.layui-layout-body .layui-layout-admin .layui-body .layui-footer{
+    height: 29%;
+}
+.grid-demo-bg1{
+    display: flex;
+    flex-wrap: wrap;
+}
+.grid-demo-bg1 .column{
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.video{
+    flex: auto;
+    width: 40%;
+    width: 31%;
+    position: relative;
+    padding-bottom: 16.35%;
+    height: 0;
+}
+@media screen and (min-width: 992px){
+.layui-col-md9 {
+    width: 60%;
+    margin-right: 9%;
+}
+}
+@media screen and (min-width:1672px){
+    .find_car .layui-btn-lg {
+        padding:0
+    }
+    }
+    
+.search_Carlist{
+    color: white;
+    padding-right: 20px;
+}
+.timeContainer .timeLine .line{
+    float: left;
+    position: absolute;
+    bottom: 0;
+    width: 8px;
+    height: 10px;
+    border-left: 1px solid black;
+    margin-bottom: 25px;
+  }
+  .timeContainer .timeLine{
+    width: 1100px;
+    height: 40px;
+    background: #eeeeee;
+    position: relative;
+  }
+  .main{
+    height: calc(100% - 50px);
+  }
+  .left .el-tree{
+    border: none;
+    height: 400px;
+    overflow-x: hidden;
+    background: #f2f2f2;
+  }
+  .left .but{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .left .but .el-button{
+    margin-top: 10px;
+    margin-left: 0;
+    border-color:#EEEEEE;
+    background:#EEEEEE;
+    color:black;
+  }
+
+  .tips{
+    text-align: center;
+    margin-top: 5px;
+    font-size: 14px;
+    color: red;
+  }
+  .but_select{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .calendar{
+    margin: 20px 10px 0px 10px;
+    position: relative;
+  }
+  .mark{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #eef1f6;
+    opacity: 0.7;
+    z-index: 999999;
+  }
+
+
+  #form {
+    margin: 40px 0;
+  }
+  .dateTime {
+    width: 100%;
+    display: flex;
+  }
+  .dateTime .el-form-item{
+    margin-bottom: 0px!important;
+  }
+  .but_s{
+    width: 80px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 14px;
+  }
+  .videoList{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+  .videoList .tip_file{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+    color: red;
+  }
+  .videoList .fileList{
+    height: 200px;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+  .videoList .fileList p{
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .right{
+    height: 100%;
+  }
+
+  .playVideo{
+    width: 100%;
+    height: 600px;
+  }
+  .playContent{
+    width:100%;
+    height: calc(100% - 48px);
+    background: #8391a5;
+    position: relative;
+  }
+
+  .right .playControll{
+    height: 48px;
+    background: url(../../assets/image/video/playheader.jpg) repeat-x;
+    border-radius: 0px 0px 3px 3px;
+    -moz-user-select:none;
+    -webkit-user-select:none;
+    user-select:none;
+  }
+  /*播放 暂停*/
+  .right .playControll .playPause{
+    float: left;
+    width: 20px;
+    height: 25px;
+    /*background: url(../../assets/image/control_01.png) 0px 0px no-repeat;*/
+    color: #a2a7aa;
+    font-size: 22px;
+    margin: 11px 0px 0px 12px;
+    cursor: pointer;
+  }
+  /*快退*/
+  .right .playControll .retrograde{
+    float: left;
+    width: 30px;
+    height: 25px;
+    color: #a2a7aa;
+    font-size: 22px;
+    margin: 11px 20px 0px 0px;
+    cursor: pointer;
+  }
+  /*快进*/
+  .right .playControll .forward{
+    float: left;
+    width: 30px;
+    height: 25px;
+    color: #a2a7aa;
+    font-size: 22px;
+    margin: 11px 20px 0px 0px;
+    cursor: pointer;
+  }
+
+  /*进度条*/
+  .right .playControll .timebar{
+    float: left;
+    width: calc(100% - 160px);
+    line-height: 48px;
+    overflow: hidden;
+    margin: 0 auto;
+    margin: 0px 0px 0px 20px;
+  }
+  .right .playControll .timebar .currentTime{
+    color: #333;
+  }
+  .right .playControll .timebar .progress{
+    float: left;
+    width: 80%;
+    margin: 19px 5px;
+    height: 10px;
+    cursor: pointer;
+  }
+  .right .playControll .timebar span{
+    float: left;
+    width: 8%;
+    text-align: center;
+    color: #FFFFFF;
+  }
+  #layui-layerss1 .layui-form-label{
+    padding: 9px 0px;
+    text-align: center;
+  }
+  .layui-layout  .layui-body #layui-layers1{
+    top: 36%;
+  }
+  #layui-layerss1{
+    left: 243px;
+    top: 27%;
+    width: 12.7%;
+    z-index: 1;
+    color: white;
+  }
+  #layui-layerss1 .layui-input-inline{
+    width: 140px;
+  }
+  #layui-laydate1{
+    left: 226px!important;
+  }
+  #layui-layerss1 .select_date{
+    padding: 7px 0px;
+    background: #50b4c8;
+  }
+  #layui-layerss1 #test12{
+    background: #50b4c8;
+    border: none;
+  }
+  @media screen and (max-height: 810px) {
+    .layui-body .layuiVideo{
+        height: 67%;
+        width: 97.6%;
+        background: #50b4c8;
+        margin: 1.8% 0 0 1.3%;
+        padding: 0% 1px 8% 1px;
+    }
+    .grid-demo .video{
+        flex: auto;
+        width: 31%;
+        position: relative;
+        padding-bottom: 16.35%;
+        height: 0;
+    }
+    .video_three {
+        margin-top: 10px
+    }
+    .video_four {
+        margin-top: 10px
+    }
+    .layui-col-md3 .people_list ul li {
+        height: 3.25vh;
+        margin-top: 3px;
+    }
+    .people_list ul li{
+        width: 173px;
+    }
+    .layui-col-md3{
+        margin-top: 20px
+    }
+    .people_lists{
+        padding-bottom: 13px;
+    }
+}
+.layuiVideo{
+    height: 67%;
+    width: 97.6%;
+    background: #50b4c8;
+    margin: 1.8% 0 0 1.3%;
+    padding: 6% 1px 8% 1px;
+}
+.line{
+    cursor: pointer;
+}
+.layui-layout-body .layui-layout-admin .layui-body div.layui-footer {
+    height: 23.6%;
+}
+.layui-col-md3 .people_list ul li:nth-child(2n) {
+    background: #50b4c8;
+}
+@media screen and (min-width: 992px) {
+  .layui-row .layui-col-md9 {
+    width: 74%;
+    margin-right: 4%;
+
+  }
+  .layui-col-md3 {
+      width: 16%;
+  }
+}
+.layui-col-md3 .people_list ul li:nth-child(1) {
+   border: none;
+   margin-top: 2vh;
+}
+.grid-demo-bg1{
+    height: 100%;
+}
+
+.demoTable{
+    margin-left:5%
+}
+.layui-layout-body .layui-layout-admin .layui-body {
+    height: 94vh;
+}
+
+.layui-body #allmap {
+    height: 91vh;
+}
+
+#videoControls {
+    width: 1100px;
+    margin-top: 0px;
+}
+
+.show {
+    opacity: 1;
+}
+
+.hide {
+    opacity: 0;
+}
+
+#progressWrap {
+    background-color: white;
+    height: 25px;
+    cursor: pointer;
+}
+
+#playProgress {
+    background-color: #50b4c8;
+    width: 0px;
+    height: 25px;
+    border-right: 2px solid blue;
+}
+
+#showProgress {
+    font-weight: 1100;
+    font-size: 20px;
+    line-height: 25px;
+}
+
+@media screen and (max-width: 1540px) {
+    .demoTable .layui-form-item .find_car {
+        margin-left: 0px;
+    }
+}
+.demoTable .path_videos{
+    background: #333333;
+}
+.demoTable .path_videos i{
+    color: white
+}

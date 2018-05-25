@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html>
+<title>酷陆云平台V2-报警管理</title>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="expires" content="-1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" type="text/css" href="../common/css/pintuer.css"/>
+    <link rel="stylesheet" type="text/css" href="../common/css/uc.css"/>
+    <link rel="stylesheet" type="text/css" href="../common/css/jquery.datetimepicker.css"/>
+    <script language="javascript" src="../common/script/jquery.js" type="text/javascript"></script>
+    <script language="javascript" src="../common/script/jquery.bs.js" type="text/javascript"></script>
+    <script language="javascript" src="../common/script/pintuer.js" type="text/javascript"></script>
+    <script language="javascript" src="../common/script/jquery.datetimepicker.js" type="text/javascript"></script>
+    <script language="javascript" src="../common/script/jquery.bs.lookup.js" type="text/javascript"></script>
+    <script language="javascript" src="../common/script/common.js" type="text/javascript"></script>
+    <script language="javascript" src="../common/script/menu.js" type="text/javascript"></script>
+    <script src="index.js" type="text/javascript"></script>
+</head>
+<body style="overflow-y: scroll;">
+<div class="layout doc-header navbar-fixed-top"
+     id="l_syslogo_f" style="color:#ffffff;z-index:20;">
+    <div class="line" style="height:45px;line-height:45px;">
+        <div class="x10 text-big" id="l_syslogo">
+
+        </div>
+        <div class="x2">
+            <ul id="div_user" class="nav nav-menu nav-inline margin-large-left">
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="line x12" style="">
+    <div class="x2 sidebar navbar-fixed-top menudiv" style="top:47px;z-index:10;">
+        <ul id="div_menu" class="nav-list spy" data-offset-fixed="320"
+            data-offset-spy="160">
+        </ul>
+    </div>
+    <div class="x10 maindiv" style="top:50px;">
+        <div class="bread-p">
+            <div class="float-right margin-small-top">
+                <iframe allowtransparency="true" frameborder="0" width="524"
+                        height="28" scrolling="no"
+                        src="http://tianqi.2345.com/plugin/widget/index.htm?s=3&z=1&t=0&v=0&d=2&bd=0&k=000000&f=&q=1&e=1&a=1&c=54511&w=524&h=28&align=center"></iframe>
+            </div>
+            <ul class="bread" style="padding: 0px 15px;font-size:14px;">
+                <li class="text-black"><span class="icon-warning"></span> 报警管理</li>
+            </ul>
+        </div>
+        <div class="x10" style="top:35px;width:100%;">
+            <div class="">
+                <form method="post" id="frmBusiness" action="">
+                    <div class="panel margin-small">
+                        <div class="panel-head padding-little" style="height:40px;">
+                            <input id="selectIds" name="selectIds" type="hidden">
+                            <div class="x5">
+                                <div class="x9 input-group">
+                                    <input type="text" style="width:350px;"
+                                           class="input input-auto" name="pg_text" id="pg_text"
+                                           placeholder="关键词" value=""/>
+                                    <span class="addbtn" style="vertical-align: top;">
+                                        <select id="pg_state" name="pg_state" class="input"
+                                                style="width: 100px;"></select>
+                                    </span>
+                                    <span class="addbtn" style="vertical-align: top;">
+                                        <input class="button bg-sub" onclick="searchFault(1)" type="button" value="搜索"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div style="float: right;">
+                                <button class="button bg-sub icon-plus" type="button" onclick="editFault();"
+                                        style="vertical-align: top;" title="新增报警"> 新增报警
+                                </button>
+                            </div>
+                        </div>
+                        <table id="fault_tab_h"
+                               class="table table-striped table-hover table-responsive">
+                            <tr>
+                                <th>报警信息</th>
+                                <th style="width:350px;">报警相关</th>
+                                <th style="width:250px;">处理情况</th>
+                                <th style="width:80px;">操作</th>
+                                <th style="width:18px;padding: 0px;">&nbsp;</th>
+                            </tr>
+                        </table>
+                        <div style="overflow-y:scroll;">
+                            <table id="fault_tab" head="fault_tab_h" dh="226"
+                                   class="table table-striped table-hover table-responsive">
+                                <tr>
+                                    <td title="" colspan="5">加载数据……</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="fault_page" class="panel-foot"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 基本信息 -->
+<div id="fault-base">
+    <div class="dialog">
+        <div class="dialog-head">
+            <span class="close rotate-hover"></span> <strong
+                id="fault-base-title"></strong>
+        </div>
+        <div class="dialog-body" defheight="0" style="overflow-y:auto;">
+            <form id="faultbase-form" name="faultbase-form" method="post"
+                  class="form-x" enctype="multipart/form-data">
+                <input type="hidden" id="t_faultid" name="t_faultid"/>
+                <input type="hidden" id="s_faultfrom" name="s_faultfrom"/>
+                <div class="form-group">
+                    <div class="label">
+                        <strong>报警名称</strong>
+                    </div>
+                    <div class="field">
+                        <input class="input" type="text" id="t_faultname" name="t_faultname"
+                               placeholder="输入设备名称"
+                               data-validate="required:必填"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <strong>*发生时间</strong>
+                    </div>
+                    <div class="field">
+                        <input class="input wsdate" type="text" id="t_faulthdate" name="t_faulthdate"
+                               placeholder="输入发生时间"
+                               data-validate="required:必填"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <strong>结束时间</strong>
+                    </div>
+                    <div class="field">
+                        <div class="input-group">
+                            <input class="input wsdate" type="text" id="t_faultedate" name="t_faultedate"
+                                   placeholder="输入结束时间"/>
+                            <span onclick="$('#t_faultedate').val('')" class="addon text-dot icon-trash-o"
+                                  style="cursor: pointer;"> </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <strong>报警类别</strong>
+                    </div>
+                    <div class="field">
+                        <select id="s_frtype" name="s_frtype" class="input" onchange="selectFaultType()"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <strong>报警代码</strong>
+                    </div>
+                    <div class="field">
+                        <select id="s_frfault" name="s_frfault" class="input"></select>
+                    </div>
+                </div>
+                <div id="div_freqp" class="div_sel">
+                    <div class="form-group">
+                        <div class="label">
+                            <strong>关联设备</strong>
+                        </div>
+                        <div class="field">
+                            <input class="input" type="hidden" id="t_faulteqp_v"
+                                   name="t_faulteqp_v"/>
+                            <input class="input" autocomplete="off" type="text" id="t_faulteqp"
+                                   name="t_faulteqp"
+                                   placeholder="输入关联设备"/>
+                        </div>
+                    </div>
+                </div>
+                <div id="div_fruser" class="div_sel">
+                    <div class="form-group">
+                        <div class="label">
+                            <strong>关联用户</strong>
+                        </div>
+                        <div class="field">
+                            <input class="input" type="hidden" id="t_faultfruser_v"
+                                   name="t_faultfruser_v"/>
+                            <input class="input" autocomplete="off" type="text" id="t_faultfruser"
+                                   name="t_faultfruser"
+                                   placeholder="输入关联用户"/>
+                        </div>
+                    </div>
+                </div>
+                <div id="div_frtruck" class="div_sel">
+                    <div class="form-group">
+                        <div class="label">
+                            <strong>所属车辆</strong>
+                        </div>
+                        <div class="field">
+                            <input class="input" type="hidden" id="t_faulttruck_v"
+                                   name="t_faulttruck_v"/>
+                            <input class="input" autocomplete="off" type="text" id="t_faulttruck"
+                                   name="t_faulttruck"
+                                   placeholder="输入归属车辆名称/车牌"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label" for="t_usign">
+                        <strong>报警描述</strong>
+                    </div>
+                    <div class="field">
+                        <textarea id="t_faulttext" name="t_faulttext" rows="4"
+                                  class="input" style="" placeholder="输入报警描述"></textarea>
+                    </div>
+                </div>
+                <hr/>
+                <div class="form-group">
+                    <div class="label">
+                        <strong>报警图片</strong>
+                    </div>
+                    <div class="field">
+                        <div class="line" style="width:400px;">
+                            <a class="button margin-little input-file bg-sub icon-plus"
+                               href="javascript:void(0);"> 选择图片
+                                <input id="f_faultfimg" name="f_faultfimg"
+                                       type="file" multiple="multiple"
+                                       onchange="previewAllImage(this,'i_faultimgf');"
+                                       accept="*.png,*.jpg"/>
+                            </a>
+                        </div>
+                        <div id="i_faultimgf">
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="form-group">
+                    <div class="label">
+                        <strong>处理图片</strong>
+                    </div>
+                    <div class="field">
+                        <div class="line" style="width:400px;">
+                            <a class="button margin-little input-file bg-sub icon-plus"
+                               href="javascript:void(0);"> 选择图片
+                                <input id="f_faultopfimg" name="f_faultopfimg"
+                                       type="file" multiple="multiple"
+                                       onchange="previewAllImage(this,'i_faultimgopf');"
+                                       accept="*.image/png"/>
+                            </a>
+                        </div>
+                        <div id="i_faultimgopf">
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="form-group">
+                    <div class="label">
+                        <strong>处理结果</strong>
+                    </div>
+                    <div class="field">
+                        <select id="s_faultopstate" name="s_faultopstate" class="input"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <strong>处理用户</strong>
+                    </div>
+                    <div class="field">
+                        <input class="input" type="hidden" id="t_faultopuser_v"
+                               name="t_faultopuser_v"/>
+                        <input class="input" autocomplete="off" type="text" id="t_faultopuser"
+                               name="t_faultopuser"
+                               placeholder="输入处理用户"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <strong>处理时间</strong>
+                    </div>
+                    <div class="field">
+                        <div class="input-group">
+                            <input class="input wsdate" type="text" id="t_faultopdate"
+                                   name="t_faultopdate"
+                                   placeholder="输入结束时间"/>
+                            <span onclick="$('#t_faultopdate').val('')" class="addon text-dot icon-trash-o"
+                                  style="cursor: pointer;"> </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label" for="t_usign">
+                        <strong>处理说明</strong>
+                    </div>
+                    <div class="field">
+                        <textarea id="t_faultoptext" name="t_faultoptext" rows="4"
+                                  class="input" style="" placeholder="输入处理说明"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="dialog-foot">
+            <div id="f_cfile_p" style="width: 300px;"
+                 class="progress progress hidden margin float-left">&nbsp;
+            </div>
+            <button class="button bg-green icon-check" onclick="commitFaultReport();"> 确认</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

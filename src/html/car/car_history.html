@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <title>酷陆科技</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <link rel="stylesheet" href="../../layui/css/kulu.css">
+    <link rel="stylesheet" href="../../css/car/history.css">
+    <link rel="stylesheet" href="../../css/car/path.css">
+    <link rel="stylesheet" href="../../css/car/rail.css">
+    <link rel="stylesheet" href="../../css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+    <link rel="stylesheet" href="../../css/kulu.css">
+    <link rel="stylesheet" href="../../css/car/car.css">
+    <style>
+      .layui-layout .layui-body #layui-layer11{
+            height: 45%;
+        }
+    </style>
+</head>
+
+<body class="layui-layout-body">
+
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">
+                <img src="../../img/car/kulu.png" alt="" srcset="" style="width:100%">
+            </div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item layui-index">
+                    <a href="../../html/index/index.html" class="home">平台主页</a>
+                </li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                    <li class="layui-nav-item" style="background: red;">
+                            <a href="/" class="exit_sys">
+                                注销登录
+                            </a>
+                    </li>
+                <li class="layui-nav-item">
+                    <a href="/kulu/console.html" class="install">
+                        系统设置
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item nav_left">
+                        <a href="../../html/car/car_location.html" class="location_left">实时监控</a>
+                    </li>
+                    <li class="layui-nav-item nav_left">
+                        <a href="../../html/car/car_path.html" class="path_left">轨迹回放</a>
+                    </li>
+                    <li class="layui-nav-item nav_left">
+                        <a href="../../html/car/car_video.html" class="video_left">监控调取</a>
+                    </li>
+                    <!-- <li class="layui-nav-item nav_left nav_lefts">
+                        <a href="../../html/car/car_history.html" class="video_left">监控回放</a>
+                    </li> -->
+                    <li class="layui-nav-item nav_left">
+                        <a href="../../html/car/car_detail.html" class="detail_left">报警信息</a>
+                    </li>
+                    <li class="layui-nav-item nav_left">
+                        <a href="../../html/car/car_oil.html" class="oil_left">油量统计</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <div class="layui-layer layui-layer-page" id="layui-layer11">
+                <button class="layui-btn layui-btn-primary layui-btn-sm btn1">
+                    <i class="layui-icon btn1s"></i>
+                </button>
+                <button class="layui-btn layui-btn-primary layui-btn-sm btn2">
+                    <i class="layui-icon btn2s"></i>
+                </button>
+                <iframe id="iframe" src="about:blank" frameborder="0" marginheight="0" marginwidth="0" style="opcity:0;position:absolute;visibility:inherit; top:0px;left:0px;width:100%; height:100%;z-index:-1;"></iframe>
+            </div>
+          
+            <div class="layui-layer layui-layer-page" id="layui-layers" style="top: 28.2%;">
+                <form class="layui-form" id="viedoport">
+                        <div class="layui-layer layui-layer-page" id="layui-layerss1" style="top: 20%;">
+                                <div class="layui-inline select_date">
+                                    <label class="layui-form-label">选择日期</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input" id="test12" placeholder="dd/MM/yyyy">
+                                    </div>
+                                </div>
+                            </div> 
+                    <div class="layui-form-item">
+                        <div class="layui-inline find_car">
+                            <div class="layui-input-inline">
+                                <select class="selectCarplate" lay-verify="required" lay-search="">
+                                </select>
+                            </div>
+                            <a href="javascript:void(0)" class="search_Carlists " id="">
+                                <i class="fa fa-search"></i>搜索 </a>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+          
+            <div class="layui-row" style="height:75%;width:100%;background:#50b4c8">
+                <div class="layui-col-md9" style="height:100%;background:#50b4c8">
+                    <div class="grid-demo grid-demo-bg1">
+                        <div class="video_one video">
+                            <object classid="clsid:27E1A157-6A29-48AE-86C2-14591D90B4D4" id="NetVideo" style="width:100%;height:30vh;">
+                            </object> 
+                        </div>
+                        <div class="video_two video">
+                            <object classid="clsid:27E1A157-6A29-48AE-86C2-14591D90B4D4" id="NetVideo2" style="width:100%;height:30vh;">
+                            </object> 
+                        </div>
+                        <div class="video_three video">
+                            <object classid="clsid:27E1A157-6A29-48AE-86C2-14591D90B4D4" id="NetVideo3" style="width:100%;height:30vh;">
+                            </object> 
+                        </div>
+                        <div class="video_four video">
+                            <object classid="clsid:27E1A157-6A29-48AE-86C2-14591D90B4D4" id="NetVideo4" style="width:100%;height:30vh;">
+                            </object> 
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md3" style="height: 91.3%;background: #333333;margin-top: 23.3px;">
+                    <div class="grid-demo people_list people_lists">
+                        <ul>
+                            <li>项目组</li>
+                            <li></li>
+                            <li>设备类型</li>
+                            <li></li>
+                            <li>资产编号</li>
+                            <li></li>
+                            <li>车牌号</li>
+                            <li></li>
+                            <li>负责人</li>
+                            <li></li>
+                            <li>车辆状况</li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-footer" style="background:#50b4c8">
+                <!-- 底部固定区域 -->
+                <div class="demoTable">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-inline path_videos">
+                                <a href="javascript:void(0)" class="btnStartRoute4 btnFastRoutes">
+                                    <i class="fa fa-backward"></i>
+                                </a>
+                                <a href="javascript:void(0)" class="btnPauseRoute btnFastRoutes">
+                                    <i class="fa  fa-pause"></i>
+                                </a>
+                                <a href="javascript:void(0)" id="bt_init" class="btnStartRoute btnFastRoutes">
+                                    <i class="fa   fa-play"></i>
+                                </a>
+                                <a href="javascript:void(0)" class="btnFastRoute1 btnFastRoutes">
+                                    <i class="fa  fa-forward"></i>
+                                </a>
+                                <a href="javascript:void(0)" class="btnFastRoute2 btnFastRoutes ">
+                                    <i class="fa   fa-forward">4</i>
+                                </a>
+                                <a href="javascript:void(0)" class="btnFastRoute3 btnFastRoutes">
+                                    <i class="fa    fa-forward">8</i>
+                                </a>
+                                <a href="javascript:void(0)" class="btnFastRoute0 btnFastRoutes">
+                                    <i class="fa    fa-forward">16</i>
+                                </a>
+                                <!-- 示例-970 -->
+                            </div>
+                        
+
+                        </div>
+
+                    </form>
+                </div>
+                <div class=" scrolls">
+                    <div class="layui-inline">
+
+                            <div class="progress">
+                              <div class="progress_bg">
+                                <div class="progress_bar"></div>
+                              </div>
+                              <div class="progress_btn"></div>
+                              <div class="text">0%</div>
+                            </div>
+                          </div>
+
+            </div>
+
+
+        </div>
+        <script src="../../js/jquery/jquery.js"></script>
+        <script src="../../js/jquery/jquery.bs.js"></script>
+        <script src="../../layui/layui.js"></script>
+        <script src="../../js/remote.js"></script>
+        <!--加载鼠标绘制工具-->
+        <script src="../../js/jquery/bluebird.js"></script>
+        <script src="../../js/api.js"></script>
+        <script src="../../js/common.js"></script>
+        <script src="../../js/car/history.js"></script>
+        <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+        <script>
+        </script>
+        <script>
+            //JavaScript代码区域\
+            carlist()
+            datainit()
+            layui.use(['form', 'layedit', 'laydate'], function () {
+                var form = layui.form,
+                    layer = layui.layer,
+                    layedit = layui.layedit,
+                    laydate = layui.laydate;
+                //日期
+                laydate.render({
+                    elem: '#date'
+                });
+                laydate.render({
+                    elem: '#date1'
+                });
+            });
+        </script>
+</body>
+
+</html>

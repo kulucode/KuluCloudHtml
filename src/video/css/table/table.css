@@ -1,0 +1,191 @@
+.layui-form-item div.layui-inline{
+    background: #50b4c8;
+}
+div.layui-form-item label {
+    color: #ffffff;
+    background: #50b4c8;
+}
+.layui-form-item  div.start_time .layui-input{
+    color: #002060;
+    background: #50b4c8;
+}
+.layui-form-item .start_time .layui-input, div.layui-form-item label{
+    color: #ffffff;
+    background: #50b4c8;
+    padding-right: 0px;
+}
+.layui-form-item{
+    margin-left: 50px
+}
+div.layui-inline .layui-btn{
+    background: #50b4c8;
+    color: #ffffff;
+}
+div.layui-form .button_table .layui-inline {
+    margin-right: -55px;
+}
+.layui-layout .layui-body{
+    overflow: hidden;
+}
+.find_car{
+    background: #ffffff;
+    color: #11baef;
+}
+.layui-form-item .start_time{
+    background: #ffffff;
+    color: #11baef;
+}
+.layui-form-item .start_time .layui-input,.layui-form-item label{
+    color: #11baef;
+    background: #ffffff;
+}
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #898989;
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #898989;
+    opacity: 1;
+}
+
+input:-ms-input-placeholder {
+    color: #898989;
+    opacity: 1;
+}
+
+input::-webkit-input-placeholder {
+    color: #898989;
+    opacity: 1;
+}
+.layui-form-item .start_time .layui-input-inline{
+    margin-right: 0px;
+}
+.find_car .layui-btn-lg{
+    padding: 0 44px;
+}
+.layui-form .layui-form-item .layui-inline{
+    margin-right: 50px;
+}
+
+.demoTable{
+    margin-top: 15px;
+}
+.layui-nav-tree .nav_lefts{
+    background: -webkit-linear-gradient(#66b1bd, #3f7f89);
+    background: -o-linear-gradient(#66b1bd, #3f7f89);
+    background: -moz-linear-gradient(#66b1bd, #3f7f89);
+    background: linear-gradient(#66b1bd, #3f7f89);
+}
+.demoTable{
+    height: 40px;
+}
+.find_car{
+    height: 40px;
+}
+.layui-form .layui-form-item .layui-inline  {
+    margin-right: 45px;
+}
+.start_time {
+    background: #50b4c8;
+}
+
+.start_time .times {
+    width: 16px;
+    padding: 9px 0px;
+}
+
+.start_time .layui-input {
+    padding-left: 0px;
+    border: none;
+    background: #50b4c8;
+    text-align: center;
+    color: #002060;
+}
+
+.start_time .layui-input-inline {
+    background: #50b4c8;
+    margin-right: 0px;
+}
+
+
+.start_time .layui-form-mid {
+    margin-right: 0px;
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #898989;
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #898989;
+    opacity: 1;
+}
+
+input:-ms-input-placeholder {
+    color: #898989;
+    opacity: 1;
+}
+
+input::-webkit-input-placeholder {
+    color: #898989;
+    opacity: 1;
+}
+.find_car{
+    background: #50b4c8;
+}
+.find_car .layui-form-select .layui-input{
+    background: #50b4c8;
+    border: none;
+    color: #fff;
+}
+.layui-form-item .layui-inline .layui-input-inline{
+    width: 145px;
+}
+.fa-search{
+    color: #fff;
+    padding-right: 14px;
+}
+.search_Carlist{
+    color: white;
+    padding-right: 20px;
+}
+.layui-col-md12{
+    margin-top: 20px!important;
+}
+.detail_table{
+    margin-left: 10px;
+}
+.layui-table tbody tr:hover, .layui-table thead tr, .layui-table-click, .layui-table-header, .layui-table-hover, .layui-table-mend, .layui-table-patch, .layui-table-tool, .layui-table[lay-even] tr:nth-child(even) {
+    background-color: #e9f2f5;
+}
+@media screen and (max-height: 810px) {
+   .demoTable .layui-form-item {
+    margin-bottom: 4px;
+    clear: both;
+}
+.layui-row .layui_top{
+    height: 21%;
+}
+}
+.layui_top{
+    height:17%;background:#ebf1f3;margin: 6px 7px;
+}
+#downloadCar{
+    display: inline-block;
+}
+#downloadPeople{
+    display: inline-block;
+}
+@media screen and (max-height: 810px){
+
+    .layui-inline .layui-btn {
+        height: 40px;
+        line-height: 40px;
+    }
+}
