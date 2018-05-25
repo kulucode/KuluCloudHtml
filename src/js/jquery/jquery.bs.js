@@ -1,8 +1,8 @@
 ﻿//-----------------变量定义----------------------//
 var origin = window.location.origin == null ? window.location.protocol + "//" + window.location.host : window.location.origin;
-var thisDomain = "http://hanshan.vip.coollu.com.cn:80/kulucloud";
+var thisDomain = origin + "/kulucloud";
 var thisFileDomain = thisDomain;
-var webHome = "http://hanshan.vip.coollu.com.cn:80/kulu";
+var webHome = origin + "/kulu";
 var thisWebSocket = "ws://" + window.location.host + "/kulucloud/TTWebsocket/";
 var COOKIE_NAME = "KULUCOOKIE_HAS";
 var pointDownTime = 300000;
