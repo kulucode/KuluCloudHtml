@@ -27,29 +27,29 @@ function tableInit(datas) {
             sort: true
           },
           {
-            field: "ids",
+            field: "name",
             title: "分段"
           }, //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
           {
-            field: "type",
+            field: "trucktype",
             title: "设备类型",
             sort: true
           },
           {
-            field: "num",
+            field: "truckno",
             title: "物料编号"
           },
           {
-            field: "plate_number",
+            field: "platenum",
             title: "车牌号"
           },
           {
-            field: "start_time",
+            field: "fdate",
             title: "起始时间",
             align: "center"
           }, //单元格内容水平居中
           {
-            field: "end_time",
+            field: "tdate",
             title: "终止时间",
             sort: true,
             align: "center"

@@ -37,16 +37,12 @@
       // NetVideo2.Login(data[0].ip, data[0].port, data[0].user, data[0].password);
       // NetVideo3.Login(data[0].ip, data[0].port, data[0].user, data[0].password);
       // NetVideo4.Login(data[0].ip, data[0].port, data[0].user, data[0].password);
-      NetVideo.Login("182.61.39.135", 7708, "admin", "888888");
-      NetVideo2.Login("182.61.39.135", 7708, "admin", "888888");
-      NetVideo3.Login("182.61.39.135", 7708, "admin", "888888");
-      NetVideo4.Login("182.61.39.135", 7708, "admin", "888888");
-    var ret = NetVideo.QueryHistoryVideo(
-      "9999999",
-      1,
-      data + " 000000",
-      "235959"
-    );
+      console.log(typeof(data),Cardata,Cartime)
+    NetVideo.Login("182.61.39.135", 7708, "admin", "888888");
+      // NetVideo2.Login("182.61.39.135", 7708, "admin", "888888");
+      // NetVideo3.Login("182.61.39.135", 7708, "admin", "888888");
+      // NetVideo4.Login("182.61.39.135", 7708, "admin", "888888");
+    var ret = NetVideo.QueryHistoryVideo("9999999",1,""+data+" 000000","235959");
     console.log(ret,"ret")
     ret = ret.replace(/\"/g, "");
     var list = ret.split(",");
@@ -59,7 +55,8 @@
     for (var z = 0; z < array.length / 6; z++) {
       VideoTime = VideoTime + parseInt(array[6 * z + 3]);
     }
-    NetVideo.OpenHistoryStream("9999999", 1, array[j], 0, 0);
+    NetVideo.OpenHistoryStream("9999999", 0, array[j], 0, 0);
+    // NetVideo2.OpenHistoryStream("9999999", 2, array[j], 0, 0);
     var intervalProcess = setInterval(function showTime() {
       NowTime = NetVideo.GetPlayedTime();
       window.left =(Nowtimes+parseInt(NowTime) )/ parseInt(VideoTime);
@@ -228,19 +225,19 @@ function datainit() {//获取sel  ect初始化的数据
 }
 
 function historyInit(Cardata){
-  doRefresh(null, "KULUINTERFACE", "searchTruckList", "&pg_truck="+Cardata, function(data) {
-    if (data.code == 0) {
-      //执行正确动作
-      var dataTeam=data.data[0].truckorg.split("-")
-      var datatype=data.data[0].truckname.split("【")
-      $(".people_lists li:eq(1)").html(dataTeam[0]);
-      $(".people_lists li:eq(3)").html(dataTeam[1]);
-      $(".people_lists li:eq(5)").html(data.data[0].trucknno);
-      $(".people_lists li:eq(7)").html(data.data[0].paltenum);
-      $(".people_lists li:eq(9)").html(datatype[0]);
-      $(".people_lists li:eq(11)").html(data.data[0].username);
-    } else {
-      alert(data.msg);
-    }
-  });
+  // doRefresh(null, "KULUINTERFACE", "searchTruckList", "&pg_truck="+Cardata, function(data) {
+  //   if (data.code == 0) {
+  //     //执行正确动作
+  //     var dataTeam=data.data[0].truckorg.split("-")
+  //     var datatype=data.data[0].truckname.split("【")
+  //     $(".people_lists li:eq(1)").html(dataTeam[0]);
+  //     $(".people_lists li:eq(3)").html(dataTeam[1]);
+  //     $(".people_lists li:eq(5)").html(data.data[0].trucknno);
+  //     $(".people_lists li:eq(7)").html(data.data[0].paltenum);
+  //     $(".people_lists li:eq(9)").html(datatype[0]);
+  //     $(".people_lists li:eq(11)").html(data.data[0].username);
+  //   } else {
+  //     alert(data.msg);
+  //   }
+  // });
 }

@@ -133,15 +133,15 @@ function videoInit(Cardata){
   doRefresh(null, "KULUINTERFACE", "searchTruckList", "&pg_truck="+Cardata, function(data) {
     if (data.code == 0) {
       //执行正确动作
-      console.log(data);
       var dataTeam=data.data[0].truckorg.split("-")
-      console.log(dataTeam)
-      var datatype=data.data[0].truckname.split("【")
+      var datatype=data.data[0].trucktype.substr(0,9)
+      // var datatype=datatype[1].replace("】", "");
+      console.log(datatype)
       $(".people_lists li:eq(1)").html(dataTeam[0]);
       $(".people_lists li:eq(3)").html(dataTeam[1]);
       $(".people_lists li:eq(5)").html(data.data[0].trucknno);
       $(".people_lists li:eq(7)").html(data.data[0].paltenum);
-      $(".people_lists li:eq(9)").html(datatype[0]);
+      $(".people_lists li:eq(9)").html(datatype);
       $(".people_lists li:eq(11)").html(data.data[0].username);
     } else {
       alert(data.msg);

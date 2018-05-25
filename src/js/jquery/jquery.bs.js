@@ -1,8 +1,8 @@
 ﻿//-----------------变量定义----------------------//
 var origin = window.location.origin == null ? window.location.protocol + "//" + window.location.host : window.location.origin;
-var thisDomain = origin + "/kulucloud";
+var thisDomain = "http://hanshan.vip.coollu.com.cn:80/kulucloud";
 var thisFileDomain = thisDomain;
-var webHome = origin + "/kulu";
+var webHome = "http://hanshan.vip.coollu.com.cn:80/kulu";
 var thisWebSocket = "ws://" + window.location.host + "/kulucloud/TTWebsocket/";
 var COOKIE_NAME = "KULUCOOKIE_HAS";
 var pointDownTime = 300000;
@@ -11,7 +11,7 @@ var p = getParent();
 var vActionRefresh = thisDomain + "/TTService?curPageOperID=refresh&curBSID=";
 var vActionFile = thisFileDomain + "/TTService?curPageOperID=curFile&curBSID=";
 var sessionId = getCookie(COOKIE_NAME);
-
+bstop = true
 // 检查浏览器
 function getDomain() {
     return thisDomain;
@@ -132,13 +132,13 @@ function doRefresh(myform, bsid, opname, _paras, callfun, _thisDomain, _session)
                         + "/common/images/loading.gif\"/>");*/
             },
             success: function (_data) {
-                if (_data.r == 3) {
+                if (_data.r == 3 && bstop == true) {
                     //用户失效
+                    bstop=false;
                     logout();
-                    
                     return false
                 }
-                else {
+                else if(_data.r != 3 && bstop == true) {
                     if (_data != null && _data.session != null) {
                         if (sessionId == null) {
                             setTTSession(_data.session);
@@ -338,8 +338,12 @@ function getParent() {
 
 //用户失效缺省方法
 function logout() {
-    alert("用户失效，请重新登录");
+    confirm("用户失效，请重新登录");
+    // if(confirm('用户失效，请重新登录')){
+    //     window.close()
+    // };
     p.location.href = origin;
+    
 }
 function setCookie(name, value, saveTime) {
     try {
