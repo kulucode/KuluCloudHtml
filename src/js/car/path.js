@@ -84,7 +84,6 @@ function progress() {
   $(".search_Carlist").click(function() {
     var matchResult = true;
     if (matchResult == true) {
-      map.clearOverlays();
       var startTime = $("#test5").val();
       var endTime = $("#test6").val();
       var d1 = new Date(startTime.replace(/\-/g, "/"));

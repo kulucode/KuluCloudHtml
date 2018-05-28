@@ -72,6 +72,7 @@ doRefresh("viedoport", "KULUINTERFACE", "searchTruckVideoList", "", function (da
       NetVideo2.OpenStream(data.data[0].eqpno, 2, 0, 0);
       NetVideo3.OpenStream(data.data[0].eqpno, 3, 0, 0);
       NetVideo4.OpenStream(data.data[0].eqpno, 4, 0, 0);
+      console.log(  NetVideo.OpenStream(data.data[0].eqpno, 1, 0, 0))
       // NetVideo.Login("182.61.39.135", 7708, "admin", "888888");
       // NetVideo2.Login("182.61.39.135", 7708, "admin", "888888");
       // NetVideo3.Login("182.61.39.135", 7708, "admin", "888888");

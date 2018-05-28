@@ -7,7 +7,7 @@ map.addControl(new BMap.ScaleControl()); //比例尺控件
 doRefresh(null, "KULUINTERFACE", "getLoginMsg", "", function(data) {
 
     if (data.code == 0) {
-        map.centerAndZoom(new BMap.Point(data.company.bdlon,data.company.bdlat), 15);
+        map.centerAndZoom(new BMap.Point(data.company.bdlon,data.company.bdlat), 13);
     }
   
 })

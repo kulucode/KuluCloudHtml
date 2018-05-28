@@ -100,7 +100,7 @@ var Car = {
           car.path.push(lastPath); //save the path in array
           car.isShowTrace = true;
           if (points.length > 0) {
-            map.centerAndZoom(points[0], 15);
+            map.centerAndZoom(points[0], 13);
             map.panTo(points[0]);
           }
           if (car.routeMarker == null) {
@@ -490,11 +490,29 @@ function loadcarList(map) {
         $.each(cars, function (i, data) {
           let car = Car.createNew(data, map);
           car.initCar();
-
+      
           if (car.data.onlinev == 2) {
             window.n += 1;
           }
           $(".detailNum").html(window.n);
+
+          $(".search_Carlist").click(function() {
+            var startTime = $("#test5").val();
+            var endTime = $("#test6").val();
+            var d1 = new Date(startTime.replace(/\-/g, "/"));
+            var d2 = new Date(endTime.replace(/\-/g, "/"));
+            // $("#btnResetRoute").click()
+            if (startTime == "" || endTime == "") {
+              layer.msg("请选择起始时间！");
+              return false;
+            }
+      
+            if (startTime != "" && endTime != "" && d1 >= d2) {
+              layer.msg("开始时间不能大于结束时间！");
+              return false;
+            }
+          map.removeOverlay(car.marker);
+          });
         });
       }
     } else {
@@ -551,7 +569,8 @@ function loadpathTable(datas) {
           },
           {
             field: "trucktype",
-            title: "设备类型"
+            title: "设备类型",
+            width: 200
           },
           {
             field: "trucknno",
@@ -575,11 +594,6 @@ function loadpathTable(datas) {
           {
             field: "oil",
             title: "剩余油量(%)",
-            sort: true
-          },
-          {
-            field: "weight",
-            title: "垃圾重量(kg)",
             sort: true
           },
 
