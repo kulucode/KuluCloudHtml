@@ -549,7 +549,7 @@ function loadpathTable(datas) {
       elem: "#demo",
       height: "full-750",
       cellMinWidth: 100,
-      url: "http://hanshan.vip.coollu.com.cn:80/kulucloud/TTService?curPageOperID=refresh&curBSID=KULUINTERFACE&bs_uid=250&TTDT=json&opname=searchTruckList&TTSSID=" +
+      url: "/kulucloud/TTService?curPageOperID=refresh&curBSID=KULUINTERFACE&bs_uid=250&TTDT=json&opname=searchTruckList&TTSSID=" +
         datas +
         "&TTKEY=null&pg_keyword=" +
         pg_keyword +
