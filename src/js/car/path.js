@@ -1,4 +1,3 @@
-
 function loadpathTable() {
   layui.use("table", function() {
     var table = layui.table;
@@ -22,8 +21,8 @@ function loadpathTable() {
       cols: [
         [
           //表头
-          {field: "tbindex", title: "ID", sort: true },
-          { field: "truckorg", title: "项目组",width:200 },
+          { field: "tbindex", title: "ID", sort: true },
+          { field: "truckorg", title: "项目组", width: 200 },
           { field: "分段", title: "分段", sort: true },
           { field: "trucktype", title: "设备类型" },
           { field: "truckno", title: "物料编号" },
@@ -81,28 +80,30 @@ function progress() {
     }
   });
   var _this = this;
-  $(".search_Carlist").click(function() {
-    var matchResult = true;
-    if (matchResult == true) {
-      var startTime = $("#test5").val();
-      var endTime = $("#test6").val();
-      var d1 = new Date(startTime.replace(/\-/g, "/"));
-      var d2 = new Date(endTime.replace(/\-/g, "/"));
-      // $("#btnResetRoute").click()
-      if (startTime == "" || endTime == "") {
-        layer.msg("请选择起始时间！");
-        return false;
-      }
 
-      if (startTime != "" && endTime != "" && d1 >= d2) {
-        layer.msg("开始时间不能大于结束时间！");
-        return false;
-      }
+  doRefresh(null, "KULUINTERFACE", "searchTruckWordParasList", "", function(
+    data
+  ) {
+    var car = Car.createNew(data.data, map);
+    if (data.data.length > 0) {
+      //执行正确动作
+      $(".search_Carlist").click(function() {
+        var matchResult = true;
+        if (matchResult == true) {
+          var startTime = $("#test5").val();
+          var endTime = $("#test6").val();
+          var d1 = new Date(startTime.replace(/\-/g, "/"));
+          var d2 = new Date(endTime.replace(/\-/g, "/"));
+          // $("#btnResetRoute").click()
+          if (startTime == "" || endTime == "") {
+            layer.msg("请选择起始时间！");
+            return false;
+          }
 
-      doRefresh(null, "KULUINTERFACE", "searchTruckWordParasList", "", function(data) {
-        if (data.data.length > 0) {
-          //执行正确动作
-          let car = Car.createNew(data.data, map);
+          if (startTime != "" && endTime != "" && d1 >= d2) {
+            layer.msg("开始时间不能大于结束时间！");
+            return false;
+          }
           car.loadTrace();
           $(".btnStartRoute").click(function(e) {
             //鼠标点击
@@ -125,11 +126,12 @@ function progress() {
         } else {
           layer.msg("您选择的时间段车辆没有行驶记录");
         }
+        pg_truck = $(".selectCarplate").val();
+        pg_sdate = $("#test5").val();
+        pg_edate = $("#test6").val();
+        loadpathTable();
+        matchResult = false;
       });
-      pg_truck = $(".selectCarplate").val();
-      pg_sdate = $("#test5").val();
-      pg_edate = $("#test6").val();
-      loadpathTable();
     }
   });
 }

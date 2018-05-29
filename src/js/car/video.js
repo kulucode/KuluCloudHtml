@@ -112,7 +112,7 @@ function datainit() {//获取sel  ect初始化的数据
       } else {
           reject(CarArray);
       }
-    }, 500);
+    }, 300);
   }).then(function(result) {
     videoInit(result[0]);
       console.log(result)
@@ -121,16 +121,33 @@ function datainit() {//获取sel  ect初始化的数据
       videoInit(reason[0]);
     });
 }
-doRefresh(null, "KULUINTERFACE", "searchTruckVideoList", "", function (data) {
-  if (data.code == 0) {
-      //执行正确动作
-      console.log(data,"!@31321")
-  }
-  else {
-      alert(data.msg);
-  }
-});
 function videoInit(Cardata){
+  var CarUrl = location.search;
+  CarUrl = CarUrl.substring("?");
+  if (CarUrl.indexOf("?") != -1) {
+    var str = decodeURI(CarUrl.substr(1));
+    console.log( $(".selectCarplate"),"CarUrl")
+    var select = 'dd[lay-value=' + str + ']'; 
+    var usv = $('.selectCarplate').siblings("div.layui-form-select").find('dd');
+    console.log(usv[1].innerHTML)
+    for (var i=0;i<usv.length;i++){
+      if(usv[i].innerHTML==str){
+       usv[i].click();
+       Cardata=$(".selectCarplate").val()
+      }
+    }
+    console.log(usv)
+    // $('.selectCarplate').val(option[str]);
+    form.render('select')
+    // $(".selectCarplate").val(str)
+    // form.render('select');  
+    // for(var i=0;i<$(".layui-anim-upbit dd").length;i++) {    
+    //   if(objSelect.options[i].value == objItemText) {    
+    //       objSelect.options[i].selected = true;    
+    //      break;    
+    //  }    
+  //  }  
+  }
   doRefresh(null, "KULUINTERFACE", "searchTruckList", "&pg_truck="+Cardata, function(data) {
     if (data.code == 0) {
       //执行正确动作

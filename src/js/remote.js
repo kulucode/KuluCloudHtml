@@ -140,9 +140,8 @@ function carlist(){
           "</option>"
         );
         layui.use('form', function () {
-          var form = layui.form;
+          form = layui.form;
           form.on('select(filter)', function (data) {
-                   
             console.log(data)
           });
           form.render("select");
@@ -157,9 +156,8 @@ function carlist(){
           "</option>"
         );
         layui.use('form', function () {
-          var form = layui.form;
+          form = layui.form;
           form.on('select(filter)', function (data) {
-                   
             console.log(data)
           });
           form.render("select");
@@ -168,7 +166,7 @@ function carlist(){
       $(".layui-input-block").append("<input type='radio' name='pg_truck' value='"+Cardata.truckid+"' title='"+Cardata.paltenum+"' checked=''>");
       });
       layui.use('form', function () {
-        var form = layui.form;
+        form = layui.form;
         form.on('select(filter)', function (data) {
                  
           console.log(data)
@@ -235,10 +233,8 @@ doRefresh(null, "KULUINTERFACE", "getLoginMsg", "", function (data) {
       //执行正确动作
       console.log(data)
       for (let i=data.menus.length-1;i>=0;i--){
-
         $(".layui-index").after("<li class='layui-nav-item'><a href='"+data.menus[i].url+"' class='home' id='"+data.menus[i].id+"'>"+data.menus[i].name+"</a></li>");
       }
-      
       layui.use('element', function () {
         var element = layui.element;
         element.init();

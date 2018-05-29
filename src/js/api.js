@@ -65,6 +65,7 @@ var Car = {
       //轨迹的显示
       map.removeOverlay();
       doRefresh("carForm", "KULUINTERFACE", "getTruckTracePointList", "", function (data) {
+      map.removeOverlay();
         if (data.data.length == 0) {
           layer.msg("暂无车辆行驶记录")
         }
@@ -548,7 +549,7 @@ function loadpathTable(datas) {
       elem: "#demo",
       height: "full-750",
       cellMinWidth: 100,
-      url: "/kulucloud/TTService?curPageOperID=refresh&curBSID=KULUINTERFACE&bs_uid=250&TTDT=json&opname=searchTruckList&TTSSID=" +
+      url: "http://hanshan.vip.coollu.com.cn:80/kulucloud/TTService?curPageOperID=refresh&curBSID=KULUINTERFACE&bs_uid=250&TTDT=json&opname=searchTruckList&TTSSID=" +
         datas +
         "&TTKEY=null&pg_keyword=" +
         pg_keyword +
@@ -633,7 +634,7 @@ function loadpathTable(datas) {
           if (data.code == 0) {
             //执行正确动作
             var a;
-            for (i = 0; i < data.data.length; i++) {
+            for (i = 0; i < data.data.length; i++) {  
               if (data.data[i].truckid == obj.data.truckid) {
                 a = i;
               }
@@ -649,7 +650,8 @@ function loadpathTable(datas) {
           }
         });
       } else if (obj.event === "edit") {
-        location.href = "car_video.html";
+        console.log(obj.data)
+        location.href = "car_video.html?"+obj.data.paltenum;
       }
     });
   });
