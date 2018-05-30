@@ -1,4 +1,41 @@
 window.n = 0;
+
+var CarManager = {
+  createNew: function(map) {
+    let cm = {};
+    cm.cars = [];
+    cm.curCar = null;
+    //加载小车的所有信息并加入cm.cars列表中
+    cm.loadCar = function(carId) {
+      doRefresh(
+        null,
+        "KULUINTERFACE",
+        "searchTruckWordParasList",
+        "&pg_truck=" + carId,
+        function(data) {
+          if (data.code == 0) {
+            //执行正确动作
+            let car = Car.createNew(data.data, map);
+          } else {
+            alert(data.msg);
+          }
+        }
+      );
+      // RemoteApi.getCar(carId, function(carData) {
+      //     let car = Car.createNew(carData.car, map);
+      //     cm.cars.push(car);
+      //     callback(car);
+      // });
+    };
+    cm.getCar = function(carId) {
+      var result = cm.cars.filter(function(c) {
+          return c.data.eqpid === carId;
+      });
+      return result[0];
+  };
+    return cm;
+  }
+};
 var Car = {
   createNew: function(data, map) {
     "use strict";
@@ -68,7 +105,6 @@ var Car = {
         "",
         function(data) {
           map.removeOverlay();
-          console.log(data)
           if (data.data.length == 0) {
             layer.msg("暂无车辆行驶记录");
           }
@@ -172,7 +208,6 @@ var Car = {
         car.marker.setIcon(carIcon);
       }
       car.point = new BMap.Point(lng, lat);
-      console.log(123);
       car.marker.setPosition(car.point);
       //update pos
       if (car.focused) {
@@ -419,45 +454,6 @@ var Car = {
   }
 };
 
-var CarManager = {
-  createNew: function(map) {
-    let cm = {};
-    cm.cars = [];
-    cm.curCar = null;
-    //加载小车的所有信息并加入cm.cars列表中
-    cm.loadCar = function(carId) {
-      doRefresh(
-        null,
-        "KULUINTERFACE",
-        "searchTruckWordParasList",
-        "&pg_truck=" + carId,
-        function(data) {
-          if (data.code == 0) {
-            //执行正确动作
-            console.log(data)
-            let car = Car.createNew(data.data, map);
-            console.log(cm);
-          } else {
-            alert(data.msg);
-          }
-        }
-      );
-      // RemoteApi.getCar(carId, function(carData) {
-      //     let car = Car.createNew(carData.car, map);
-      //     cm.cars.push(car);
-      //     callback(car);
-      // });
-    };
-    cm.getCar = function(carId) {
-      var result = cm.cars.filter(function(c) {
-          return c.data.eqpid === carId;
-      });
-      console.log(result)
-      return result[0];
-  };
-    return cm;
-  }
-};
 
 var infoBoxTemp = null;
 function showInfoWindow(data, _map, car) {
@@ -592,14 +588,11 @@ function WebSocketInit(map,cm){
     let sock = new MyWebSocket(url, function(event) {
       var carInfo = JSON.parse(event.data);
       sock.send("hoooooooooo");
-      console.log(carInfo)
-      if (car != undefined) {
         for(let j=0;j<cm.cars.length;j++){
           if (carInfo.eqpid == cm.cars[j].data.eqpid) {
             var car123 = cm.getCar(carInfo.eqpid);
             car123.updatePos(carInfo.bdlon,carInfo.bdlat);
           }
-        }
       }
     });
   } else {
@@ -720,7 +713,6 @@ function loadCarlsitTable(datas) {
                   a = i;
                 }
               }
-              console.log(data.data[a], obj);
               let car = Car.createNew(data.data[a], map);
               car.initCar();
               showInfoWindow(data.data[a], map, car);
