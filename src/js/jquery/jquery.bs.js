@@ -31,7 +31,14 @@ function getRandomDate() {
     winName += date.getMilliseconds();
     return winName;
 }
-
+function getTTSession() {
+    var _s = "";
+    if (sessionId != null) {
+        var tempSession = sessionId.split("|");
+        _s = tempSession[0];
+    }
+    return _s;
+}
 //清理矿框架cookie
 function TTClear() {
     delCookie(COOKIE_NAME);

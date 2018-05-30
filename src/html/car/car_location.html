@@ -162,39 +162,12 @@
     layui.use('element', function () {
       var element = layui.element;
     });
-    loadcarList(map);
+    MonitorMap.init();
     doRefresh(null, "KULUINTERFACE", "getOrgTree", "", function (data) {
       if (data.code == 0) {
         //执行正确动作
         datas = data.session;
-        loadpathTable(datas)
-      } else {
-        console.log("err");
-      }
-    });
-    doRefresh(null, "KULUINTERFACE", "getOrgTree", "", function (data) {
-      if (data.code == 0) {
-        //执行正确动作
-        console.log(data)
-        datas = data.session;
-        loadpathTable(datas)
-        if ('WebSocket' in window) {
-          url = "ws://182.61.59.75/kulucloud/TTWebsocket/" + datas + "?dataid=01";
-          this.url = url;
-          this.cm = cm;
-          let sock = new MyWebSocket(url, function (event) {
-            console.log(event)
-            var carInfo = JSON.parse(event.data);
-            console.log("接收到的数据：" + event.data);
-            // sock.send("hoooooooooo");
-            // let carId = event.data.carId;
-            // let car = cm.getCar(carInfo.carId);
-            // if(car != undefined)
-            //     car.updatePos(carInfo.curLong, carInfo.curLat, carInfo.areAlerted);
-          });
-        } else {
-          alert('Not support websocket')
-        }
+        loadCarlsitTable(datas)
       } else {
         console.log("err");
       }

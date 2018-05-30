@@ -223,7 +223,7 @@
             <div class="layui-inline start_time">
               <label class="layui-form-label">终止时间：</label>
               <div class="layui-input-inline">
-                <input type="text" class="layui-input" id="test6" name="pg_edata" placeholder="yyyy-MM-dd HH:mm:ss">
+                <input type="text" class="layui-input" id="test6" name="pg_edate" placeholder="yyyy-MM-dd HH:mm:ss">
               </div>
 
             </div>
@@ -271,7 +271,10 @@
     });
     carlist();
     progress();
-    loadcarList(map)
+    // var cm = CarManager.createNew(map);
+    //   cm.loadCar();
+      // loadcarList(map,cm);
+      // loadcarList(map,cm)
     layui.use(['laydate','layer','form'], function () {
       var form = layui.form;
       var layer = layui.layer;

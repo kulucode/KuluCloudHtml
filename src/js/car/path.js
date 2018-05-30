@@ -39,52 +39,18 @@ function loadpathTable() {
 
 function progress() {
   //进度条
-  var tag = false,
-    ox = 0,
-    bgleft = 0;
-  window.left = 0;
-  $(".progress_btn").mousedown(function(e) {
-    ox = e.pageX - window.left;
-    tag = true;
-  });
-  $(document).mouseup(function() {
-    tag = false;
-  });
-  $(".progress").mousemove(function(e) {
-    //鼠标移动
-    if (tag) {
-      window.left = e.pageX - ox;
-      if (window.left <= 0) {
-        window.left = 0;
-      } else if (window.left > 1100) {
-        window.left = 1100;
-      }
-      $(".progress_btn").css("left", window.left);
-      $(".progress_bar").width(window.left);
-      $(".text").html(parseInt(window.left / 1100 * 100) + "%");
-    }
-  });
-  $(".progress_bg").click(function(e) {
-    //鼠标点击
-    if (!tag) {
-      bgleft = $(".progress_bg").offset().left;
-      window.left = e.pageX - bgleft;
-      if (window.left <= 0) {
-        window.left = 0;
-      } else if (window.left > 1100) {
-        window.left = 1100;
-      }
-      $(".progress_btn").css("left", window.left);
-      $(".progress_bar").animate({ width: window.left }, 1100);
-      $(".text").html(parseInt(window.left / 1100 * 100) + "%");
-    }
-  });
-  var _this = this;
-
   doRefresh(null, "KULUINTERFACE", "searchTruckWordParasList", "", function(
     data
   ) {
-    var car = Car.createNew(data.data, map);
+    var cars = data.data;
+    $.each(cars, function(i, data) {
+      car = Car.createNew(data, map);
+      car.initCar();
+      $(".search_Carlist").click(function() {
+        map.removeOverlay(car.marker);
+        map.clearOverlays(); 
+      });
+    })
     if (data.data.length > 0) {
       //执行正确动作
       $(".search_Carlist").click(function() {
