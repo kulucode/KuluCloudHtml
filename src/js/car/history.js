@@ -37,12 +37,17 @@
       // NetVideo2.Login(data[0].ip, data[0].port, data[0].user, data[0].password);
       // NetVideo3.Login(data[0].ip, data[0].port, data[0].user, data[0].password);
       // NetVideo4.Login(data[0].ip, data[0].port, data[0].user, data[0].password);
-      console.log(typeof(data),Cardata,Cartime)
-    NetVideo.Login("182.61.39.135", 7708, "admin", "888888");
+      console.log(data,Cardata,Cartime)
+    NetVideo.Login("182.61.39.135", 7708, "user_viewer", "situouser2834");
       // NetVideo2.Login("182.61.39.135", 7708, "admin", "888888");
       // NetVideo3.Login("182.61.39.135", 7708, "admin", "888888");
       // NetVideo4.Login("182.61.39.135", 7708, "admin", "888888");
-    var ret = NetVideo.QueryHistoryVideo("9999999",1,""+data+" 000000","235959");
+      console.log("1000016",1,""+data+" 000000","235959")
+    var ret = NetVideo.QueryHistoryVideo("1000016",0,"180530 000000","235959");
+    console.log(ret)
+    if(ret == ""){
+      layer.msg("该视频的数据为空")
+    }
     console.log(ret,"ret")
     ret = ret.replace(/\"/g, "");
     var list = ret.split(",");
@@ -130,7 +135,6 @@
     // remotesearch(DevID, window.datas);
   });
   $(".line").click(function(e) {
-    console.log(e);
     console.log(this.style.left);
   });
   progress();

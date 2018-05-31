@@ -162,16 +162,24 @@
     layui.use('element', function () {
       var element = layui.element;
     });
-    MonitorMap.init();
+ 
     doRefresh(null, "KULUINTERFACE", "getOrgTree", "", function (data) {
       if (data.code == 0) {
         //执行正确动作
         datas = data.session;
         loadCarlsitTable(datas)
+        MonitorMap.init(datas);
       } else {
         console.log("err");
       }
     });
+    document.onkeydown = function(e) {
+    var ev = document.all ? window.event : e;
+    if (ev.keyCode == 13) {
+      $("#researchCars").click();
+      return false
+    }
+  };
   </script>
 </body>
 

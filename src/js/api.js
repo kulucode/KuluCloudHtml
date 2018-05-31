@@ -577,11 +577,11 @@ function loadcarList(map, cm) {
     }
   });
 }
-function WebSocketInit(map,cm){
+function WebSocketInit(map,cm,datas){
   if ("WebSocket" in window) {
     url =
       "ws://hanshan.vip.coollu.com.cn:80/kulucloud/TTWebsocket/" +
-      getTTSession() +
+      datas +
       "?dataid=01";
     // this.url = url;
     // this.cm = cm;
@@ -735,11 +735,12 @@ function loadCarlsitTable(datas) {
 }
 var MonitorMap = (function() {
   return {
-    init: function() {
+    init: function(datas) {
       var cm = CarManager.createNew(map);
       cm.loadCar();
+      console.log(cm)
       loadcarList(map,cm);
-      WebSocketInit(map,cm)
+      WebSocketInit(map,cm,datas)
     }
   };
 })();

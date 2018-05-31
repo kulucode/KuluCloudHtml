@@ -140,7 +140,15 @@
     layui.use('layer', function () {
       var layer = layui.layer;
     });
-    MonitorMap.init();
+    doRefresh(null, "KULUINTERFACE", "getOrgTree", "", function (data) {
+      if (data.code == 0) {
+        //执行正确动作
+        datas = data.session;
+        MonitorMap.init(datas);
+      } else {
+        console.log("err");
+      }
+    });
     loadpeopleList(map);
   </script>
 </body>

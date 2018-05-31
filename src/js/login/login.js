@@ -1,22 +1,24 @@
 ﻿$(function() {
   TTClear();
-  init();
-  layui.use('layer', function(){ //独立版的layer无需执行这一句
-    var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+  layui.use("layer", function() {
+    //独立版的layer无需执行这一句
+    var $ = layui.jquery,
+      layer = layui.layer; //独立版的layer无需执行这一句
     //触发事件
-    $('#layerDemo .layui-btn').on('click', function(){
-      var othis = $(this), method = othis.data('method');
-      active[method] ? active[method].call(this, othis) : '';
+    $("#layerDemo .layui-btn").on("click", function() {
+      var othis = $(this),
+        method = othis.data("method");
+      active[method] ? active[method].call(this, othis) : "";
     });
   });
   function notUser() {
-    layer.msg('没有该用户！');
+    layer.msg("没有该用户！");
     $("#username").focus();
     $("#userkey").val("");
     $("#usercode").val("");
   }
   function userKeyError() {
-    layer.msg('密码错误！');
+    layer.msg("密码错误！");
     $("#userkey").focus();
     $("#userkey").val("");
     $("#usercode").val("");
@@ -35,7 +37,19 @@
     $("#usercode").val("");
   }
   $("#btn_login").click(function() {
-    var _cookie = "1",_cookies= "0";
+    init();
+  });
+  document.onkeydown = function(e) {
+    var ev = document.all ? window.event : e;
+    if (ev.keyCode == 13) {
+      init();
+      $("#btn_login").click()
+      console.log(123)
+    }
+  };
+  function init() {
+    var _cookie = "1",
+      _cookies = "0";
     doRefresh(
       "loginForm",
       "KULUINTERFACE",
@@ -61,18 +75,5 @@
         setCookie("session", _cookies, 60 * 24 * 365 * 10);
       }
     );
-  });
-
-  function init(){
-    doRefresh(null, "KULUINTERFACE", "clearUser", "&bs_checklogin=f", function (data) {
-      if (data.code == 0) {
-          //更新验证码
-          // changeImgCode("InCheckCode");
-      }
-      else {
-          alert(data.msg);
-      }
-  });
   }
 });
-

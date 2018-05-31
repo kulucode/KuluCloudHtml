@@ -232,8 +232,19 @@ doRefresh(null, "KULUINTERFACE", "getLoginMsg", "", function (data) {
   if (data.code == 0) {
       //执行正确动作
       console.log(data)
+        rand = Math.random();
+        // $('a').each(function(){
+        //     href = $(this).attr('href');
+        //     if (href.length == 0 || href.indexOf('javascript') > -1) return;
+        //     else if(href.indexOf('?') > -1){
+        //         $(this).attr('href', href + '&' + rand);
+        //     }else{
+        //         $(this).attr('href', href + '?' + rand);
+        //     }
+        // });
+  
       for (let i=data.menus.length-1;i>=0;i--){
-        $(".layui-index").after("<li class='layui-nav-item'><a href='"+data.menus[i].url+"' class='home' id='"+data.menus[i].id+"'>"+data.menus[i].name+"</a></li>");
+        $(".layui-index").after("<li class='layui-nav-item'><a href='"+data.menus[i].url+"?v="+rand+"' class='home'  target='_self' id='"+data.menus[i].id+"'>"+data.menus[i].name+"</a></li>");
       }
       layui.use('element', function () {
         var element = layui.element;
@@ -245,3 +256,4 @@ doRefresh(null, "KULUINTERFACE", "getLoginMsg", "", function (data) {
       alert(data.msg);
   }
 });
+
