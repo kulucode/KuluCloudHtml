@@ -580,7 +580,7 @@ function loadcarList(map, cm) {
 function WebSocketInit(map,cm,datas){
   if ("WebSocket" in window) {
     url =
-      "ws://hanshan.vip.coollu.com.cn:80/kulucloud/TTWebsocket/" +
+      "ws://"+window.location.host+"/kulucloud/TTWebsocket/" +
       datas +
       "?dataid=01";
     // this.url = url;
