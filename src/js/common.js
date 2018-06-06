@@ -25,6 +25,9 @@ $(document).ready(function () {
         $("#layui-layerss1").animate({
             left: "-140px"
         });
+        $(".layuiId").animate({
+            left: "-140px"
+        });
         $(".btn2").show()
     });
     $(".btn2").click(function () {
@@ -44,6 +47,9 @@ $(document).ready(function () {
             left:"2.5%"
         });
         $("#layui-layers1").animate({
+            left: "243px"
+        });
+        $(".layuiId").animate({
             left: "243px"
         });
         $("#layui-layerss1").animate({

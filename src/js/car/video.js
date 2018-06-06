@@ -129,7 +129,6 @@ function videoInit(Cardata){
     console.log( $(".selectCarplate"),"CarUrl")
     var select = 'dd[lay-value=' + str + ']'; 
     var usv = $('.selectCarplate').siblings("div.layui-form-select").find('dd');
-    console.log(usv[1].innerHTML)
     for (var i=0;i<usv.length;i++){
       if(usv[i].innerHTML==str){
        usv[i].click();

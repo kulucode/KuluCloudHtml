@@ -446,15 +446,18 @@ video{
   .layui-layout  .layui-body #layui-layers1{
     top: 36%;
   }
-  #layui-layerss1{
+  #layui-layerss1 label{
+      
+    color: white;
+  }
+  #layui-layerss1 {
     left: 243px;
     top: 27%;
     width: 12.7%;
     z-index: 1;
-    color: white;
   }
   #layui-layerss1 .layui-input-inline{
-    width: 140px;
+    width: 163px;
   }
   #layui-laydate1{
     left: 226px!important;

@@ -30,25 +30,17 @@
     });
   });
   j = 0;
-  function videoinit(data,Cardata,Cartime) {
+  function videoinit(data,Cardata,Cartime,aisleID) {
     // console.log("212121", 0, data + " 000000", "235959");
-    // doRefresh("viedoport", "KULUINTERFACE", "searchTruckVideoList","&pg_truck="+Cardata, function (data) {
-      // NetVideo.Login(data[0].ip, data[0].port, data[0].user, data[0].password);
-      // NetVideo2.Login(data[0].ip, data[0].port, data[0].user, data[0].password);
-      // NetVideo3.Login(data[0].ip, data[0].port, data[0].user, data[0].password);
-      // NetVideo4.Login(data[0].ip, data[0].port, data[0].user, data[0].password);
+    doRefresh("viedoport", "KULUINTERFACE", "searchTruckVideoList","&pg_truck="+Cardata, function (data) {
+      NetVideo.Login(data[0].ip, data[0].port, data[0].user, data[0].password);
       console.log(data,Cardata,Cartime)
-    NetVideo.Login("182.61.39.135", 7708, "user_viewer", "situouser2834");
-      // NetVideo2.Login("182.61.39.135", 7708, "admin", "888888");
-      // NetVideo3.Login("182.61.39.135", 7708, "admin", "888888");
-      // NetVideo4.Login("182.61.39.135", 7708, "admin", "888888");
-      console.log("1000016",1,""+data+" 000000","235959")
-    var ret = NetVideo.QueryHistoryVideo("1000016",0,"180530 000000","235959");
+      // NetVideo.Login("182.61.39.135", 7708, "user_viewer", "situouser2834");
+      var ret = NetVideo.QueryHistoryVideo(data[0].eqpno, 0, ""+data+" 000000", "235959");
     console.log(ret)
-    if(ret == ""){
+    if(ret == "" || ret == null){
       layer.msg("该视频的数据为空")
     }
-    console.log(ret,"ret")
     ret = ret.replace(/\"/g, "");
     var list = ret.split(",");
     array = [];
@@ -60,16 +52,16 @@
     for (var z = 0; z < array.length / 6; z++) {
       VideoTime = VideoTime + parseInt(array[6 * z + 3]);
     }
-    NetVideo.OpenHistoryStream("9999999", 0, array[j], 0, 0);
-    // NetVideo2.OpenHistoryStream("9999999", 2, array[j], 0, 0);
+    NetVideo.OpenHistoryStream(data[0].eqpno, aisleID, array[j], 0, 0);
+    console.log((data[0].eqpno, 0, array[j], 0, 0));
     var intervalProcess = setInterval(function showTime() {
       NowTime = NetVideo.GetPlayedTime();
       window.left =(Nowtimes+parseInt(NowTime) )/ parseInt(VideoTime);
       if (NetVideo.GetPlayedTime() == array[j + 3]) {
         NetVideo.Logout();
-        NetVideo.x("193.112.132.150", 7708, "admin", "888888");
+        NetVideo.Login(data[0].ip, data[0].port, data[0].user, data[0].password);
         j = j + 6;
-        NetVideo.OpenHistoryStream("212121", 1, array[j], 0, 0);
+        NetVideo.OpenHistoryStream(data[0].eqpno, aisleID, array[j], 0, 0);
       }
       $(".progress_btn").css("left", window.left * 1175);
       $(".progress_bar").width(window.left * 1175);
@@ -107,8 +99,8 @@
         function timeInit(h){
           if (parseFloat(Nowtime) < parseFloat(array[h + 3])) {
             NetVideo.Logout();
-            NetVideo.Login("193.112.132.150", 7708, "admin", "888888");
-            NetVideo.OpenHistoryStream("212121", 1, array[h], Nowtime, 0);
+            NetVideo.Login(data[0].ip, data[0].port, data[0].user, data[0].password);
+            NetVideo.OpenHistoryStream(data[0].eqpno, aisleID, array[h], Nowtime, 0);
           } else {
             Nowtime = parseInt(Nowtime) - parseInt(array[h + 3]);
             h=h+6;
@@ -117,11 +109,13 @@
         }
       }
     });
-  // })
+  })
 }
   jQuery(".search_Carlists").click(function() {
     var DevID = jQuery("#test12").val();
     var timeVideo = DevID;
+    var aisleID =  jQuery("#aisleID").val();
+    console.log(aisleID)
     timeVideo = timeVideo.replace("月", "-");
     timeVideo = timeVideo.replace("年", "-");
     timeVideo = timeVideo.replace("日", "");
@@ -130,7 +124,7 @@
     DevID = DevID.replace("月", "");
     var carValues=$(".selectCarplate").val();
     // console.log(carValues,DevID,timeVideo)
-    videoinit(DevID,carValues,timeVideo);
+    videoinit(DevID,carValues,timeVideo,aisleID);
     historyInit(carValues)
     // remotesearch(DevID, window.datas);
   });
@@ -207,8 +201,6 @@
   }
 })(this, document);
 function datainit() {//获取sel  ect初始化的数据
-  // var aplate = $(".selectCarplate option:first").val();
-  // var aplates = $(".selectCarplate option:first").text();
   new Promise(function(resolve,reject) {
     setTimeout(function() {
       var aplate = $(".selectCarplate option:selected").val();
@@ -229,19 +221,21 @@ function datainit() {//获取sel  ect初始化的数据
 }
 
 function historyInit(Cardata){
-  // doRefresh(null, "KULUINTERFACE", "searchTruckList", "&pg_truck="+Cardata, function(data) {
-  //   if (data.code == 0) {
-  //     //执行正确动作
-  //     var dataTeam=data.data[0].truckorg.split("-")
-  //     var datatype=data.data[0].truckname.split("【")
-  //     $(".people_lists li:eq(1)").html(dataTeam[0]);
-  //     $(".people_lists li:eq(3)").html(dataTeam[1]);
-  //     $(".people_lists li:eq(5)").html(data.data[0].trucknno);
-  //     $(".people_lists li:eq(7)").html(data.data[0].paltenum);
-  //     $(".people_lists li:eq(9)").html(datatype[0]);
-  //     $(".people_lists li:eq(11)").html(data.data[0].username);
-  //   } else {
-  //     alert(data.msg);
-  //   }
-  // });
+  doRefresh(null, "KULUINTERFACE", "searchTruckList", "&pg_truck="+Cardata, function(data) {
+    if (data.code == 0) {
+      //执行正确动作
+      var dataTeam=data.data[0].truckorg.split("-")
+      var datatype=data.data[0].trucktype.substr(0,9)
+      // var datatype=datatype[1].replace("】", "");
+      console.log(datatype)
+      $(".people_lists li:eq(1)").html(dataTeam[0]);
+      $(".people_lists li:eq(3)").html(dataTeam[1]);
+      $(".people_lists li:eq(5)").html(data.data[0].trucknno);
+      $(".people_lists li:eq(7)").html(data.data[0].paltenum);
+      $(".people_lists li:eq(9)").html(datatype);
+      $(".people_lists li:eq(11)").html(data.data[0].username);
+    } else {
+      alert(data.msg);
+    }
+  });
 }
