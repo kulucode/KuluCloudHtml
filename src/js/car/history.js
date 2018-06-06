@@ -30,13 +30,13 @@
     });
   });
   j = 0;
-  function videoinit(data,Cardata,Cartime,aisleID) {
+  function videoinit(datas,Cardata,Cartime,aisleID) {
     // console.log("212121", 0, data + " 000000", "235959");
     doRefresh("viedoport", "KULUINTERFACE", "searchTruckVideoList","&pg_truck="+Cardata, function (data) {
-      NetVideo.Login(data[0].ip, data[0].port, data[0].user, data[0].password);
-      console.log(data,Cardata,Cartime)
+      console.log(data)
+      NetVideo.Login(data.data[0].ip,data.data[0].port, data.data[0].user, data.data[0].password);
       // NetVideo.Login("182.61.39.135", 7708, "user_viewer", "situouser2834");
-      var ret = NetVideo.QueryHistoryVideo(data[0].eqpno, 0, ""+data+" 000000", "235959");
+      var ret = NetVideo.QueryHistoryVideo(data.data[0].eqpno, 0, ""+datas+" 000000", "235959");
     console.log(ret)
     if(ret == "" || ret == null){
       layer.msg("该视频的数据为空")
@@ -52,16 +52,16 @@
     for (var z = 0; z < array.length / 6; z++) {
       VideoTime = VideoTime + parseInt(array[6 * z + 3]);
     }
-    NetVideo.OpenHistoryStream(data[0].eqpno, aisleID, array[j], 0, 0);
-    console.log((data[0].eqpno, 0, array[j], 0, 0));
+    NetVideo.OpenHistoryStream(data.data[0].eqpno, aisleID, array[j], 0, 0);
+    console.log((data.data[0].eqpno, 0, array[j], 0, 0));
     var intervalProcess = setInterval(function showTime() {
       NowTime = NetVideo.GetPlayedTime();
       window.left =(Nowtimes+parseInt(NowTime) )/ parseInt(VideoTime);
       if (NetVideo.GetPlayedTime() == array[j + 3]) {
         NetVideo.Logout();
-        NetVideo.Login(data[0].ip, data[0].port, data[0].user, data[0].password);
+        NetVideo.Login(data.data[0].ip, data.data[0].port, data.data[0].user, data.data[0].password);
         j = j + 6;
-        NetVideo.OpenHistoryStream(data[0].eqpno, aisleID, array[j], 0, 0);
+        NetVideo.OpenHistoryStream(data.data[0].eqpno, aisleID, array[j], 0, 0);
       }
       $(".progress_btn").css("left", window.left * 1175);
       $(".progress_bar").width(window.left * 1175);
@@ -99,8 +99,8 @@
         function timeInit(h){
           if (parseFloat(Nowtime) < parseFloat(array[h + 3])) {
             NetVideo.Logout();
-            NetVideo.Login(data[0].ip, data[0].port, data[0].user, data[0].password);
-            NetVideo.OpenHistoryStream(data[0].eqpno, aisleID, array[h], Nowtime, 0);
+            NetVideo.Login(data.data[0].ip, data.data[0].port, data.data[0].user, data.data[0].password);
+            NetVideo.OpenHistoryStream(data.data[0].eqpno, aisleID, array[h], Nowtime, 0);
           } else {
             Nowtime = parseInt(Nowtime) - parseInt(array[h + 3]);
             h=h+6;
