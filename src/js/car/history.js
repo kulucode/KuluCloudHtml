@@ -112,6 +112,9 @@
   })
 }
   jQuery(".search_Carlists").click(function() {
+    $(".progress_btn").css("left",0);
+    $(".progress_bar").width(0);
+    $(".text").html(parseInt(0) + "%");
     var DevID = jQuery("#test12").val();
     var timeVideo = DevID;
     var aisleID =  jQuery("#aisleID").val();

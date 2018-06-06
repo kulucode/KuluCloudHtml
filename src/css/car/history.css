@@ -239,7 +239,7 @@ video{
     width: 40%;
     width: 31%;
     position: relative;
-    padding-bottom: 16.35%;
+    padding-bottom: 48.35%;
     height: 0;
 }
 @media screen and (min-width: 992px){
@@ -482,7 +482,7 @@ video{
         flex: auto;
         width: 31%;
         position: relative;
-        padding-bottom: 16.35%;
+        padding-bottom: 34.35%;
         height: 0;
     }
     .video_three {
