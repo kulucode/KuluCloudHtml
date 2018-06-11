@@ -244,7 +244,7 @@ doRefresh(null, "KULUINTERFACE", "getLoginMsg", "", function (data) {
         // });
   
       for (let i=data.menus.length-1;i>=0;i--){
-        $(".layui-index").after("<li class='layui-nav-item'><a href='"+data.menus[i].url+"?v="+rand+"' class='home'  target='_self' id='"+data.menus[i].id+"'>"+data.menus[i].name+"</a></li>");
+        $(".layui-index").after("<li class='layui-nav-item'><a href='"+data.menus[i].url+"' class='home'  target='_self' id='"+data.menus[i].id+"'>"+data.menus[i].name+"</a></li>");
       }
       layui.use('element', function () {
         var element = layui.element;
