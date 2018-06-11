@@ -102,7 +102,7 @@ var Car = {
         "carForm",
         "KULUINTERFACE",
         "getTruckTracePointList",
-        "",
+        "&pg_size=999999",
         function(data) {
           map.removeOverlay();
           if (data.data.length == 0) {
