@@ -242,3 +242,6 @@ function historyInit(Cardata){
     }
   });
 }
+var Widths=$("#layui-layerss1").width()-80+"px"
+console.log($("#layui-layerss1").width())
+$("#layui-layerss1 .layui-input-inline").width(Widths)

@@ -463,8 +463,11 @@ video{
     left: 226px!important;
   }
   #layui-layerss1 .select_date{
-    padding: 7px 0px;
+    padding: 7px  13px;
     background: #50b4c8;
+  }
+  #layui-layerss1 .select_date{
+      width: 93%
   }
   #layui-layerss1 #test12{
     background: #50b4c8;

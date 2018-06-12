@@ -1,5 +1,5 @@
 window.n = 0;
-
+window.left=0;
 var CarManager = {
   createNew: function(map) {
     let cm = {};
@@ -107,6 +107,14 @@ var Car = {
           map.removeOverlay();
           if (data.data.length == 0) {
             layer.msg("暂无车辆行驶记录");
+          car.isShowTrace=false;
+          car.runnum=9999999999;
+          window.left=0;
+          car.path=[]
+          car.resetRoute();
+          map.removeOverlay(car.routeMarker);
+          clearTimeout(car.timer);
+            console.log(car)
           }
           if (data.data.length > 0) {
             var points = new Array();
@@ -310,9 +318,6 @@ var Car = {
         car.runnum = 300;
         car.startRoute(false, car.runnum, car.currentCount);
       });
-      $(".btnPauseRoute").click(function() {
-        car.startRoute(true);
-      });
     };
 
     car.startRoute = function(isPause, runnum, currentCount) {
@@ -364,7 +369,7 @@ var Car = {
                   parseInt(car.curTraceData.length) *
                   100
               );
-
+              console.log(window.left)
               let Width = $(".progress_bg").width();
               $(".progress_btn").css("left", window.left * Width / 100);
               $(".progress_bar").width(window.left * Width / 100);
@@ -417,17 +422,19 @@ var Car = {
           clearTimeout(car.timer);
         }
       }
-      $(".progress_bg").click(function() {
+      $(".progress_bg").click(function(e) {
         clearTimeout(car.timer);
-        window.left = parseInt(window.left / $(".progress_bg").width() * 100);
+        console.log(window.left,e)
+        window.left=parseInt(e.offsetX/1000*100)
+        // window.left = parseInt(window.left / $(".progress_bg").width() * 100);
         if (window.left <= 0) {
           window.left = 0;
-        } else if (window.left > 1100) {
-          window.left = 1100;
+        } else if (window.left > 99) {
+          window.left = 99;
         }
 
         car.curPointIndex = parseInt(
-          window.left / 100 * car.curTraceData.length
+          window.left /100* car.curTraceData.length
         );
         resetMkPoint();
       });
@@ -450,6 +457,7 @@ var Car = {
         car.isTimerRunning = false;
         car.isRoteRunning = false;
         clearTimeout(car.timer);
+        
       }
     };
 

@@ -55,6 +55,9 @@ function progress() {
     if (data.data.length > 0) {
       //执行正确动作
       $(".search_Carlist").click(function() {
+        
+        window.left=0;
+        let Width = $(".progress_bg").width();
         var matchResult = true;
         if (matchResult == true) {
           var startTime = $("#test5").val();
@@ -66,7 +69,9 @@ function progress() {
             layer.msg("请选择起始时间！");
             return false;
           }
-
+          $(".progress_btn").css("left", window.left * Width / 100);
+          $(".progress_bar").width(window.left * Width / 100);
+          $(".text").html(parseInt(window.left) + "%");
           if (startTime != "" && endTime != "" && d1 >= d2) {
             layer.msg("开始时间不能大于结束时间！");
             return false;
@@ -74,11 +79,18 @@ function progress() {
           car.loadTrace();
           $(".btnStartRoute").click(function(e) {
             //鼠标点击
-            car.resetRoute();
-            car.route();
+            if (car.isShowTrace == true) {
+              $(".progress_btn").css("left", window.left * Width / 100);
+              $(".progress_bar").width(window.left * Width / 100);
+              $(".text").html(parseInt(window.left) + "%");
+              car.resetRoute();
+              car.route();
+            }
+       
           });
           $(".btnPauseRoute").click(function(e, runnum) {
             var btn = $(".btnPauseRoute")[0];
+            console.log(car.isRoteRunning)
             if (car.isRoteRunning) {
               e.stopPropagation();
               e.preventDefault();
@@ -91,7 +103,11 @@ function progress() {
             }
           });
         } else {
+          console.log()
           layer.msg("您选择的时间段车辆没有行驶记录");
+          car.resetRoute();
+          map.removeOverlay(car.routeMarker);
+          return false
         }
         pg_truck = $(".selectCarplate").val();
         pg_sdate = $("#test5").val();
