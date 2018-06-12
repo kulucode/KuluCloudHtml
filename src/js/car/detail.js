@@ -64,12 +64,12 @@ function tables() {
           { field: "paltenum", width: 200, title: "车牌" },
           { field: "trucktype", width: 207, title: "车辆类型" },
           { field: "faule", title: "报警类型" },
-          { field: "hdate", title: "报警时间", width: 200 },
+          { field: "hdate", title: "报警时间", width: 200 ,sort:true},
           { field: "id", title: "报警编码", width: 200 },
           { field: "username", title: "当班司机" },
-          { field: "usermphone", title: "联系电话", sort: true },
-          { field: "opstate", title: "处理情况", sort: true },
-          { toolbar: "#barDemo", title: "处理标记", sort: true }
+          { field: "usermphone", title: "联系电话" },
+          { field: "opstate", title: "处理情况"},
+          { toolbar: "#barDemo", title: "处理标记" }
         ]
       ]
     });

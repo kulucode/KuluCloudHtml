@@ -102,7 +102,7 @@ var Car = {
         "carForm",
         "KULUINTERFACE",
         "getTruckTracePointList",
-        "&pg_size=99999999",
+        "&pg_size=-1",
         function(data) {
           map.removeOverlay();
           if (data.data.length == 0) {
@@ -309,6 +309,9 @@ var Car = {
         car.startRoute(true);
         car.runnum = 300;
         car.startRoute(false, car.runnum, car.currentCount);
+      });
+      $(".btnPauseRoute").click(function() {
+        car.startRoute(true);
       });
     };
 
@@ -618,7 +621,7 @@ function loadCarlsitTable(datas) {
         datas +
         "&TTKEY=null&pg_keyword=" +
         pg_keyword +
-        "&pg_num=0&pg_size=99999991000", //数据接口
+        "&pg_num=0&pg_size=-1", //数据接口
       page: false, //开启分页
       cols: [
         [

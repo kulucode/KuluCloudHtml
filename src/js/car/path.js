@@ -23,12 +23,12 @@ function loadpathTable() {
           //表头
           { field: "tbindex", title: "ID", sort: true },
           { field: "truckorg", title: "项目组", width: 200 },
-          { field: "分段", title: "分段", sort: true },
-          { field: "trucktype", title: "设备类型" },
+          { field: "分段", title: "分段" },
+          { field: "trucktype", title: "设备类型",width: 200 },
           { field: "truckno", title: "物料编号" },
-          { field: "platenum", title: "车牌号", sort: true },
+          { field: "platenum", title: "车牌号" },
           { field: "fdate", title: "起始时间", width: 200, sort: true },
-          { field: "tdate", title: "终止时间", width: 200 },
+          { field: "tdate", title: "终止时间", width: 200,sort: true },
           { field: "speed", title: "平均时速(km/h)", sort: true },
           { field: "distance", title: "行驶里程(km)", sort: true }
         ]
