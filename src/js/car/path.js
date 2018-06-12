@@ -4,37 +4,62 @@ function loadpathTable() {
     pg_truck = $(".selectCarplate").val();
     pg_sdate = $("#test5").val();
     pg_edate = $("#test6").val();
-    //第一个实例
-    table.render({
-      elem: "#demo",
-      url:
-        "/kulucloud/TTService?curPageOperID=refresh&curBSID=KULUINTERFACE&bs_uid=250&TTDT=json&opname=getTruckTraceList&TTSSID=" +
-        datas +
-        "&TTKEY=null&pg_truck=" +
-        pg_truck +
-        "&pg_sdate=" +
-        pg_sdate +
-        "&pg_edate=" +
-        pg_edate +
-        "&pg_num=0&pg_size=-1", //数据接口
-      page: false, //开启分页
-      height: "full-860",
-      cols: [
-        [
-          //表头
-          { field: "tbindex", title: "ID", sort: true },
-          { field: "truckorg", title: "项目组", width: 200 },
-          { field: "分段", title: "分段" },
-          { field: "trucktype", title: "设备类型",width: 200 },
-          { field: "truckno", title: "物料编号" },
-          { field: "platenum", title: "车牌号" },
-          { field: "fdate", title: "起始时间", width: 200, sort: true },
-          { field: "tdate", title: "终止时间", width: 200,sort: true },
-          { field: "speed", title: "平均时速(km/h)", sort: true },
-          { field: "distance", title: "行驶里程(km)", sort: true }
-        ]
-      ]
-    });
+	
+	var url = "/kulucloud/TTService?curPageOperID=refresh&curBSID=KULUINTERFACE&bs_uid=250&TTDT=json&opname=getTruckTraceList&TTSSID=" + datas + "&TTKEY=null&pg_truck=" + pg_truck + "&pg_sdate=" + pg_sdate + "&pg_edate=" + pg_edate + "&pg_num=0&pg_size=-1";
+    $.get(url, function(data) {
+		if (data.code != 0) {
+			return;
+		}
+		
+		////////////////////////////////////////////////
+		var res = data.data;
+		for (var i = 0; i < res.length; i++) {
+			var obj = res[i];
+			obj.speed = parseFloat(obj.speed);
+			obj.distance = parseFloat(obj.distance);
+		}
+		
+		table.render({
+		  elem: "#demo",
+		  height: "full-860",
+		  /*url:
+			"/kulucloud/TTService?curPageOperID=refresh&curBSID=KULUINTERFACE&bs_uid=250&TTDT=json&opname=getTruckTraceList&TTSSID=" +
+			datas +
+			"&TTKEY=null&pg_truck=" +
+			pg_truck +
+			"&pg_sdate=" +
+			pg_sdate +
+			"&pg_edate=" +
+			pg_edate +
+			"&pg_num=0&pg_size=-1", //数据接口*/
+		  page: false, //开启分页
+		  limit: data.count,
+		  limits: [data.count],
+		  cols: [
+			[
+			  //表头
+			  { field: "tbindex", title: "ID", sort: true },
+			  { field: "truckorg", title: "项目组", width: 200 },
+			  { field: "seg", title: "分段", sort: true, templet(d) {
+				  return d.seg == null ? "" : "分段" + d.seg;
+			  }},
+			  { field: "trucktype", title: "设备类型",width: 200 },
+			  { field: "truckno", title: "物料编号" },
+			  { field: "platenum", title: "车牌号" },
+			  { field: "fdate", title: "起始时间", width: 200, sort: true },
+			  { field: "tdate", title: "终止时间", width: 200,sort: true },
+			  { field: "speed", title: "平均时速(km/h)", sort: true, templet(d) {
+				  return d.speed.toFixed(2);
+			  }},
+			  { field: "distance", title: "行驶里程(km)", sort: true, templet(d) {
+				  return d.distance.toFixed(2);
+			  }}
+			]
+		  ],
+		  data: res
+		});
+	});
+
   });
 }
 
