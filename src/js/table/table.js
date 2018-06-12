@@ -326,35 +326,64 @@ function loadCartableList(datas){
     var table = layui.table;
     pg_sdate = $("#test5").val();
     pg_edate = $("#test6").val();
-    //第一个实例
-    table.render({
-      elem: "#table_list",
-      height:"full-280",
-      url:
-        "/kulucloud/TTService?curPageOperID=refresh&curBSID=KULUINTERFACE&bs_uid=296&TTDT=json&opname=searchTruckReportList&TTSSID="+
-        datas +
-        "&TTKEY=null&&pg_sdate=" +
-        pg_sdate +
-        "&pg_edate=" +
-        pg_edate, //数据接口
-      page: false, //开启分页
-      cols: [
-        [
-          //表头
-          {field: "tbindex", title: "ID", sort: true },
-          { field: "truckorg",width: 200, title: "项目组" },
-          { field: "trucktype", width: 207,title: "设备类型" },
-          { field: "truckno", title: "资产编号" },
-          { field: "platenum", title: "车牌号" },
-          { field: "username", title: "负责人" },
-          { field: "userphone", title: "联系方式" },
-          { field: "oil", title: "油耗统计(L)", sort: true },
-          { field: "distance", title: "工作里程(km)", sort: true },
-          { field: "worktimes", title: "工作时长(H)", sort: true },
-          { field: "useff", title: "设备使用率(%)", sort: true }
-        ]
-      ]
-    });
+	
+	var url = "/kulucloud/TTService?curPageOperID=refresh&curBSID=KULUINTERFACE&bs_uid=296&TTDT=json&opname=searchTruckReportList&TTSSID=" + datas + "&TTKEY=null&&pg_sdate=" + pg_sdate + "&pg_edate=" + pg_edate;
+	$.get(url, function(data) {
+		if (data.code != 0) {
+			return;
+		}
+		
+		////////////////////////////////////////////////
+		var res = data.data;
+		for (var i = 0; i < res.length; i++) {
+			var obj = res[i];
+			obj.oil = parseFloat(obj.oil);
+			obj.distance = parseFloat(obj.distance);
+			obj.worktimes = parseFloat(obj.worktimes);
+			obj.useff = parseFloat(obj.useff);
+		}
+		
+		table.render({
+		  elem: "#table_list",
+		  height:"full-280",
+		  /*url:
+			"/kulucloud/TTService?curPageOperID=refresh&curBSID=KULUINTERFACE&bs_uid=296&TTDT=json&opname=searchTruckReportList&TTSSID="+
+			datas +
+			"&TTKEY=null&&pg_sdate=" +
+			pg_sdate +
+			"&pg_edate=" +
+			pg_edate, //数据接口*/
+		  page: false, //开启分页
+		  limit: data.count,
+		  limits: [data.count],
+		  cols: [
+			[
+			  //表头
+			  {field: "tbindex", title: "ID", sort: true },
+			  { field: "truckorg",width: 200, title: "项目组" },
+			  { field: "trucktype", width: 207,title: "设备类型" },
+			  { field: "truckno", title: "资产编号" },
+			  { field: "platenum", title: "车牌号" },
+			  { field: "username", title: "负责人" },
+			  { field: "userphone", title: "联系方式" },
+			  { field: "oil", title: "油耗统计(L)", sort: true, templet(d) {
+				  return d.oil.toFixed(2);
+			  }},
+			  { field: "distance", title: "工作里程(km)", sort: true, templet(d) {
+				  return d.distance.toFixed(2);
+			  }},
+			  { field: "worktimes", title: "工作时长(H)", sort: true, templet(d) {
+				  return d.worktimes.toFixed(2);
+			  }},
+			  { field: "useff", title: "设备使用率(%)", sort: true, templet(d) {
+				  return d.useff.toFixed(2) + "%";
+			  }}
+			]
+		  ],
+		  data:res
+		});
+	});
+    
   });
 }
 function loadPeopletableList(datas){
@@ -362,35 +391,57 @@ function loadPeopletableList(datas){
     var table = layui.table;
     pg_sdate = $("#test5").val();
     pg_edate = $("#test6").val();
-    //第一个实例
-    table.render({
-      elem: "#people_list",
-      height:"full-280",
-      url:
-        "/kulucloud/TTService?curPageOperID=refresh&curBSID=KULUINTERFACE&bs_uid=296&TTDT=json&opname=searchUserReportList&TTSSID="+
-        datas +
-        "&TTKEY=null&&pg_sdate=" +
-        pg_sdate +
-        "&pg_edate=" +
-        pg_edate, //数据接口
-      page: false, //开启分页
-      cols: [
-        [
-          //表头
-          {field: "tbindex", title: "ID", sort: true },
-          { field: "org",width: 200, title: "项目组" },
-          { field: "id", width: 207,title: "员工编号" },
-          { field: "name", title: "姓名" },
-          { field: "age", title: "年龄" },
-          { field: "phone", title: "联系方式" },
-          { field: "step", title: "累计行走步数" },
-          { field: "distance", title: "累计里程(km)", sort: true },
-          { field: "sbflg", title: "是否参保", sort: true },
-          { field: "abs", title: "缺勤记录", sort: true },
-          { field: "late", title: "迟到次数", sort: true }
-        ]
-      ]
-    });
+	
+	var url = "/kulucloud/TTService?curPageOperID=refresh&curBSID=KULUINTERFACE&bs_uid=296&TTDT=json&opname=searchUserReportList&TTSSID=" + datas + "&TTKEY=null&&pg_sdate=" + pg_sdate + "&pg_edate=" + pg_edate;
+    $.get(url, function(data) {
+		if (data.code != 0) {
+			return;
+		}
+		
+		////////////////////////////////////////////////
+		var res = data.data;
+		for (var i = 0; i < res.length; i++) {
+			var obj = res[i];
+			obj.distance = parseFloat(obj.distance);
+			obj.abs = parseFloat(obj.abs);
+			obj.late = parseFloat(obj.late);
+		}
+		
+		table.render({
+		  elem: "#people_list",
+		  height:"full-280",
+		  /*url:
+			"/kulucloud/TTService?curPageOperID=refresh&curBSID=KULUINTERFACE&bs_uid=296&TTDT=json&opname=searchUserReportList&TTSSID="+
+			datas +
+			"&TTKEY=null&&pg_sdate=" +
+			pg_sdate +
+			"&pg_edate=" +
+			pg_edate, //数据接口*/
+		  page: false, //开启分页
+		  limit: data.count,
+		  limits: [data.count],
+		  cols: [
+			[
+			  //表头
+			  {field: "tbindex", title: "ID", sort: true },
+			  { field: "org",width: 200, title: "项目组" },
+			  { field: "id", width: 207,title: "员工编号" },
+			  { field: "name", title: "姓名" },
+			  { field: "age", title: "年龄" },
+			  { field: "phone", title: "联系方式" },
+			  { field: "step", title: "累计行走步数" },
+			  { field: "distance", title: "累计里程(km)", sort: true, templet(d) {
+				  return d.distance.toFixed(2);
+			  }},
+			  { field: "sbflg", title: "是否参保", sort: true },
+			  { field: "abs", title: "缺勤记录", sort: true },
+			  { field: "late", title: "迟到次数", sort: true }
+			]
+		  ],
+		  data: res
+		});
+	});
+	
   });
 }
 window.onload=function(){
