@@ -17,7 +17,8 @@ function loadpathTable() {
         "&pg_edate=" +
         pg_edate +
         "&pg_num=0&pg_size=-1", //数据接口
-      page: true, //开启分页
+      page: false, //开启分页
+      height: "full-860",
       cols: [
         [
           //表头
