@@ -614,7 +614,7 @@ function loadCarlsitTable(datas) {
     //第一个实例
     table.render({
       elem: "#demo",
-      height: "full-750",
+      height: "full-790",
       cellMinWidth: 100,
       url:
         "/kulucloud/TTService?curPageOperID=refresh&curBSID=KULUINTERFACE&bs_uid=250&TTDT=json&opname=searchTruckList&TTSSID=" +
