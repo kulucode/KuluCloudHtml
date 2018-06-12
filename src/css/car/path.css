@@ -148,7 +148,8 @@ input::-webkit-input-placeholder {
     background: linear-gradient(#66b1bd, #3f7f89);
 }
 .layui-inline .progress{
-    width: 1175px
+    width: 1000px;
+    margin-left: 5%;
 }
 .text{
     position: absolute;
