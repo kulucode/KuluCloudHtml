@@ -16,7 +16,7 @@ function loadpathTable() {
         pg_sdate +
         "&pg_edate=" +
         pg_edate +
-        "&pg_num=0&pg_size=1000", //数据接口
+        "&pg_num=0&pg_size=-1", //数据接口
       page: true, //开启分页
       cols: [
         [
