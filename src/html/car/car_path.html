@@ -281,9 +281,13 @@
         type: 'datetime',
         done: function (value, date) {
           if (value !== '') {
+            console.log(  endDate.config.min,date)
             endDate.config.min.year = date.year;
             endDate.config.min.month = date.month - 1;
             endDate.config.min.date = date.date;
+            endDate.config.min.hours = date.hours;
+            endDate.config.min.minutes = date.minutes;
+            endDate.config.min.seconds = date.seconds;
           } else {
             endDate.config.min.year = '';
             endDate.config.min.month = '';
@@ -296,9 +300,13 @@
         type: 'datetime',
         done: function (value, date) {
           if (value !== '') {
+            console.log(startDate.config.max,date)
             startDate.config.max.year = date.year;
             startDate.config.max.month = date.month - 1;
             startDate.config.max.date = date.date;
+            startDate.config.max.hours = date.hours;
+            startDate.config.max.minutes = date.minutes;
+            startDate.config.max.seconds = date.seconds;
           } else {
             startDate.config.max.year = '';
             startDate.config.max.month = '';
