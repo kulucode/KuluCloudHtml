@@ -103,6 +103,7 @@ input::-webkit-input-placeholder {
 }
 .detail_table .laytable-cell-1-9 {
   margin: 0;
+  width: 144px;
 }
 .demoTable {
   margin-top: 15px;
