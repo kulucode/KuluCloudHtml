@@ -1,4 +1,4 @@
-(function(window, document) {
+﻿(function(window, document) {
   var timeLine = jQuery(".timeLine").width(); //总宽
   //        console.log(timeLine);
   var unitCount = 24 * 6; //总共多少刻度线
@@ -112,7 +112,7 @@ function datainit() {//获取sel  ect初始化的数据
       } else {
           reject(CarArray);
       }
-    }, 300);
+    }, 500);
   }).then(function(result) {
     videoInit(result[0]);
       console.log(result)
