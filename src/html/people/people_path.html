@@ -295,14 +295,13 @@
   <script>
     //JavaScript代码区域
     peoplelist();
-loadpeopleList(map);
+// loadpeopleList(map);
     doRefresh(null, "KULUINTERFACE", "getOrgTree", "", function (data) {
     if (data.code == 0) {
         //执行正确动作
         console.log(data)
-        datas=data.session;
-        
-    layuiTable(datas);
+        datas=data.session;   
+       layuiTable(datas);
     }
     else {
       console.log("err");

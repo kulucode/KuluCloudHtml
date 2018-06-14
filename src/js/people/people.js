@@ -156,8 +156,6 @@ var People = {
       });
 
       map.addOverlay(people.marker);
-
-      people.marker.disableMassClear();
       let labelHD = new BMap.Label(people.data.username, {
         offset: new BMap.Size(20, -25)
       });
@@ -219,8 +217,17 @@ var People = {
       //轨迹的显示
       map.removeOverlay();
       doRefresh("peoplePaths", "KULUINTERFACE", "getUserTraceList", "", function(data) {
+        if (data.data.length == 0) {
+          layer.msg("暂无人员行驶记录");
+        people.isShowTrace=false;
+        people.runnum=9999999999;
+        people.path=[]
+        people.resetRoute();
+        map.removeOverlay(people.routeMarker);
+        clearTimeout(people.timer);
+        }
         if (data.code == 0) {
-          
+          console.log(data)
           map.removeOverlay();
           var points = new Array();
           //clear the array
