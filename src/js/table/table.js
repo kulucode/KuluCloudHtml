@@ -366,16 +366,16 @@ function loadCartableList(datas){
 			  { field: "platenum", title: "车牌号" },
 			  { field: "username", title: "负责人" },
 			  { field: "userphone", title: "联系方式" },
-			  { field: "oil", title: "油耗统计(L)", sort: true, templet(d) {
+			  { field: "oil", title: "油耗统计(L)", sort: true, templet:function(d) {
 				  return d.oil.toFixed(2);
 			  }},
-			  { field: "distance", title: "工作里程(km)", sort: true, templet(d) {
+			  { field: "distance", title: "工作里程(km)", sort: true, templet:function(d) {
 				  return d.distance.toFixed(2);
 			  }},
-			  { field: "worktimes", title: "工作时长(H)", sort: true, templet(d) {
+			  { field: "worktimes", title: "工作时长(H)", sort: true, templet:function(d) {
 				  return d.worktimes.toFixed(2);
 			  }},
-			  { field: "useff", title: "设备使用率(%)", sort: true, templet(d) {
+			  { field: "useff", title: "设备使用率(%)", sort: true, templet:function(d) {
 				  return d.useff.toFixed(2) + "%";
 			  }}
 			]
@@ -430,7 +430,7 @@ function loadPeopletableList(datas){
 			  { field: "age", title: "年龄" },
 			  { field: "phone", title: "联系方式" },
 			  { field: "step", title: "累计行走步数" },
-			  { field: "distance", title: "累计里程(km)", sort: true, templet(d) {
+			  { field: "distance", title: "累计里程(km)", sort: true, templet:function(d) {
 				  return d.distance.toFixed(2);
 			  }},
 			  { field: "sbflg", title: "是否参保", sort: true },

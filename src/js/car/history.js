@@ -18,26 +18,23 @@
       date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
     return Y + M + D + h + m + s;
   }
-
-  layui.use("laydate", function() {
-    var laydate = layui.laydate;
-    laydate.render({
-      elem: "#test12",
-      format: "yyyy年MM月dd日",
-      done: function(value, date, endDate) {
-      
-      }
-    });
-  });
   j = 0;
   function videoinit(datas,Cardata,Cartime,aisleID) {
+    Cartime = Cartime.substring(11)
+    var Cararrays = Cartime.split(":");
+    datas= datas.replace("-","");
+    datas= datas.replace("-","")//转换搜索时间格式
+    var CarNum = parseFloat(Cararrays[0])*3600+parseFloat(Cararrays[1])*60+parseFloat(Cararrays[2])
+    console.log(datas,"CarNum")
+    
     // console.log("212121", 0, data + " 000000", "235959");
     doRefresh("viedoport", "KULUINTERFACE", "searchTruckVideoList","&pg_truck="+Cardata, function (data) {
       console.log(data)
       NetVideo.Login(data.data[0].ip,data.data[0].port, data.data[0].user, data.data[0].password);
       // NetVideo.Login("182.61.39.135", 7708, "user_viewer", "situouser2834");
       var ret = NetVideo.QueryHistoryVideo(data.data[0].eqpno, 0, ""+datas+" 000000", "235959");
-    console.log(ret)
+      // var ret = NetVideo.QueryHistoryVideo("1000012", 0, "180613 000000", "235959");
+    console.log(ret,"ret")
     if(ret == "" || ret == null){
       layer.msg("该视频的数据为空")
     }
@@ -52,8 +49,63 @@
     for (var z = 0; z < array.length / 6; z++) {
       VideoTime = VideoTime + parseInt(array[6 * z + 3]);
     }
-    NetVideo.OpenHistoryStream(data.data[0].eqpno, aisleID, array[j], 0, 0);
-    console.log((data.data[0].eqpno, 0, array[j], 0, 0));
+    // NetVideo.OpenHistoryStream(data.data[0].eqpno, aisleID, array[j], 0, 0);
+    console.log(array,"array")
+    // NetVideo.OpenHistoryStream(1000012, aisleID, array[j], 0, 0);
+    var SelectTime = Cartime.replace(":","");//选择时分秒
+    SelectTime = SelectTime.replace(":","")
+    var timeList = array[1].substring(7);//列表初始时间
+    console.log(timeList,Cartime,"timeList")
+    if(parseFloat(SelectTime)<parseFloat(timeList)){
+      layer.open({
+        title: '提示',
+         offset: 'b'
+        ,content: '该时间段没有视频，今天的行驶时间是从'+array[1]+'开始的'
+      });  
+    }else{
+        var list = 0;
+        Wtime=parseFloat(SelectTime)-parseFloat(timeList)
+        videoTimeinit(list,Cartime)
+    }
+    function videoTimeinit(list,Cartime){
+      var hour = Cartime.split(':')[0];
+        var min = Cartime.split(':')[1];
+        var sec = Cartime.split(':')[2];
+        var hours = array[list + 1].substring(7,9);
+        var mins =  array[list + 1].substring(9,11);
+        var secs =  array[list + 1].substring(11,13);
+        s = Number(hour*3600) + Number(min*60) + Number(sec);//选择时间的时间戳
+        ss = Number(hours*3600) + Number(mins*60) + Number(secs)+Number(array[list + 3]);//列表的时间戳
+        if(s<ss){
+          let stime = ss-s;
+          console.log("1000012", aisleID, array[list], stime, 0)
+          NetVideo.OpenHistoryStream(data.data[0].eqpno, aisleID, array[list], stime, 0);
+        }else{
+          list = list+6;
+          videoTimeinit(list,Cartime)
+        }
+    }
+    $(".btnPauseRoute").click(function(){
+      NetVideo.CtrlPlay(1,1)
+    })
+    $(".btnStartRoute").click(function(){
+      NetVideo.CtrlPlay(1,0)
+    })
+    $(".btnFastRoute1").click(function(){
+      NetVideo.CtrlPlay(0,1);
+    })
+    $(".btnFastRoute2").click(function(){
+      NetVideo.CtrlPlay(0,2)
+    })
+    $(".btnFastRoute3").click(function(){
+      NetVideo.CtrlPlay(0,3)
+    })
+    $(".btnFastRoute0").click(function(){
+      NetVideo.CtrlPlay(0,4)
+    }) 
+    $(".btnStartRoute4").click(function(){
+      NetVideo.CtrlPlay(0,0)
+    })
     var intervalProcess = setInterval(function showTime() {
       NowTime = NetVideo.GetPlayedTime();
       window.left =(Nowtimes+parseInt(NowTime) )/ parseInt(VideoTime);
@@ -111,6 +163,28 @@
     });
   })
 }
+
+$(".btnPauseRoute").click(function(){
+  NetVideo.CtrlPlay(1,1)
+})
+$(".btnStartRoute").click(function(){
+  NetVideo.CtrlPlay(1,0)
+})
+$(".btnFastRoute1").click(function(){
+  NetVideo.CtrlPlay(0,1);
+})
+$(".btnFastRoute2").click(function(){
+  NetVideo.CtrlPlay(0,2)
+})
+$(".btnFastRoute3").click(function(){
+  NetVideo.CtrlPlay(0,3)
+})
+$(".btnFastRoute0").click(function(){
+  NetVideo.CtrlPlay(0,4)
+}) 
+$(".btnStartRoute4").click(function(){
+  NetVideo.CtrlPlay(0,0)
+})
   jQuery(".search_Carlists").click(function() {
     $(".progress_btn").css("left",0);
     $(".progress_bar").width(0);

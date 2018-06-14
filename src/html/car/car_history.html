@@ -93,7 +93,7 @@
                                 <div class="layui-inline select_date">
                                     <label class="layui-form-label">选择日期</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" class="layui-input" id="test12" placeholder="dd/MM/yyyy">
+                                        <input type="text" class="layui-input" id="test12" placeholder="dd/MM/yyyy HH:mm:ss">
                                     </div>
                                 </div>
                             </div> 
@@ -229,10 +229,8 @@
                     laydate = layui.laydate;
                 //日期
                 laydate.render({
-                    elem: '#date'
-                });
-                laydate.render({
-                    elem: '#date1'
+                    elem: '#test12',
+                    type: 'datetime'
                 });
             });
         </script>

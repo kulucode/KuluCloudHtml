@@ -40,7 +40,7 @@ function loadpathTable() {
 			  //表头
 			  { field: "tbindex", title: "ID", sort: true },
 			  { field: "truckorg", title: "项目组", width: 200 },
-			  { field: "seg", title: "分段", sort: true, templet(d) {
+			  { field: "seg", title: "分段", sort: true, templet:function(d) {
 				  return d.seg == null ? "" : "分段" + d.seg;
 			  }},
 			  { field: "trucktype", title: "设备类型",width: 200 },
@@ -48,10 +48,10 @@ function loadpathTable() {
 			  { field: "platenum", title: "车牌号" },
 			  { field: "fdate", title: "起始时间", width: 200, sort: true },
 			  { field: "tdate", title: "终止时间", width: 200,sort: true },
-			  { field: "speed", title: "平均时速(km/h)", sort: true, templet(d) {
+			  { field: "speed", title: "平均时速(km/h)", sort: true, templet:function(d) {
 				  return d.speed.toFixed(2);
 			  }},
-			  { field: "distance", title: "行驶里程(km)", sort: true, templet(d) {
+			  { field: "distance", title: "行驶里程(km)", sort: true, templet:function(d) {
 				  return d.distance.toFixed(2);
 			  }}
 			]
@@ -80,6 +80,7 @@ function progress() {
     if (data.data.length > 0) {
       //执行正确动作
       $(".search_Carlist").click(function() {
+        
         window.left=0;
         let Width = $(".progress_bg").width();
         var matchResult = true;
@@ -89,14 +90,13 @@ function progress() {
           var d1 = new Date(startTime.replace(/\-/g, "/"));
           var d2 = new Date(endTime.replace(/\-/g, "/"));
           // $("#btnResetRoute").click()
-          
-          $(".progress_btn").css("left", window.left * Width / 100);
-          $(".progress_bar").width(window.left * Width / 100);
-          $(".text").html(parseInt(window.left) + "%");
           if (startTime == "" || endTime == "") {
             layer.msg("请选择起始时间！");
             return false;
           }
+          $(".progress_btn").css("left", window.left * Width / 100);
+          $(".progress_bar").width(window.left * Width / 100);
+          $(".text").html(parseInt(window.left) + "%");
           if (startTime != "" && endTime != "" && d1 >= d2) {
             layer.msg("开始时间不能大于结束时间！");
             return false;
@@ -111,9 +111,11 @@ function progress() {
               car.resetRoute();
               car.route();
             }
+       
           });
           $(".btnPauseRoute").click(function(e, runnum) {
             var btn = $(".btnPauseRoute")[0];
+            console.log(car.isRoteRunning)
             if (car.isRoteRunning) {
               e.stopPropagation();
               e.preventDefault();
@@ -126,11 +128,11 @@ function progress() {
             }
           });
         } else {
+          console.log()
           layer.msg("您选择的时间段车辆没有行驶记录");
           car.resetRoute();
           map.removeOverlay(car.routeMarker);
           return false
-
         }
         pg_truck = $(".selectCarplate").val();
         pg_sdate = $("#test5").val();

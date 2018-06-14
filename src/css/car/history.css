@@ -453,7 +453,7 @@ video{
   #layui-layerss1 {
     left: 243px;
     top: 27%;
-    width: 12.7%;
+    width: 11.8%;
     z-index: 1;
   }
   #layui-layerss1 .layui-input-inline{
@@ -467,7 +467,7 @@ video{
     background: #50b4c8;
   }
   #layui-layerss1 .select_date{
-      width: 93%
+      width: 100%
   }
   #layui-layerss1 #test12{
     background: #50b4c8;
