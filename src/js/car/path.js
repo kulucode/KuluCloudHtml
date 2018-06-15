@@ -45,7 +45,7 @@ function loadpathTable() {
 			  }},
 			  { field: "trucktype", title: "设备类型",width: 200 },
 			  { field: "truckno", title: "物料编号" },
-			  { field: "platenum", title: "车牌号" },
+			  { field: "platenum", title: "编号" },
 			  { field: "fdate", title: "起始时间", width: 200, sort: true },
 			  { field: "tdate", title: "终止时间", width: 200,sort: true },
 			  { field: "speed", title: "平均时速(km/h)", sort: true, templet:function(d) {

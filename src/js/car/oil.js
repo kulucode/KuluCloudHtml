@@ -41,7 +41,7 @@ function tableInit(datas) {
           },
           {
             field: "platenum",
-            title: "车牌号"
+            title: "编号"
           },
           {
             field: "fdate",

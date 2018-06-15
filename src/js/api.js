@@ -72,7 +72,7 @@ var Car = {
         icon: carIcon
       });
       map.addOverlay(car.marker);
-      let labelHD = new BMap.Label(car.data.truckname, {
+      let labelHD = new BMap.Label(car.data.paltenum, {
         offset: new BMap.Size(20, -25)
       });
       labelHD.setStyle({
@@ -348,7 +348,7 @@ var Car = {
           );
           var _newPoint = new BMap.MercatorProjection().lngLatToPoint(newPoint); //根据球面坐标转化为平面坐标
           var content =
-            " 车牌号：" +
+            " 编号：" +
             pts[car.curPointIndex].platenum +
             " <br/>项目组：" +
             pts[car.curPointIndex].truckorg +
@@ -398,7 +398,7 @@ var Car = {
                 .pointToLngLat(new BMap.Pixel(x, y));
               car.routeMarker.setPosition(pos);
               var content =
-                " 车牌号：" +
+                " 编号：" +
                 pts[car.curPointIndex].platenum +
                 " <br/>项目组：" +
                 pts[car.curPointIndex].truckorg +
@@ -491,7 +491,7 @@ function showInfoWindow(data, _map, car) {
     CarState = "离线";
   }
   var infoContent =
-    "<span>车牌号：</span>" +
+    "<span>编号：</span>" +
     "<span>" +
     data.paltenum +
     "</span>" +
@@ -501,7 +501,7 @@ function showInfoWindow(data, _map, car) {
     data.truckorg +
     "</span>" +
     "<br/>" +
-    "<span>物料编号：</span>" +
+    "<span>吨位：</span>" +
     "<span>" +
     data.trucknno +
     "</span>" +
@@ -656,7 +656,7 @@ function loadCarlsitTable(datas) {
           },
           {
             field: "paltenum",
-            title: "车牌号",
+            title: "编号",
             sort: true
           },
           {
