@@ -1,6 +1,7 @@
 (function(window, document) {
   window.left=0;
   Nowtimes=0;
+  VideoTime = 0;
   function timetrans(date) {
     var date = new Date(date * 1000); //如果date为10位不需要乘1000
     var Y = date.getFullYear() + "-";
@@ -26,28 +27,22 @@
     datas= datas.replace("-","")//转换搜索时间格式
     var CarNum = parseFloat(Cararrays[0])*3600+parseFloat(Cararrays[1])*60+parseFloat(Cararrays[2])
     console.log(datas,"CarNum")
-    
     // console.log("212121", 0, data + " 000000", "235959");
     doRefresh("viedoport", "KULUINTERFACE", "searchTruckVideoList","&pg_truck="+Cardata, function (data) {
-      console.log(data)
       NetVideo.Login(data.data[0].ip,data.data[0].port, data.data[0].user, data.data[0].password);
       // NetVideo.Login("182.61.39.135", 7708, "user_viewer", "situouser2834");
       var ret = NetVideo.QueryHistoryVideo(data.data[0].eqpno, 0, ""+datas+" 000000", "235959");
-      // var ret = NetVideo.QueryHistoryVideo("1000012", 0, "180613 000000", "235959");
+      // var ret = NetVideo.QueryHistoryVideo("1000016", 0, "180613 000000", "235959");
     console.log(ret,"ret")
     if(ret == "" || ret == null){
       layer.msg("该视频的数据为空")
     }
     ret = ret.replace(/\"/g, "");
-    var list = ret.split(",");
+    var listssss = ret.split(",");
     array = [];
-    VideoTime = 0;
-    for (var i = 0; i < list.length; i++) {
-      var lists = list[i].split(":");
+    for (var i = 0; i < listssss.length; i++) {
+      var lists = listssss[i].split(":");
       array.push(lists[1]);
-    }
-    for (var z = 0; z < array.length / 6; z++) {
-      VideoTime = VideoTime + parseInt(array[6 * z + 3]);
     }
     // NetVideo.OpenHistoryStream(data.data[0].eqpno, aisleID, array[j], 0, 0);
     console.log(array,"array")
@@ -63,61 +58,53 @@
         ,content: '该时间段没有视频，今天的行驶时间是从'+array[1]+'开始的'
       });  
     }else{
-        var list = 0;
-        Wtime=parseFloat(SelectTime)-parseFloat(timeList)
-        videoTimeinit(list,Cartime)
-    }
-    function videoTimeinit(list,Cartime){
+      list = 0;
+        
       var hour = Cartime.split(':')[0];
-        var min = Cartime.split(':')[1];
-        var sec = Cartime.split(':')[2];
+      var min = Cartime.split(':')[1];
+      var sec = Cartime.split(':')[2];
+      s = Number(hour*3600) + Number(min*60) + Number(sec);//选择时间的时间戳
+        videoTimeinit(list,s)
+    }
+    function videoTimeinit(list,s){
         var hours = array[list + 1].substring(7,9);
         var mins =  array[list + 1].substring(9,11);
         var secs =  array[list + 1].substring(11,13);
-        s = Number(hour*3600) + Number(min*60) + Number(sec);//选择时间的时间戳
         ss = Number(hours*3600) + Number(mins*60) + Number(secs)+Number(array[list + 3]);//列表的时间戳
+        var slisttime =  Number(hours*3600) + Number(mins*60) + Number(secs)
         if(s<ss){
-          let stime = ss-s;
-          console.log("1000012", aisleID, array[list], stime, 0)
+          
+      console.log(array[list + 1],s)
+      console.log(ss,slisttime)
+          var slength= array.length-list;
+          slist = list/6;
+          for (var z=list/slist; z < slength/ 6; z++) {
+            VideoTime = parseInt(VideoTime) + parseInt(array[6 * z + 3]);
+          }
+          let stime = s-slisttime;
+          console.log("1000016", aisleID, array[list], stime, 0)
           NetVideo.OpenHistoryStream(data.data[0].eqpno, aisleID, array[list], stime, 0);
+          // NetVideo.OpenHistoryStream("1000016", 1, array[list], stime, 0);
+          
         }else{
           list = list+6;
-          videoTimeinit(list,Cartime)
+          videoTimeinit(list,s)
         }
     }
-    $(".btnPauseRoute").click(function(){
-      NetVideo.CtrlPlay(1,1)
-    })
-    $(".btnStartRoute").click(function(){
-      NetVideo.CtrlPlay(1,0)
-    })
-    $(".btnFastRoute1").click(function(){
-      NetVideo.CtrlPlay(0,1);
-    })
-    $(".btnFastRoute2").click(function(){
-      NetVideo.CtrlPlay(0,2)
-    })
-    $(".btnFastRoute3").click(function(){
-      NetVideo.CtrlPlay(0,3)
-    })
-    $(".btnFastRoute0").click(function(){
-      NetVideo.CtrlPlay(0,4)
-    }) 
-    $(".btnStartRoute4").click(function(){
-      NetVideo.CtrlPlay(0,0)
-    })
     var intervalProcess = setInterval(function showTime() {
       NowTime = NetVideo.GetPlayedTime();
-      window.left =(Nowtimes+parseInt(NowTime) )/ parseInt(VideoTime);
+      // console.log(NowTime,VideoTime)
+      window.left = parseInt(window.left)+parseInt(parseInt(NowTime)/ parseInt(VideoTime))
+      // console.log(window.left)
       if (NetVideo.GetPlayedTime() == array[j + 3]) {
         NetVideo.Logout();
         NetVideo.Login(data.data[0].ip, data.data[0].port, data.data[0].user, data.data[0].password);
         j = j + 6;
         NetVideo.OpenHistoryStream(data.data[0].eqpno, aisleID, array[j], 0, 0);
       }
-      $(".progress_btn").css("left", window.left * 1175);
-      $(".progress_bar").width(window.left * 1175);
-      $(".text").html(parseInt(window.left * 100) + "%");
+      $(".progress_btn").css("left", window.left * 10);
+      $(".progress_bar").width(window.left * 10);
+      $(".text").html(parseInt(window.left) + "%");
     }, 1000);
     var tag = false,
       ox = 0,
@@ -133,30 +120,34 @@
     $(".progress_bg").click(function(e) {
       //鼠标点击
       if (!tag) {
-        bgleft = $(".progress_bg").offset().left;
-        window.left = e.pageX - bgleft;
+        window.left = parseInt(e.offsetX/1000*100)
         if (window.left <= 0) {
           window.left = 0;
-        } else if (window.left > 1175) {
-          window.left = 1175;
+        } else if (window.left > 100) {
+          window.left = 100;
         }
-        window.left=window.left/1175
-        $(".progress_btn").css("left", window.left * 1175);
-        $(".progress_bar").width(window.left * 1175);
-        $(".text").html(parseInt(window.left * 100) + "%");
-        Nowtime = parseFloat(window.left)* VideoTime;
-        Nowtimes = Nowtime;
-        var h=0;
-        timeInit(h)
-        function timeInit(h){
-          if (parseFloat(Nowtime) < parseFloat(array[h + 3])) {
+        console.log(window.left,"151")
+        $(".progress_btn").css("left", window.left * 10);
+        $(".progress_bar").width(window.left * 10);
+        $(".text").html(window.left+ "%");
+        NowtimeVideo = parseFloat(window.left/100)* VideoTime;
+        Nowtimes =  window.left;
+        // var h=0;
+        lists = list
+        timeInit(lists)
+        function timeInit(lists){
+          console.log(array[lists + 3],NowtimeVideo,"12312")
+          if (parseFloat(NowtimeVideo) < parseFloat(array[lists + 3])) {
             NetVideo.Logout();
             NetVideo.Login(data.data[0].ip, data.data[0].port, data.data[0].user, data.data[0].password);
-            NetVideo.OpenHistoryStream(data.data[0].eqpno, aisleID, array[h], Nowtime, 0);
+            
+      // NetVideo.Login("182.61.39.135", 7708, "user_viewer", "situouser2834");
+            NetVideo.OpenHistoryStream(data.data[0].eqpno, aisleID, array[lists], NowtimeVideo, 0);
+            // NetVideo.OpenHistoryStream("1000016", 1, array[lists], NowtimeVideo, 0);
           } else {
-            Nowtime = parseInt(Nowtime) - parseInt(array[h + 3]);
-            h=h+6;
-            timeInit(h)
+            NowtimeVideo = parseInt(NowtimeVideo) - parseInt(array[lists + 3]);
+            lists=lists+6;
+            timeInit(lists)
           }
         }
       }
@@ -192,7 +183,6 @@ $(".btnStartRoute4").click(function(){
     var DevID = jQuery("#test12").val();
     var timeVideo = DevID;
     var aisleID =  jQuery("#aisleID").val();
-    console.log(aisleID)
     timeVideo = timeVideo.replace("月", "-");
     timeVideo = timeVideo.replace("年", "-");
     timeVideo = timeVideo.replace("日", "");
@@ -214,14 +204,13 @@ $(".btnStartRoute4").click(function(){
     var tag = false,
       ox = 0,
       bgleft = 0;
-    window.left=0;
-    $(".progress_btn").mousedown(function(e) {
-      ox = e.pageX - window.left;
-      tag = true;
-    });
-    $(document).mouseup(function() {
-      tag = false;
-    });
+    // $(".progress_btn").mousedown(function(e) {
+    //   ox = e.pageX - window.left;
+    //   tag = true;
+    // });
+    // $(document).mouseup(function() {
+    //   tag = false;
+    // });
     // $(".progress").mousemove(function(e) {
     //   //鼠标移动
     //   if (tag) {
