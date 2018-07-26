@@ -1,4 +1,4 @@
-window.n = 0;
+﻿window.n = 0;
 window.left=0;
 var CarManager = {
   createNew: function(map) {
@@ -515,7 +515,7 @@ function showInfoWindow(data, _map, car) {
     "<span>剩余油量：</span>" +
     "<span>" +
     data.oil +
-    "&nbsp;%" +
+    "&nbsp;" +
     "</span>" +
     "<br/>" +
     "<span style='color:" +
